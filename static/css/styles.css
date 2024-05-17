@@ -1,0 +1,197 @@
+/* Styles for header */
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.logo {
+    display: block;
+    padding: 5px 10px;
+    font-size: 24px;
+}
+
+.signup-btn, .login-btn {
+    display: block;
+    position: relative;
+    margin-right: 0px;
+    margin-left: auto;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropdown {
+    
+    display: block;
+    position: relative;
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+.dropdown select {
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+/* Styles for login container */
+.login-container {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.login-container .logo {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form input {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.create-account-link {
+    display: block;
+    margin-top: 20px;
+    text-decoration: underline;
+    color: #0000EE;
+}
+
+/* Styles for hamburger menu */
+.menu-btn {
+    display: block;
+    color: white;
+    cursor: pointer;
+}
+
+/* Styles for left menu */
+.menu {
+    width: 200px;
+    background-color: #333;
+    height: 100vh;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    overflow-y: auto;
+    padding-top: 0px;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.menu ul li:hover {
+    background-color: #dddddd4b;
+}
+
+/* Styles for signup page */
+.container {
+    background-color: #fff;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-weight: bold;
+  }
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .form-group small {
+    color: #888;
+  }
+  .sign-up-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .sign-up-btn:hover {
+    background-color: #0056b3;
+  }
+
+
+@media screen and (max-width: 768px) {
+    .menu-btn {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+        margin: 0;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 20px;
+        color: #fff;
+    }
+
+    .dropdown {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .login-container {
+        margin-top: 150px;
+    }
+}
