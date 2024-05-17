@@ -1,10 +1,28 @@
 /* Styles for header */
 header {
     display: flex;
+    font-family: Arial, sans-serif;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 20px;
     background-color: #333;
     color: #fff;
+}
+
+.left-container {
+    display: flex;
+    align-items: center;
+}
+
+.right-container {
+    display: flex;
+    align-items: center;
+}
+
+.menu-btn {
+    display: block;
+    color: white;
+    cursor: pointer;
 }
 
 .logo {
@@ -16,8 +34,7 @@ header {
 .signup-btn, .login-btn {
     display: block;
     position: relative;
-    margin-right: 0px;
-    margin-left: auto;
+    margin-left: 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -27,11 +44,9 @@ header {
 }
 
 .dropdown {
-    
     display: block;
     position: relative;
-    margin-right: 0px;
-    margin-left: auto;
+    margin-left: 20px;
 }
 
 .dropdown select {
@@ -78,13 +93,6 @@ header {
     margin-top: 20px;
     text-decoration: underline;
     color: #0000EE;
-}
-
-/* Styles for hamburger menu */
-.menu-btn {
-    display: block;
-    color: white;
-    cursor: pointer;
 }
 
 /* Styles for left menu */

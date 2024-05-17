@@ -10,20 +10,24 @@
 <body>
     
     <header>
-        <a href="login-menu.html">
-            <div class="menu-btn">&#9776;</div>
-        </a>
-        <div class="logo">whyAlba</div>
-        <button class="signup-btn">Sign Up</button>
-        <button class="login-btn">Login</button>
-        <div class="dropdown">
-            <select>
-                <option value="en">English</option>
-                <option value="kr">한국어</option>
-                <!-- Add other language options here -->
-            </select>
+        <div class="left-container">
+            <a href="login-menu.html">
+                <div class="menu-btn">&#9776;</div>
+            </a>
+            <div class="logo">whyAlba</div>
         </div>
-    </header>
+        <div class="right-container">
+            <button class="signup-btn">Sign Up</button>
+            <button class="login-btn">Login</button>
+            <div class="dropdown">
+                <select>
+                    <option value="en">English</option>
+                    <option value="kr">한국어</option>
+                    <!-- Add other language options here -->
+                </select>
+            </div>
+        </div>
+    </header>    
     
     {% block body %}{% endblock %}
 
