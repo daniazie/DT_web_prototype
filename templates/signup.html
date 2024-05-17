@@ -1,29 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+{% extends 'base.html' %}
+
+{% block body %}
+
 <body>
-    
-    <header>
-        <a href="login-menu.html">
-            <div class="menu-btn">&#9776;</div>
-        </a>
-        <div class="logo">whyAlba</div>
-        <button class="signup-btn">Sign Up</button>
-        <button class="login-btn">Login</button>
-        <div class="dropdown">
-            <select>
-                <option value="en">English</option>
-                <option value="kr">한국어</option>
-                <!-- Add other language options here -->
-            </select>
-        </div>
-    </header>
-    
+        
     <div class="logo">Sign Up</div>
 
     <div class="container">
@@ -63,4 +43,7 @@
 
     <script src="script.js"></script>
 </body>
+
+{% endblock %}
+
 </html>
