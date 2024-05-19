@@ -1,7 +1,6 @@
 from flask import Flask, request, url_for, redirect, session, render_template
 from flask_login import login_user, LoginManager
 
-import modules.database as db
 import modules.user as user
 
 app = Flask(__name__)
@@ -13,9 +12,6 @@ login_manager.init_app(app)
 @app.route("/")
 def hello_world():
     return redirect("/login")
-
-def asdf():
-    pass
 
 @app.route("/index")
 def index():
@@ -30,33 +26,25 @@ def login():
     if user_id is None or user_pw is None:
         return render_template('login.html')
 
-    connection = db.DataBase()
-    sql = "SELECT * FROM User WHERE id='{0}'".format(user_id)
-    print(sql)
-    user_info = connection.execute(sql)
-    connection.__del__()
-    print(user_info)
-    if user_info == None :
-        return render_template('login.html')
-    elif user_info['password'] == user_pw:
-        login_info = user.User(user_info)
-        login_user(login_info)
-        return redirect('/index')
-    else:
-        return render_template('login.html')
+    user_info = user.User()
+    
+    flag = user_info.set_info_from_database_by_id(user_id)
+    if flag:
+        if user_info.check_password(user_pw):
+            login_user(user_info)
+            return redirect('/index')
+
+    return render_template('login.html')
 
 @login_manager.user_loader
 def user_loader(user_id):
-    connection = db.DataBase()
-    user_info = connection.execute("SELECT * FROM User WHERE id='{0}'".format(user_id))
-    connection.__del__()
-    login_info = user.User(user_info)
-
-    return login_info
+    user_info = user.User()
+    user_info.set_info_from_database_by_id(user_id)
+    return user_info
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    return redirect("/")
+    return redirect("/login")
 
 if __name__ == '__main__':  
    app.run('0.0.0.0',port=5000,debug=True)
