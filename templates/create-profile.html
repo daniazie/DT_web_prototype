@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<style>
+    .profile {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .profile-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        padding: 20px;
+        text-align: center;
+    }   
+
+    .profile-container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .profile-container img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .profile-container p {
+        margin: 0;
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 20px;
+    }
+
+    .profile-container .element {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .profile-container .element label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .profile-container .element select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #0000EE;
+        border-radius: 4px;
+    }
+
+    .profile-container .element input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #0000EE;
+        border-radius: 4px;
+    }
+
+    .profile-container button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .profile-container button:hover {
+        background-color: #0056b3;
+    }
+    
+
+    
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+<div class ="profile">
+    <div class="profile-container">
+        <h1>Create your profile</h1>
+        <img src="..\static\hehe.jpg" alt="Profile Photo">
+        <p>Profile Photo</p>
+        
+        <div class="element">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+        </div>
+        
+        <div class="element">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+                <option value="" disabled selected>Choose your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        
+        <div class="element">
+            <label for="language">Language</label>
+            <select id="language" name="language">
+                <option value="" disabled selected>Choose your first language</option>
+                <option value="한국어">한국어</option>
+                <option value="English">English</option>
+            </select>
+        </div>
+        
+        <div class="element">
+            <label for="city">City</label>
+            <select id="city" name="city">
+                <option value="" disabled selected>Choose your location</option>
+                <option value="Seoul">Seoul</option>
+                <option value="Suwon">Suwon</option>
+                <option value="Incheon">Incheon</option>
+            </select>
+        </div>
+        
+        <button>Create</button>
+
+    </div>    </div>
+
+    <script src="script.js"></script>
+</body>
+
+{% endblock %}
+
+</html>

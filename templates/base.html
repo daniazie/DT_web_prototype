@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block head %} {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="..\static\css\styles.css">
+</head>
+<body>
+    
+    <header>
+        <div class="left-container">
+            <div class="logo">whyAlba</div>
+        </div>
+        <div class="right-container">
+            <button class="signup-btn">Sign Up</button>
+            <button class="login-btn">Login</button>
+            <div class="dropdown">
+                <select>
+                    <option value="en">English</option>
+                    <option value="kr">한국어</option>
+                    <!-- Add other language options here -->
+                </select>
+            </div>
+        </div>
+    </header>    
+    
+    {% block body %}{% endblock %}
+
+    <script src="script.js"></script>
+</body>
+</html>
