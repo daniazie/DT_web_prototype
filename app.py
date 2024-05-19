@@ -23,12 +23,12 @@ def index():
 
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
-    user_id = request.form.get('userID')
-    user_pw = request.form.get('userPW')
+    user_id = request.form.get('Username')
+    user_pw = request.form.get('Password')
     print(user_id, user_pw)
 
     if user_id is None or user_pw is None:
-        return render_template('test_login.html')
+        return render_template('login.html')
 
     connection = db.DataBase()
     sql = "SELECT * FROM User WHERE id='{0}'".format(user_id)
@@ -37,13 +37,13 @@ def login():
     connection.__del__()
     print(user_info)
     if user_info == None :
-        return render_template('test_login.html')
+        return render_template('login.html')
     elif user_info['password'] == user_pw:
         login_info = user.User(user_info)
         login_user(login_info)
         return redirect('/index')
     else:
-        return render_template('test_login.html')
+        return render_template('login.html')
 
 @login_manager.user_loader
 def user_loader(user_id):
