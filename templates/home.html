@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<style>
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+
+    .side-menu {
+        width: 150px;
+        height: 100vh;
+        background-color: #f0f0f0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .side-menu ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .side-menu li {
+        margin: 10px 0;
+    }
+
+    .content {
+        display: flex;
+        flex-grow: 1;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .my-community, .recent-posts {
+        width: 50%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin-right: 20px;
+    }
+
+    .my-community h2, .recent-posts h2 {
+        margin-top: 0;
+    }
+
+    .recent-posts .post {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .favorite-icon {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .post-body {
+        display: flex;
+        align-items: center;
+    }
+
+    .post-content {
+        flex-grow: 1;
+    }
+
+    .medium-pic {
+        width: 150px;
+        margin-left: 10px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="side-menu">
+        <ul>
+            <li>Element 1</li>
+            <li>Element 2</li>
+            <li>Element 3</li>
+            <li>Element 4</li>
+            <li>Element 5</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="my-community">
+                <h2>My Community</h2>
+                <p>This is some text about the community.</p>
+                <button>Go to Community</button>
+            </div>
+            <div class="recent-posts">
+                <h2>Recent Posts</h2>
+                <div class="post">
+                    <div class="post-header">
+                        <img src="profile1.jpg" alt="Profile Picture" class="profile-pic">
+                        <p><strong>ID 1</strong></p>
+                        <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
+                    </div>
+                    <div class="post-body">
+                        <div class="post-content">
+                            <p>Body text 1</p>
+                        </div>
+                        <img src="medium-pic1.jpg" alt="Medium Picture" class="medium-pic">
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="post-header">
+                        <img src="profile2.jpg" alt="Profile Picture" class="profile-pic">
+                        <p><strong>ID 2</strong></p>
+                        <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
+                    </div>
+                    <div class="post-body">
+                        <div class="post-content">
+                            <p>Body text 2</p>
+                        </div>
+                        <img src="medium-pic2.jpg" alt="Medium Picture" class="medium-pic">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+{% endblock %}
+
+</html>
