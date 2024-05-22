@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-import modules.database as db
+import models.database as db
 
 class User(UserMixin): 
     def set_info_from_database_by_id(self, user_id):
