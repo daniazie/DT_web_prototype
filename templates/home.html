@@ -3,9 +3,15 @@
 {% block head %}
 
 <style>
-    .container {
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .content {
         display: flex;
-        height: 100vh;
     }
 
     .side-menu {
@@ -25,19 +31,28 @@
         margin: 10px 0;
     }
 
-    .content {
+    .main-content {
         display: flex;
-        flex-grow: 1;
+        flex-direction: column;
+        width: calc(100% - 150px);
         padding: 20px;
-        box-sizing: border-box;
+    }
+
+    .row-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1500px;
     }
 
     .my-community, .recent-posts {
-        width: 50%;
+        flex: 1;
         padding: 20px;
         border: 1px solid #ccc;
+        margin: 10px;
         box-sizing: border-box;
-        margin-right: 20px;
+        min-width: 300px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
     }
 
     .my-community h2, .recent-posts h2 {
@@ -105,6 +120,24 @@
         background-color: #45a049;
     }
 
+    @media (max-width: 768px) {
+        .content {
+            flex-direction: column;
+        }
+
+        .side-menu {
+            width: 100%;
+            height: auto;
+        }
+
+        .main-content {
+            width: 100%;
+        }
+
+        .row-container {
+            flex-direction: column;
+        }
+    }
 </style>
 
 {% endblock %}
@@ -112,55 +145,56 @@
 {% block body %}
 
 <body>
-    <div class="side-menu">
-        <ul>
-            <li>Element 1</li>
-            <li>Element 2</li>
-            <li>Element 3</li>
-            <li>Element 4</li>
-            <li>Element 5</li>
-        </ul>
-    </div>
-    <div class="container">
-        <div class="content">
-            <div class="my-community">
-                <h2>My Community</h2>
-                <p>This is some text about the community.</p>
-                <button>Go to Community</button>
-            </div>
-            <div class="recent-posts">
-                <h2>Recent Posts</h2>
-                <div class="post">
-                    <div class="post-header">
-                        <img src="profile1.jpg" alt="Profile Picture" class="profile-pic">
-                        <p><strong>ID 1</strong></p>
-                        <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
-                    </div>
-                    <div class="post-body">
-                        <div class="post-content">
-                            <p>Body text 1</p>
+    <div class="content">
+        <nav class="side-menu">
+            <ul>
+                <li>Home</li>
+                <li>Community</li>
+                <li>Posts</li>
+                <li>Chatting</li>
+                <li>My Profile</li>
+            </ul>
+        </nav>
+        <div class="main-content">
+            <div class="row-container">
+                <section class="my-community">
+                    <h2>My Community</h2>
+                    <p>This is some text about the community.</p>
+                    <button>Go to Community</button>
+                </section>
+                <section class="recent-posts">
+                    <h2>Recent Posts</h2>
+                    <article class="post">
+                        <div class="post-header">
+                            <img src="profile1.jpg" alt="Profile Picture" class="profile-pic">
+                            <p><strong>ID 1</strong></p>
+                            <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
                         </div>
-                        <img src="medium-pic1.jpg" alt="Medium Picture" class="medium-pic">
-                    </div>
-                </div>
-                <div class="post">
-                    <div class="post-header">
-                        <img src="profile2.jpg" alt="Profile Picture" class="profile-pic">
-                        <p><strong>ID 2</strong></p>
-                        <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
-                    </div>
-                    <div class="post-body">
-                        <div class="post-content">
-                            <p>Body text 2</p>
+                        <div class="post-body">
+                            <div class="post-content">
+                                <p>Body text 1</p>
+                            </div>
+                            <img src="medium-pic1.jpg" alt="Medium Picture" class="medium-pic">
                         </div>
-                        <img src="medium-pic2.jpg" alt="Medium Picture" class="medium-pic">
-                    </div>
-                </div>
+                    </article>
+                    <article class="post">
+                        <div class="post-header">
+                            <img src="profile2.jpg" alt="Profile Picture" class="profile-pic">
+                            <p><strong>ID 2</strong></p>
+                            <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
+                        </div>
+                        <div class="post-body">
+                            <div class="post-content">
+                                <p>Body text 2</p>
+                            </div>
+                            <img src="medium-pic2.jpg" alt="Medium Picture" class="medium-pic">
+                        </div>
+                    </article>
+                </section>
             </div>
         </div>
     </div>
 </body>
-
 
 {% endblock %}
 
