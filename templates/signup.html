@@ -4,41 +4,42 @@
 
 <body>
         
-    <div class="logo">Sign Up</div>
-
+  <div class="logo">Sign Up</div>
+  <form class="signup-form" method="post">
     <div class="container">
-        <div class="form-group">
-          <label for="id">ID</label>
-          <input type="text" id="id" name="id" placeholder="ID">
-          <small>6~16 characters</small>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Email Address">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Password">
-          <small>must include one special characters and numbers (8-20 characters)</small>
-        </div>
-        <div class="form-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
-        </div>
-        <div class="form-group">
-          <label for="country">Country</label>
-          <select id="country" name="country">
-            <option value="southkorea">South Korea</option>
-            <option value="malaysia">Malaysia</option>
-            <option value="myanmar">Myanmar</option>
-            <option value="australia">Australia</option>
-            <!-- Add more options as needed -->
-          </select>
-        </div>
-        <button type="submit" class="sign-up-btn">Sign Up</button>
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" placeholder="ID">
+        <small>6~16 characters</small>
       </div>
-
-    <script src="script.js"></script>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Email Address">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password">
+        <small>must include one special characters and numbers (8-20 characters)</small>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
+      </div>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="southkorea">South Korea</option>
+          <option value="malaysia">Malaysia</option>
+          <option value="myanmar">Myanmar</option>
+          <option value="australia">Australia</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <button type="submit" class="sign-up-btn">Sign Up</button>
+    </div>
+  </form>
+    
+    <!--script src="script.js"></script-->
 </body>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from flask import Flask, request, url_for, redirect, session, render_template, Blueprint
 from flask_login import login_user, LoginManager
-import control.login_control as login_control
+import control.user_control as user_control
 import models.user as user
 
 login_view = Blueprint("login_view", __name__)
@@ -13,26 +13,27 @@ def on_load(state):
 
 @login_view.route("/login", methods = ['GET', 'POST'])
 def login():
-    user_id = request.form.get('Username')
-    user_pw = request.form.get('Password')
+    if request.method == "POST":
+        user_id = request.form.get('Username')
+        user_pw = request.form.get('Password')
 
-    if user_id is None or user_pw is None:
-        return render_template('login.html')
+        if (user_id == None) or (user_pw == None):
+            return render_template('login.html')
 
-    user_info = user.User()
-    
-    flag = user_info.set_info_from_database_by_id(user_id)
-    if flag:
-        if user_info.check_password(user_pw):
-            login_user(user_info)
-            return redirect('/index')
-
+        user_info = user.User()
+        
+        flag = user_info.pull_info_from_database_by_id(user_id)
+        if flag:
+            if user_control.check_password(user_info, user_pw):
+                login_user(user_info)
+                return redirect('/home')
+            
     return render_template('login.html')
 
 @login_manager.user_loader
 def user_loader(user_id):
     user_info = user.User()
-    user_info.set_info_from_database_by_id(user_id)
+    user_info.pull_info_from_database_by_id(user_id)
     return user_info
 
 @login_manager.unauthorized_handler

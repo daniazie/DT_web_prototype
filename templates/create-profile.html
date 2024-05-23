@@ -92,49 +92,51 @@
 {% block body %}
 
 <body>
-<div class ="profile">
-    <div class="profile-container">
-        <h1>Create your profile</h1>
-        <img src="..\static\hehe.jpg" alt="Profile Photo">
-        <p>Profile Photo</p>
-        
-        <div class="element">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name">
-        </div>
-        
-        <div class="element">
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender">
-                <option value="" disabled selected>Choose your gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
-        
-        <div class="element">
-            <label for="language">Language</label>
-            <select id="language" name="language">
-                <option value="" disabled selected>Choose your first language</option>
-                <option value="한국어">한국어</option>
-                <option value="English">English</option>
-            </select>
-        </div>
-        
-        <div class="element">
-            <label for="city">City</label>
-            <select id="city" name="city">
-                <option value="" disabled selected>Choose your location</option>
-                <option value="Seoul">Seoul</option>
-                <option value="Suwon">Suwon</option>
-                <option value="Incheon">Incheon</option>
-            </select>
-        </div>
-        
-        <button>Create</button>
+    <form class="profile_form" method="post">
+    <div class ="profile">
+        <div class="profile-container">
+            <h1>Create your profile</h1>
+            <img src="..\static\hehe.jpg" alt="Profile Photo">
+            <p>Profile Photo</p>
+            
+            <div class="element">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+            </div>
+            
+            <div class="element">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="" disabled selected>Choose your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            
+            <div class="element">
+                <label for="language">Language</label>
+                <select id="language" name="language">
+                    <option value="" disabled selected>Choose your first language</option>
+                    <option value="한국어">한국어</option>
+                    <option value="English">English</option>
+                </select>
+            </div>
+            
+            <div class="element">
+                <label for="city">City</label>
+                <select id="city" name="city">
+                    <option value="" disabled selected>Choose your location</option>
+                    <option value="Seoul">Seoul</option>
+                    <option value="Suwon">Suwon</option>
+                    <option value="Incheon">Incheon</option>
+                </select>
+            </div>
+            
+            <button type="submit">Create</button>
 
-    </div>    </div>
-
+        </div>
+    </div>
+    </form>
     <script src="script.js"></script>
 </body>
 
