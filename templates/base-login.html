@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block head %} {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="..\static\css\styles.css">
+    <style>
+        
+        .content {
+        display: flex;
+        }
+
+        .side-menu {
+            width: 200px;
+            height: 100vh;
+            background-color: #fefbea;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-menu li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            text-align: center;
+            background-color: #8E9E99;
+        }
+
+        .side-menu a {
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+
+        .side-menu li:hover {
+            background-color: #e0e0e0;
+        }
+
+        .icon-pic {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .icon-btn img, .icon-btn i {
+            width: 24px;
+            height: 24px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="left-container">
+            <div class="logo">whyAlba</div>
+        </div>
+        <div class="right-container">
+            <button class="icon-btn search-icon">
+                <img src="..\static\search.png" alt="Search">
+            </button>
+            <button class="icon-btn notification-icon">
+                <img src="..\static\bell.png" alt="Notification">
+            </button>
+            <div class="dropdown">
+                <select>
+                    <option value="en">English</option>
+                    <option value="kr">한국어</option>
+                    <!-- Add other language options here -->
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <nav class="side-menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">Chatting</a></li>
+                <li><a href="#">My Profile</a></li>
+            </ul>
+        </nav>
+        {% block body %}{% endblock %}
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

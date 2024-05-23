@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-login.html' %}
 
 {% block head %}
 
@@ -8,27 +8,11 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        background-color: #fefbea;
     }
 
     .content {
         display: flex;
-    }
-
-    .side-menu {
-        width: 150px;
-        height: 100vh;
-        background-color: #f0f0f0;
-        padding: 20px;
-        box-sizing: border-box;
-    }
-
-    .side-menu ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .side-menu li {
-        margin: 10px 0;
     }
 
     .main-content {
@@ -41,17 +25,25 @@
     .row-container {
         display: flex;
         flex-wrap: wrap;
-        max-width: 1500px;
+        max-width: 1800px;
     }
 
-    .my-community, .recent-posts {
+    .recent-posts {
+        flex: 2.5;
+        padding: 20px;
+        margin: 10px;
+        box-sizing: border-box;
+        min-width: 300px;
+    }
+
+    .my-community {
         flex: 1;
         padding: 20px;
         border: 1px solid #ccc;
         margin: 10px;
         box-sizing: border-box;
         min-width: 300px;
-        background-color: #f9f9f9;
+        background-color: #F0EDDC;
         border-radius: 10px;
     }
 
@@ -60,8 +52,10 @@
     }
 
     .recent-posts .post {
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
+        border: 1px solid #ccc;
+        background-color: #F0EDDC;
+        border-radius: 10px;
+        padding: 20px;
         margin-bottom: 20px;
         position: relative;
     }
@@ -80,11 +74,11 @@
     }
 
     .favorite-icon {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 25px;
+        right: 25px;
         cursor: pointer;
     }
 
@@ -145,53 +139,42 @@
 {% block body %}
 
 <body>
-    <div class="content">
-        <nav class="side-menu">
-            <ul>
-                <li>Home</li>
-                <li>Community</li>
-                <li>Posts</li>
-                <li>Chatting</li>
-                <li>My Profile</li>
-            </ul>
-        </nav>
-        <div class="main-content">
-            <div class="row-container">
-                <section class="my-community">
-                    <h2>My Community</h2>
-                    <p>This is some text about the community.</p>
-                    <button>Go to Community</button>
-                </section>
-                <section class="recent-posts">
-                    <h2>Recent Posts</h2>
-                    <article class="post">
-                        <div class="post-header">
-                            <img src="profile1.jpg" alt="Profile Picture" class="profile-pic">
-                            <p><strong>ID 1</strong></p>
-                            <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
+    <div class="main-content">
+        <div class="row-container">
+            <section class="recent-posts">
+                <h2>Recent Posts</h2>
+                <article class="post">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>ID 1</strong></p>
+                        <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                    </div>
+                    <div class="post-body">
+                        <div class="post-content">
+                            <p>Body text 1</p>
                         </div>
-                        <div class="post-body">
-                            <div class="post-content">
-                                <p>Body text 1</p>
-                            </div>
-                            <img src="medium-pic1.jpg" alt="Medium Picture" class="medium-pic">
+                        <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                    </div>
+                </article>
+                <article class="post">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>ID 2</strong></p>
+                        <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                    </div>
+                    <div class="post-body">
+                        <div class="post-content">
+                            <p>Body text 2</p>
                         </div>
-                    </article>
-                    <article class="post">
-                        <div class="post-header">
-                            <img src="profile2.jpg" alt="Profile Picture" class="profile-pic">
-                            <p><strong>ID 2</strong></p>
-                            <img src="favorite-icon.png" alt="Favorite Icon" class="favorite-icon">
-                        </div>
-                        <div class="post-body">
-                            <div class="post-content">
-                                <p>Body text 2</p>
-                            </div>
-                            <img src="medium-pic2.jpg" alt="Medium Picture" class="medium-pic">
-                        </div>
-                    </article>
-                </section>
-            </div>
+                        <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                    </div>
+                </article>
+            </section>
+            <section class="my-community">
+                <h2>My Community</h2>
+                <p>This is some text about the community.</p>
+                <button>Go to Community</button>
+            </section>
         </div>
     </div>
 </body>
