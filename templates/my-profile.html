@@ -1,16 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'base-login.html' %}
 
 {% block head %}
 
 <style>
-    .profile {
+    body {
         font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
         background-color: #fefbea;
+    }
+
+    .profile {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        margin: 0;
+        margin: auto;
     }
 
     .profile-container {
@@ -24,7 +29,12 @@
 
     .profile-container h1 {
         font-size: 24px;
-        margin-bottom: 20px;
+        margin: 10px;
+    }
+
+    .profile-container h2 {
+        font-size: 20px;
+        margin-bottom: 5px;
     }
 
     .profile-container img {
@@ -38,8 +48,7 @@
     .profile-container p {
         margin: 0;
         font-size: 14px;
-        color: #777;
-        margin-bottom: 20px;
+        color: #000000;
     }
 
     .profile-container .element {
@@ -82,7 +91,7 @@
     .profile-container button:hover {
         background-color: #0056b3;
     }
-    
+
 </style>
 
 {% endblock %}
@@ -92,9 +101,10 @@
 <body>
     <div class ="profile">
         <div class="profile-container">
-            <h1>Create your profile</h1>
+            <h1>My Profile</h1>
             <img src="..\static\hehe.jpg" alt="Profile Photo">
-            <p>Profile Photo</p>
+            <h2>Kyrie Irving</h2>
+            <p>Australian</p>
             <div class="element">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name">
@@ -127,8 +137,6 @@
             <button>Create</button>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 
 {% endblock %}

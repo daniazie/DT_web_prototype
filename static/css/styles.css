@@ -43,6 +43,10 @@ header {
     border-radius: 5px;
 }
 
+.signup-btn:hover, .login-btn:hover {
+    background-color: #3b8a3d;
+}
+
 .dropdown {
     display: block;
     position: relative;
