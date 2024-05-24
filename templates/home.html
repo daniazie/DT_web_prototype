@@ -43,7 +43,7 @@
         margin: 10px;
         box-sizing: border-box;
         min-width: 300px;
-        background-color: #F0EDDC;
+        background-color: #a7bdb6;
         border-radius: 10px;
     }
 
@@ -124,7 +124,7 @@
     }
 
     button {
-        background-color: #4CAF50;
+        background-color: #1F2A2F;
         color: white;
         border: none;
         padding: 10px 20px;
@@ -135,10 +135,22 @@
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 5px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     button:hover {
         background-color: #45a049;
+    }
+
+    .my-community .section {
+        border: 1px solid #ccc;
+        background-color: #F0EDDC;
+        border-radius: 10px;
+        padding: 15px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
 
     @media (max-width: 768px) {
@@ -263,8 +275,39 @@
             </section>
             <section class="my-community">
                 <h2>My Community</h2>
-                <p>This is some text about the community.</p>
-                <button>Go to Community</button>
+                <div class="section">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>Community 1</strong></p>
+                    </div>
+                    <p>This is some body text about the user.</p>
+                </div>
+                <div class="section">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>Community 2</strong></p>
+                    </div>
+                    <p>This is some body text about the member.</p>
+                </div>
+                <button>See More</button>
+                <h2>Join Other Community</h2>
+                <div class="section">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>Community 3</strong></p>
+                    </div>
+                    <p>This is some body text about the user.</p>
+                    <button>Join</button>
+                </div>
+                <div class="section">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>Community 4</strong></p>
+                    </div>
+                    <p>This is some body text about the member.</p>
+                    <button>Join</button>
+                </div>
+                <button>See More</button>
             </section>
         </div>
     </div>
