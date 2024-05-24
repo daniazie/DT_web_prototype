@@ -5,7 +5,7 @@
 <style>
     .profile {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background-color: #fefbea;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -83,8 +83,6 @@
         background-color: #0056b3;
     }
     
-
-    
 </style>
 
 {% endblock %}
@@ -97,12 +95,10 @@
         <h1>Create your profile</h1>
         <img src="..\static\hehe.jpg" alt="Profile Photo">
         <p>Profile Photo</p>
-        
         <div class="element">
             <label for="name">Name</label>
             <input type="text" id="name" name="name">
         </div>
-        
         <div class="element">
             <label for="gender">Gender</label>
             <select id="gender" name="gender">
@@ -111,7 +107,6 @@
                 <option value="Female">Female</option>
             </select>
         </div>
-        
         <div class="element">
             <label for="language">Language</label>
             <select id="language" name="language">
@@ -120,7 +115,6 @@
                 <option value="English">English</option>
             </select>
         </div>
-        
         <div class="element">
             <label for="city">City</label>
             <select id="city" name="city">
@@ -130,12 +124,11 @@
                 <option value="Incheon">Incheon</option>
             </select>
         </div>
-        
         <button>Create</button>
+    </div>
+</div>
 
-    </div>    </div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 
 {% endblock %}

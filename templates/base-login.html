@@ -63,6 +63,20 @@
             height: 24px;
         }
 
+        .logout-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 
@@ -97,6 +111,7 @@
                 <li><a href="#">Message</a></li>
                 <li><a href="#">My Profile</a></li>
             </ul>
+            <a href="/logout" class="logout-link">Log Out</a>
         </nav>
         {% block body %}{% endblock %}
     </div>
