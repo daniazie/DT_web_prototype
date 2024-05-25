@@ -18,6 +18,18 @@ def create_profile():
 def home():
     return render_template("home.html")
 
+@app.route("/community")
+def community():
+    return render_template("community.html")
+
+@app.route("/posts")
+def posts():
+    return render_template("posts.html")
+
+@app.route("/message")
+def message():
+    return render_template("message.html")
+
 @app.route("/my-profile")
-def login():
+def my_profile():
     return render_template("my-profile.html")
