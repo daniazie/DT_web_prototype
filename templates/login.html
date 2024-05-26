@@ -1,5 +1,53 @@
 {% extends 'base.html' %}
 
+{% block head %}
+
+<style>
+    .login-container {
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    .login-container .logo {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-form input {
+        width: 300px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .login-form button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .create-account-link {
+        display: block;
+        margin-top: 20px;
+        text-decoration: underline;
+        color: #0000EE;
+    }
+
+</style>
+
+{% endblock %}
+
 {% block body %}
 
 <body>
