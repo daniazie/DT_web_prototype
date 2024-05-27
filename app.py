@@ -8,9 +8,6 @@ def index():
 
 @app.route("/signup")
 def signup():
-<<<<<<< HEAD
-    return render_template("signup.html")
-=======
     return render_template("signup.html")
 
 @app.route("/create-profile")
@@ -36,4 +33,3 @@ def message():
 @app.route("/my-profile")
 def my_profile():
     return render_template("my-profile.html")
->>>>>>> b4a137016f4690de41538f7184e9232b9b5ee812
