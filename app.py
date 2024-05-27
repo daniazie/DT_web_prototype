@@ -8,4 +8,32 @@ def index():
 
 @app.route("/signup")
 def signup():
+<<<<<<< HEAD
     return render_template("signup.html")
+=======
+    return render_template("signup.html")
+
+@app.route("/create-profile")
+def create_profile():
+    return render_template("create-profile.html")
+
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+@app.route("/community")
+def community():
+    return render_template("community.html")
+
+@app.route("/posts")
+def posts():
+    return render_template("posts.html")
+
+@app.route("/message")
+def message():
+    return render_template("message.html")
+
+@app.route("/my-profile")
+def my_profile():
+    return render_template("my-profile.html")
+>>>>>>> b4a137016f4690de41538f7184e9232b9b5ee812

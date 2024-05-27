@@ -1,0 +1,128 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #fefbea;
+    }
+
+    .profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    .profile-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        padding: 20px;
+        text-align: center;
+    }   
+
+    .profile-container h1 {
+        font-size: 24px;
+        margin: 10px;
+    }
+
+    .profile-container h2 {
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .profile-container img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .profile-container p {
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #000000;
+    }
+
+    .profile-container .element {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .profile-container .element label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .profile-container .element select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #0000EE;
+        border-radius: 4px;
+    }
+
+    .profile-container .element input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #0000EE;
+        border-radius: 4px;
+    }
+
+    .profile-container button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .profile-container button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class ="profile">
+        <div class="profile-container">
+            <h1>My Profile</h1>
+            <img src="..\static\hehe.jpg" alt="Profile Photo">
+            <h2>Kyrie Irving</h2>
+            <p>Australian</p>
+            <div class="element">
+                <label for="name">Name</label>
+            </div>
+            <div class="element">
+                <label for="gender">Gender</label>
+            </div>
+            <div class="element">
+                <label for="language">Language</label>
+            </div>
+            <div class="element">
+                <label for="city">City</label>
+            </div>
+            <button>Edit</button>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+</html>

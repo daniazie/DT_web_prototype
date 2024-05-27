@@ -6,24 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="..\static\css\styles.css">
+    <style>
+        body {
+            background-color: #fefbea;
+        }
+    </style>
 </head>
+
 <body>
-    
     <header>
-        <a href="login-menu.html">
-            <div class="menu-btn">&#9776;</div>
-        </a>
-        <div class="logo">whyAlba</div>
-        <button class="signup-btn">Sign Up</button>
-        <button class="login-btn">Login</button>
-        <div class="dropdown">
-            <select>
-                <option value="en">English</option>
-                <option value="kr">한국어</option>
-                <!-- Add other language options here -->
-            </select>
+        <div class="left-container">
+            <div class="logo">whyAlba</div>
         </div>
-    </header>
+        <div class="right-container">
+            <a href="/signup">
+                <button class="signup-btn">Sign Up</button>
+            </a>
+            <a href="/">
+                <button class="login-btn">Login</button>
+            </a>
+            <div class="dropdown">
+                <select>
+                    <option value="en">English</option>
+                    <option value="kr">한국어</option>
+                    <!-- Add other language options here -->
+                </select>
+            </div>
+        </div>
+    </header>    
     
     {% block body %}{% endblock %}
 
