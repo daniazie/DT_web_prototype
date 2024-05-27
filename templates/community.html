@@ -21,7 +21,7 @@
 
     header h1 {
         margin: 0;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     main {
@@ -48,10 +48,6 @@
         flex: 1;
     }
 
-    section:hover {
-        transform: translateY(-10px);
-    }
-
     h2 {
         border-bottom: 2px solid #4CAF50;
         padding-bottom: 0.5rem;
@@ -65,7 +61,9 @@
         border-radius: 8px;
         padding: 1rem;
         margin-bottom: 1rem;
-        transition: background-color 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        position: relative;
     }
 
     .community:last-child {
@@ -73,8 +71,7 @@
     }
 
     .community:hover {
-        background-color: #f1f1f1;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-10px);
     }
 
     h3 {
@@ -87,6 +84,12 @@
         margin: 0.5rem 0;
         font-size: 1rem;
         line-height: 1.5;
+    }
+
+    .members-count {
+        font-size: 1rem;
+        color: #555;
+        margin-top: 0.5rem;
     }
 
     .join-btn {
@@ -116,6 +119,16 @@
         }
     }
 
+    .joined-communities .community .members-count {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .suggested-communities .community .members-count {
+        position: static;
+        margin-top: 0.5rem;
+    }
 </style>
 
 {% endblock %}
@@ -130,44 +143,44 @@
         <section class="joined-communities">
             <h2>Communities You're Part Of</h2>
             <div class="community">
-                <h3>Community Name 1</h3>
-                <p><strong>Members:</strong> 150</p>
+                <h3 class="community-name">Community Name 1</h3>
+                <span class="members-count"><strong>Members:</strong> 150</span>
                 <p>Description of community 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
             <div class="community">
-                <h3>Community Name 2</h3>
-                <p><strong>Members:</strong> 200</p>
+                <h3 class="community-name">Community Name 2</h3>
+                <span class="members-count"><strong>Members:</strong> 200</span>
                 <p>Description of community 2. Nulla facilisi. Cras ac felis a mauris ultrices scelerisque.</p>
             </div>
             <div class="community">
-                <h3>Community Name 3</h3>
-                <p><strong>Members:</strong> 75</p>
+                <h3 class="community-name">Community Name 3</h3>
+                <span class="members-count"><strong>Members:</strong> 75</span>
                 <p>Description of community 3. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <div class="community">
-                <h3>Community Name 4</h3>
-                <p><strong>Members:</strong> 50</p>
+                <h3 class="community-name">Community Name 4</h3>
+                <span class="members-count"><strong>Members:</strong> 50</span>
                 <p>Description of community 4. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
             </div>
         </section>
         <section class="suggested-communities">
             <h2>Suggested Communities to Join</h2>
             <div class="community">
-                <h3>Community Name A</h3>
-                <p><strong>Members:</strong> 300</p>
+                <h3 class="community-name">Community Name A</h3>
                 <p>Description of community A. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                <span class="members-count"><strong>Members:</strong> 300</span>
                 <button class="join-btn">Join</button>
             </div>
             <div class="community">
-                <h3>Community Name B</h3>
-                <p><strong>Members:</strong> 250</p>
+                <h3 class="community-name">Community Name B</h3>
                 <p>Description of community B. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+                <span class="members-count"><strong>Members:</strong> 250</span>
                 <button class="join-btn">Join</button>
             </div>
             <div class="community">
-                <h3>Community Name C</h3>
-                <p><strong>Members:</strong> 180</p>
+                <h3 class="community-name">Community Name C</h3>
                 <p>Description of community C. Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</p>
+                <span class="members-count"><strong>Members:</strong> 180</span>
                 <button class="join-btn">Join</button>
             </div>
         </section>
@@ -175,5 +188,6 @@
 </body>
 
 {% endblock %}
+
 
 </html>
