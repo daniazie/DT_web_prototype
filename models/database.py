@@ -28,5 +28,9 @@ class DataBase:
             return None
         
     def execute_else(self, sql):
-        self.__cursor.execute(sql)
-        self.__db.commit()
+        try:
+            self.__cursor.execute(sql)
+            self.__db.commit()
+            return True, None
+        except Exception as e:
+            return False, e

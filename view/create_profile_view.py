@@ -35,7 +35,8 @@ def singup():
         user_info.language = input_language
         user_info.city = input_city
 
-        user_control.push_user_info_to_db(user_info)
+        if not user_control.push_user_info_to_db(user_info) :
+            flash("failed to create user data at server",category="error")
 
         session.pop('user_id_temp',None)
         session.pop('user_email_temp',None)

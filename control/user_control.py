@@ -40,7 +40,8 @@ def push_user_info_to_db(user_info):
         user_info.language,
         user_info.city
     )
-    connection.execute_else(sql)
+    result,_ = connection.execute_else(sql)
+    return result
 
 def is_empty(*args):
     result = False
