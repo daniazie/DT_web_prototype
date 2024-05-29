@@ -70,10 +70,15 @@
         text-align: left;
     }
 
-    .profile-container .element .t1 {
+    .profile-container .element input,
+    .profile-container .element select {
         font-size: 14px;
         text-align: left;
         margin-left: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: calc(100% - 85px);
     }
 
     .profile-container button {
@@ -104,19 +109,40 @@
             <h2>Kyrie Irving</h2>
             <p>Australian</p>
             <div class="element">
-                <label for="name">Name</label><span class="colon">:</span><span class="t1">Kyrie Irving</span>
+                <label for="name">Name</label><span class="colon">:</span><input type="text" id="name" name="name" value="Kyrie Irving">
             </div>
             <div class="element">
-                <label for="gender">Gender</label><span class="colon">:</span><span class="t1">Male</span>
+                <label for="gender">Gender</label><span class="colon">:</span>
+                <select id="gender" name="gender">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
             <div class="element">
-                <label for="language">Language</label><span class="colon">:</span><span class="t1">English</span>
+                <label for="language">Language</label><span class="colon">:</span>
+                <select id="language" name="language">
+                    <option value="English" selected>English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="German">German</option>
+                    <!-- Add more options as needed -->
+                </select>
             </div>
             <div class="element">
-                <label for="city">City</label><span class="colon">:</span><span class="t1">Melbourne</span>
+                <label for="city">City</label><span class="colon">:</span>
+                <select id="city" name="city">
+                    <option value="Melbourne" selected>Melbourne</option>
+                    <option value="Sydney">Sydney</option>
+                    <option value="Brisbane">Brisbane</option>
+                    <option value="Perth">Perth</option>
+                    <option value="Adelaide">Adelaide</option>
+                    <!-- Add more options as needed -->
+                </select>
             </div>
-            <a href="/my-profile-edit">
-                <button>Edit</button>
+            <a href="/my-profile">
+                <button>Save</button>
             </a>
         </div>
     </div>

@@ -37,3 +37,7 @@ def message():
 @app.route("/my-profile")
 def my_profile():
     return render_template("my-profile.html")
+
+@app.route("/my-profile-edit")
+def my_profile_edit():
+    return render_template("my-profile-edit.html")
