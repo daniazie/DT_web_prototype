@@ -22,6 +22,10 @@ def home():
 def community():
     return render_template("community.html")
 
+@app.route("/community-posts")
+def community_posts():
+    return render_template("community-posts.html")
+
 @app.route("/posts")
 def posts():
     return render_template("posts.html")
