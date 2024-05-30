@@ -1,16 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'base-login.html' %}
 
 {% block head %}
 
 <style>
-    .profile {
+    body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #fefbea;
+    }
+
+    .edit-profile {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        margin: 0;
+        margin: auto;
+        margin-top: 30px;
     }
 
     .profile-container {
@@ -20,11 +26,16 @@
         width: 300px;
         padding: 20px;
         text-align: center;
-    }
+    }   
 
     .profile-container h1 {
         font-size: 24px;
-        margin-bottom: 20px;
+        margin: 10px;
+    }
+
+    .profile-container h2 {
+        font-size: 20px;
+        margin: 10px;
     }
 
     .profile-container img {
@@ -36,37 +47,38 @@
     }
 
     .profile-container p {
-        margin: 0;
-        font-size: 14px;
-        color: #777;
         margin-bottom: 20px;
+        font-size: 14px;
+        color: #000000;
     }
 
     .profile-container .element {
         margin-bottom: 15px;
-        text-align: left;
+        display: flex;
+        align-items: center;
     }
 
     .profile-container .element label {
-        display: block;
         font-size: 14px;
-        margin-bottom: 5px;
+        width: 70px;
+        text-align: left;
+        padding-right: 5px;
     }
 
+    .profile-container .element .colon {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .profile-container .element input,
     .profile-container .element select {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        border: 1px solid #0000EE;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
         border-radius: 4px;
-    }
-
-    .profile-container .element input {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        border: 1px solid #0000EE;
-        border-radius: 4px;
+        width: calc(100% - 85px);
     }
 
     .profile-container button {
@@ -82,9 +94,7 @@
     .profile-container button:hover {
         background-color: #0056b3;
     }
-    
 
-    
 </style>
 
 {% endblock %}
@@ -92,51 +102,48 @@
 {% block body %}
 
 <body>
-    <div class="profile">
-    <form class="profile_form" method="post">
+    <form class="edit-profile" method="post">
         <div class="profile-container">
-            <h1>Create your profile</h1>
+            <h1>My Profile</h1>
             <img src="..\static\hehe.jpg" alt="Profile Photo">
-            <p>Profile Photo</p>
-            
+            <h2>{{name}}</h2>
+            <p>{{country}}</p>
             <div class="element">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name">
+                <label for="name">Name</label><span class="colon">:</span><input type="text" id="name" name="name" value={{name}}>
             </div>
-            
             <div class="element">
-                <label for="gender">Gender</label>
+                <label for="gender">Gender</label><span class="colon">:</span>
                 <select id="gender" name="gender">
-                    <option value="" disabled selected>Choose your gender</option>
-                    <option value="Male">Male</option>
+                    <option value="Male" selected>Male</option>
                     <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
-            
             <div class="element">
-                <label for="language">Language</label>
+                <label for="language">Language</label><span class="colon">:</span>
                 <select id="language" name="language">
-                    <option value="" disabled selected>Choose your first language</option>
-                    <option value="한국어">한국어</option>
-                    <option value="English">English</option>
+                    <option value="English" selected>English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="German">German</option>
+                    <!-- Add more options as needed -->
                 </select>
             </div>
-            
             <div class="element">
-                <label for="city">City</label>
+                <label for="city">City</label><span class="colon">:</span>
                 <select id="city" name="city">
-                    <option value="" disabled selected>Choose your location</option>
                     <option value="Seoul">Seoul</option>
                     <option value="Suwon">Suwon</option>
                     <option value="Incheon">Incheon</option>
+                    <!-- Add more options as needed -->
                 </select>
             </div>
-            
-            <button type="submit">Create</button>
-
+            <a href="/my_profile">
+                <button>Save</button>
+            </a>
         </div>
-    </form></div>
-    <!--<script src="script.js"></script>-->
+</form>
 </body>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 from flask import Flask, request, url_for, redirect, session, render_template, Blueprint
-from flask_login import login_user, LoginManager
+from flask_login import login_user, LoginManager, logout_user
 import control.user_control as user_control
 import models.user as user
 
@@ -13,6 +13,7 @@ def on_load(state):
 
 @login_view.route("/login", methods = ['GET', 'POST'])
 def login():
+    logout_user()
     if request.method == "POST":
         user_id = request.form.get('Username')
         user_pw = request.form.get('Password')
@@ -22,18 +23,28 @@ def login():
 
         user_info = user.User()
         
+<<<<<<< HEAD
         flag, user_info = user_control.pull_user_info_from_db(user_id)
         if flag:
+=======
+        user_info = user_control.pull_user_info_from_db(user_id)
+        print(user_info)
+        if user_info != None:
+>>>>>>> 40630042bbe85e159588169357851ca3bcb659ef
             if user_control.check_password(user_info, user_pw):
                 login_user(user_info)
                 return redirect('/home')
-            
+            else:
+                message = "Wrong password."
+                return render_template('login.html', message=message)
+        if user_info is None: 
+            message = "No account with that username exists."
+            return render_template('login.html', message=message)
     return render_template('login.html')
 
 @login_manager.user_loader
 def user_loader(user_id):
-    user_info = user.User()
-    user_info.pull_info_from_database_by_id(user_id)
+    user_info = user_control.pull_user_info_from_db(user_id)
     return user_info
 
 @login_manager.unauthorized_handler

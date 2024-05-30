@@ -1,18 +1,12 @@
 from flask import Flask, flash, redirect, request, render_template, Blueprint, session
+from flask_login import current_user
 from control import user_control
 from models import user
 
-create_profile_view = Blueprint("create_profile_view", __name__)
+edit_profile_view = Blueprint("edit_profile_view", __name__)
 
-@create_profile_view.route("/create-profile", methods = ['GET', 'POST'])
-def singup():
-    if 'user_id_temp' in session or \
-     'user_email_temp'in session or \
-     'user_password_temp'in session or \
-     'user_country_temp': 
-        redirect("/signup")
-    
-
+@edit_profile_view.route("/edit-profile", methods = ['GET', 'POST'])
+def edit():
     if request.method == "POST":
         input_name = request.form.get('name')
         input_gender = request.form.get('gender')
@@ -23,13 +17,13 @@ def singup():
                                            input_language, input_city)
         
         if flag_empty:
-            return render_template("/create-profile.html")
+            return render_template("/my-profile-edit.html")
         
         user_info = user.User()
-        user_info.id = session['user_id_temp']
-        user_info.email = session['user_email_temp']
-        user_info.password = session['user_password_temp']
-        user_info.country = session['user_country_temp']
+        user_info.id = current_user.id
+        user_info.email = current_user.email
+        user_info.password = current_user.password
+        user_info.country = current_user.country
         user_info.name = input_name
         user_info.gender = input_gender
         user_info.language = input_language
@@ -38,11 +32,6 @@ def singup():
         if not user_control.push_user_info_to_db(user_info) :
             flash("failed to create user data at server",category="error")
 
-        session.pop('user_id_temp',None)
-        session.pop('user_email_temp',None)
-        session.pop('user_password_temp',None)
-        session.pop('user_country_temp',None)
-
-        return redirect("/login")
+        return redirect("/my_profile")
     else:
-        return render_template("/create-profile.html")
+        return render_template("/my-profile-edit.html")

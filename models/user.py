@@ -2,17 +2,9 @@ from flask_login import UserMixin
 import models.database as db
 
 class User(UserMixin): 
-    def pull_info_from_database_by_id(self, user_id):
-        connection = db.DataBase()
-        result = connection.execute_select("SELECT * FROM User WHERE id='{0}'".format(user_id))
-        if result: 
-            self.__id = result['id']
-            self.__password = result['password']
-            self.__name = result['name']
-            return True
-        else: # failed to search id from database
-            return False
-
+    def __str__(self) -> str:
+        return "id : {0}".format(self.id)
+    
     @property
     def id(self):
         return self.__id
@@ -65,6 +57,6 @@ class User(UserMixin):
     @property
     def city(self):
         return self.__city
-    @name.setter    
+    @city.setter    
     def city(self,city):
         self.__city = city

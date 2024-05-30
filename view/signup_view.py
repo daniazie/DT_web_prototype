@@ -10,7 +10,6 @@ def singup():
         input_id = request.form.get('id')
         input_email = request.form.get('email')
         input_password = request.form.get('password')
-        input_password_c = request.form.get('confirm-password')
         input_country = request.form.get('country')
         flag_empty = user_control.is_empty(input_id, input_email,
                                            input_password, input_country)
@@ -19,17 +18,17 @@ def singup():
             return render_template("signup.html")
         
         if user_control.is_exist_id(input_id):
-            flash("이미 존재하는 아이디입니다", category="error")
-            return render_template("signup.html")
-        
-        if input_password != input_password_c:
-            flash("비밀번호 확인이 일치하지 않습니다", category="error")
-            return render_template("signup.html")        
+            flash("an already existing ID", category="error")
+            return render_template("signup.html")   
         
         session['user_id_temp'] =  input_id
         session['user_email_temp'] = input_email
         session['user_password_temp'] =  user_control.encode_password(input_password)
         session['user_country_temp'] =  input_country
+        
+        # id = session['user_id_temp']
+        # email = session['user_email_temp']
+        # country = session['user_country_temp']
         
         return redirect("/create-profile")
     else:

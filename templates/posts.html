@@ -1,0 +1,581 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #fefbea;
+    }
+
+    .recent-posts {
+        width: 100%;
+        margin: 20px;
+    }
+
+    .recent-posts h1 {
+        margin-top: 0;
+        display: inline-block;
+    }
+
+    .filter-icon {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        float: right;
+        margin-top: 5px;
+    }
+
+    .posts-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .recent-posts .post {
+        border: 1px solid #ccc;
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .recent-posts .post:hover {
+        background-color: #d6d3c2;
+    }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .favorite-icon {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        cursor: pointer;
+    }
+
+    .post-body1 {
+        display: flex;
+        align-items: center;
+    }
+
+    .post-content {
+        flex-grow: 1;
+    }
+
+    .medium-pic {
+        width: 150px;
+        margin-left: 10px;
+    }
+
+    .icon-text {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0px;
+    }
+
+    .small-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .icon-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0px;
+    }
+
+    .icon-row .icon-text {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .icon-row .icon-text:last-child {
+        margin-right: 0;
+    }
+
+    .post-body2 {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .post-actions-container {
+        background-color: #e0e0e0;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .post-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .action-box {
+        width: 33.33%;
+        text-align: center;
+    }
+
+    .action-icon {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    /* Popup filter styles */
+    .filter-popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 40px;
+    }
+
+    .filter-popup-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 10px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .filter-options {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter-options label {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .filter-options select, .filter-options input {
+        padding: 8px; /* Increase padding */
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        margin-top: 5px; /* Add margin between border and options */
+    }
+
+    .filter-options .border {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 15px;
+    }
+
+    .filter-options div {
+        margin-bottom: 15px; /* Increase margin between label and options */
+    }
+
+    .filter-options div label {
+        margin-right: 10px; /* Add margin between checkbox and label */
+    }
+
+    .days-of-week {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .days-of-week button {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .days-of-week button.selected {
+        background-color: #d6d3c2;
+    }
+
+    .working-hours {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .working-hours div {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .working-hours div input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .custom-hours {
+        display: flex;
+        align-items: center;
+    }
+
+    .custom-hours input[type="number"] {
+        width: 50px;
+        margin-left: 10px;
+    }
+
+    .apply-btn-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .apply-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="recent-posts">
+        <h1>Recent Posts</h1>
+        <img src="../static/filter.png" alt="Filter Icon" class="filter-icon" id="filterBtn">
+        <div class="posts-container">
+            <!-- Example post -->
+            <article class="post" onclick="window.location.href='/posts1'" data-category="category1" data-location="location1">
+                <div class="post-header">
+                    <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body1">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="../static/clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="../static/location.png" alt="Icon" class="small-icon">
+                                <p>Location 1</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body2">
+                    <p>This is the body text of the post. It has been modified to remove the images and other content originally present.</p>
+                </div>
+                <div class="post-actions-container">
+                    <div class="post-actions">
+                        <div class="action-box">
+                            <img src="..\static\like.png" alt="Like Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\comment.png" alt="Comment Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\reply.png" alt="Reply Icon" class="action-icon">
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body2">
+                    <p>This is the body text of the post. It has been modified to remove the images and other content originally present.</p>
+                </div>
+                <div class="post-actions-container">
+                    <div class="post-actions">
+                        <div class="action-box">
+                            <img src="..\static\like.png" alt="Like Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\comment.png" alt="Comment Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\reply.png" alt="Reply Icon" class="action-icon">
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body1">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="../static/clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="../static/location.png" alt="Icon" class="small-icon">
+                                <p>Location 1</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <!-- Repeat the above article block for multiple posts with different data-category and data-location -->
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="filterPopup" class="filter-popup">
+        <div class="filter-popup-content">
+            <span class="close">&times;</span>
+            <h2>Filter Posts</h2>
+            <div class="filter-options">
+                <div class="border"></div>
+
+                <!-- Working Days -->
+                <div>
+                    <label for="days">Working Day:</label>
+                    <div class="days-of-week">
+                        <button class="day-btn">S</button>
+                        <button class="day-btn">M</button>
+                        <button class="day-btn">T</button>
+                        <button class="day-btn">W</button>
+                        <button class="day-btn">T</button>
+                        <button class="day-btn">F</button>
+                        <button class="day-btn">S</button>
+                    </div>
+                </div>
+                <div class="border"></div>
+
+                
+                <!-- Working Hours -->
+                <div>
+                    <label>Working Hours:</label>
+                    <div class="working-hours">
+                        <div><input type="checkbox" id="morning" name="morning"><label for="morning">Morning</label></div>
+                        <div><input type="checkbox" id="evening" name="evening"><label for="evening">Evening</label></div>
+                        <div><input type="checkbox" id="night" name="night"><label for="night">Night</label></div>
+                    </div>
+                    <div class="custom-hours">
+                        <input type="checkbox" id="other" name="other">
+                        <label for="other">Others</label>
+                        <input type="number" id="fromHour" name="fromHour" placeholder="From" min="0" max="23">
+                        <input type="number" id="toHour" name="toHour" placeholder="To" min="0" max="23">
+                    </div>
+                </div>
+                <div class="border"></div>
+
+                <!-- Place -->
+                <div>
+                    <label for="place">Place:</label>
+                    <select id="place" name="place">
+                        <option value="city1">City 1</option>
+                        <option value="city2">City 2</option>
+                        <option value="city3">City 3</option>
+                    </select>
+                </div>
+                <div class="border"></div>
+
+                <!-- Language -->
+                <div>
+                    <label for="language">Language:</label>
+                    <select id="language" name="language">
+                        <option value="english">English</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="french">French</option>
+                    </select>
+                </div>
+                <div class="border"></div>
+
+                <!-- Apply Button -->
+                <div class="apply-btn-container">
+                    <button class="apply-btn" id="applyFilter">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var filterPopup = document.getElementById('filterPopup');
+    
+        // Get the button that opens the modal
+        var filterBtn = document.getElementById('filterBtn');
+    
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName('close')[0];
+    
+        // When the user clicks the button, open the modal
+        filterBtn.onclick = function() {
+            filterPopup.style.display = 'block';
+        }
+    
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            filterPopup.style.display = 'none';
+        }
+    
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == filterPopup) {
+                filterPopup.style.display = 'none';
+            }
+        }
+    
+        // Toggle day buttons
+        document.querySelectorAll('.day-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('selected');
+            });
+        });
+    
+        // Apply filter button click event
+        document.getElementById('applyFilter').addEventListener('click', () => {
+            applyFilters();
+            filterPopup.style.display = 'none';
+        });
+    
+        function applyFilters() {
+            // Get selected days
+            var selectedDays = [];
+            document.querySelectorAll('.day-btn.selected').forEach(button => {
+                selectedDays.push(button.innerText);
+            });
+    
+            // Get selected working hours
+            var workingHours = [];
+            if (document.getElementById('morning').checked) workingHours.push('morning');
+            if (document.getElementById('evening').checked) workingHours.push('evening');
+            if (document.getElementById('night').checked) workingHours.push('night');
+            if (document.getElementById('other').checked) {
+                var fromHour = document.getElementById('fromHour').value;
+                var toHour = document.getElementById('toHour').value;
+                workingHours.push({ from: fromHour, to: toHour });
+            }
+    
+            // Get selected place
+            var place = document.getElementById('place').value;
+    
+            // Get selected language
+            var language = document.getElementById('language').value;
+    
+            // Filter posts
+            var posts = document.querySelectorAll('.post');
+            posts.forEach(post => {
+                var postDays = post.getAttribute('data-days').split(',');
+                var postHours = post.getAttribute('data-hours').split(',');
+                var postPlace = post.getAttribute('data-place');
+                var postLanguage = post.getAttribute('data-language');
+    
+                var showPost = true;
+    
+                // Check days
+                if (selectedDays.length > 0) {
+                    showPost = selectedDays.some(day => postDays.includes(day));
+                }
+    
+                // Check working hours
+                if (showPost && workingHours.length > 0) {
+                    showPost = workingHours.some(hour => {
+                        if (typeof hour === 'string') {
+                            return postHours.includes(hour);
+                        } else {
+                            var postFrom = parseInt(post.getAttribute('data-from-hour'));
+                            var postTo = parseInt(post.getAttribute('data-to-hour'));
+                            return postFrom >= hour.from && postTo <= hour.to;
+                        }
+                    });
+                }
+    
+                // Check place
+                if (showPost && place !== '') {
+                    showPost = (postPlace === place);
+                }
+    
+                // Check language
+                if (showPost && language !== '') {
+                    showPost = (postLanguage === language);
+                }
+    
+                // Show or hide post
+                if (showPost) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    
+</body>
+
+{% endblock %}
+
+</html>
