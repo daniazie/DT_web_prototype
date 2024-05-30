@@ -50,6 +50,14 @@ def posts1():
 def posts2():
     return render_template("/posts/posts2.html")
 
+@app.route("/posts3")
+def posts3():
+    return render_template("/posts/posts3.html")
+
+@app.route("/posts4")
+def posts4():
+    return render_template("/posts/posts4.html")
+
 @app.route("/message")
 def message():
     return render_template("message.html")
