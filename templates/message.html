@@ -11,6 +11,89 @@
     padding: 0;
   }
 
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.filter-options {
+    list-style-type: none;
+    display: flex;
+}
+
+.filter-options li {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.filter-options li.active {
+    font-weight: bold;
+}
+
+.settings span {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.chat-list {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.chat-info {
+    flex-grow: 1;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-name {
+    font-weight: bold;
+}
+
+.chat-location {
+    color: #888;
+    margin-left: 10px;
+}
+
+.chat-time {
+    color: #888;
+}
+
+.chat-message {
+    margin-top: 5px;
+    color: #555;
+}
+
+
+
 </style>
 
 {% endblock %}
@@ -18,7 +101,117 @@
 {% block body %}
 
 <body>
-
+    <div class="container">
+      <header>
+          <nav>
+              <ul class="filter-options">
+                  <li class="active">All</li>
+                  <li>Selling</li>
+                  <li>Buying</li>
+                  <li>Unread</li>
+              </ul>
+              <div class="settings">
+                  <span>⚙️</span>
+                  <span>🔍</span>
+                  <span>🔔</span>
+              </div>
+          </nav>
+      </header>
+      <main>
+          <ul class="chat-list">
+              <li>
+                  <div class="chat-item">
+                      <div class="avatar">👤</div>
+                      <div class="chat-info">
+                          <div class="chat-header">
+                              <span class="chat-name">모무매모무매</span>
+                              <span class="chat-location">풍무동</span>
+                              <span class="chat-time">1mo</span>
+                          </div>
+                          <div class="chat-message">혹시 아직 팔고 있나요?</div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="chat-item">
+                      <div class="avatar">👤</div>
+                      <div class="chat-info">
+                          <div class="chat-header">
+                              <span class="chat-name">ㅋㅋㅋ</span>
+                              <span class="chat-location">인계동</span>
+                              <span class="chat-time">1mo</span>
+                          </div>
+                          <div class="chat-message">혹시 구매 하셨을까요? ㅎㅎ</div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="chat-item">
+                      <div class="avatar">💳</div>
+                      <div class="chat-info">
+                          <div class="chat-header">
+                              <span class="chat-name">당근페이</span>
+                              <span class="chat-time">11mo</span>
+                          </div>
+                          <div class="chat-message">내 계좌로 송금을 완료했어요.</div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="chat-item">
+                      <div class="avatar">👤</div>
+                      <div class="chat-info">
+                          <div class="chat-header">
+                              <span class="chat-name">남준혁</span>
+                              <span class="chat-location">망포동</span>
+                              <span class="chat-time">11mo</span>
+                          </div>
+                          <div class="chat-message">당근페이 30,000원을 보냈어요.</div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="chat-item">
+                      <div class="avatar">👤</div>
+                      <div class="chat-info">
+                          <div class="chat-header">
+                              <span class="chat-name">gram</span>
+                              <span class="chat-location">이서면</span>
+                              <span class="chat-time">11mo</span>
+                          </div>
+                          <div class="chat-message">카이님, 거래 잘 하셨나요? 거래한 이웃에게 따...</div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="chat-item">
+                      <div class="avatar">👤</div>
+                      <div class="chat-info">
+                          <div class="chat-header">
+                              <span class="chat-name">3대8만5천</span>
+                              <span class="chat-location">고색동</span>
+                              <span class="chat-time">1y</span>
+                          </div>
+                          <div class="chat-message">넵 분해가능하시네요</div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="chat-item">
+                      <div class="avatar">👤</div>
+                      <div class="chat-info">
+                          <div class="chat-header">
+                              <span class="chat-name">sasasa</span>
+                              <span class="chat-location">정상동</span>
+                              <span class="chat-time">1y</span>
+                          </div>
+                          <div class="chat-message">약 전 생각이 없으세요</div>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </main>
+  </div>
 </body>
 
 {% endblock %}
