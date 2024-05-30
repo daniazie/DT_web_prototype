@@ -23,8 +23,20 @@ def community():
     return render_template("community.html")
 
 @app.route("/community1")
-def community_posts():
+def community1():
     return render_template("/community/community1.html")
+
+@app.route("/community2")
+def community2():
+    return render_template("/community/community2.html")
+
+@app.route("/community3")
+def community3():
+    return render_template("/community/community3.html")
+
+@app.route("/community4")
+def community4():
+    return render_template("/community/community4.html")
 
 @app.route("/posts")
 def posts():
@@ -33,6 +45,10 @@ def posts():
 @app.route("/posts1")
 def posts1():
     return render_template("/posts/posts1.html")
+
+@app.route("/posts2")
+def posts2():
+    return render_template("/posts/posts2.html")
 
 @app.route("/message")
 def message():
