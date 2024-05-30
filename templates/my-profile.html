@@ -101,21 +101,21 @@
         <div class="profile-container">
             <h1>My Profile</h1>
             <img src="..\static\hehe.jpg" alt="Profile Photo">
-            <h2>Kyrie Irving</h2>
-            <p>Australian</p>
+            <h2>{{name}}</h2>
+            <p>{{country}}</p>
             <div class="element">
-                <label for="name">Name</label><span class="colon">:</span><span class="t1">Kyrie Irving</span>
+                <label for="name">Name</label><span class="colon">:</span><span class="t1">{{name}}</span>
             </div>
             <div class="element">
-                <label for="gender">Gender</label><span class="colon">:</span><span class="t1">Male</span>
+                <label for="gender">Gender</label><span class="colon">:</span><span class="t1">{{gender}}</span>
             </div>
             <div class="element">
-                <label for="language">Language</label><span class="colon">:</span><span class="t1">English</span>
+                <label for="language">Language</label><span class="colon">:</span><span class="t1">{{language}}</span>
             </div>
             <div class="element">
-                <label for="city">City</label><span class="colon">:</span><span class="t1">Melbourne</span>
+                <label for="city">City</label><span class="colon">:</span><span class="t1">{{city}}</span>
             </div>
-            <a href="/my-profile-edit">
+            <a href="/edit-profile">
                 <button>Edit</button>
             </a>
         </div>

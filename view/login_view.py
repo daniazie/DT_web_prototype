@@ -24,10 +24,17 @@ def login():
         user_info = user.User()
         
         user_info = user_control.pull_user_info_from_db(user_id)
+        print(user_info)
         if user_info != None:
             if user_control.check_password(user_info, user_pw):
                 login_user(user_info)
                 return redirect('/home')
+            else:
+                message = "Wrong password."
+                return render_template('login.html', message=message)
+        if user_info is None: 
+            message = "No account with that username exists."
+            return render_template('login.html', message=message)
     return render_template('login.html')
 
 @login_manager.user_loader

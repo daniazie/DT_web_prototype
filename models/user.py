@@ -57,6 +57,6 @@ class User(UserMixin):
     @property
     def city(self):
         return self.__city
-    @name.setter    
+    @city.setter    
     def city(self,city):
         self.__city = city
