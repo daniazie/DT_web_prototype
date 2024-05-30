@@ -1,0 +1,169 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #fefbea;
+    }
+
+    .container {
+        width: 100%;
+        margin: 20px;
+        border-radius: 10px;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-right: 20px;
+        background-color: #F0EDDC;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-section {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+    }
+
+    .profile-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-info img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .message-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        position: absolute;
+        top: 20px;
+        right: 155px;
+        cursor: pointer;
+    }
+
+    .favorite-icon {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 22px;
+        right: 90px;
+        cursor: pointer;
+    }
+
+    .translate-icon {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 22px;
+        right: 25px;
+        cursor: pointer;
+    }
+
+    .details-section {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+    }
+
+    .icons-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .icon-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .icon-row img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    .icon-row span {
+        font-size: 16px;
+    }
+
+    .body-text {
+        width: 80%;
+        margin: 20px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-info">
+                <img src="../static/profile.png" alt="Profile Picture">
+                <div class="id">Username123</div>
+            </div>
+            <button class="message-btn">Message</button>
+            <img src="../static/star.png" alt="Favorite" class="favorite-icon">
+            <img src="../static/globe.png" alt="Translate" class="translate-icon">
+        </div>
+        <div class="details-section">
+            <div class="icons-column">
+                <div class="icon-row">
+                    <img src="../static/organization.png" alt="Organization">
+                    <span>Text for Icon 1</span>
+                </div>
+                <div class="icon-row">
+                    <img src="../static/location.png" alt="Location">
+                    <span>Text for Icon 2</span>
+                </div>
+                <div class="icon-row">
+                    <img src="../static/clock.png" alt="Time">
+                    <span>Text for Icon 3</span>
+                </div>
+                <div class="icon-row">
+                    <img src="../static/globe.png" alt="Language">
+                    <span>Text for Icon 4</span>
+                </div>
+            </div> 
+        </div>       
+        <div class="body-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper arcu vel sapien tristique fermentum.</p>
+        </div>
+        <img src="../static/blank.png" alt="Image">
+    </div>
+</body>
+
+{% endblock %}
+
+</html>

@@ -30,6 +30,10 @@ def community_posts():
 def posts():
     return render_template("posts.html")
 
+@app.route("/posts1")
+def posts1():
+    return render_template("/posts/posts1.html")
+
 @app.route("/message")
 def message():
     return render_template("message.html")
