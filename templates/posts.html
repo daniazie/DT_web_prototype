@@ -18,6 +18,15 @@
 
     .recent-posts h1 {
         margin-top: 0;
+        display: inline-block;
+    }
+
+    .filter-icon {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        float: right;
+        margin-top: 5px;
     }
 
     .posts-container {
@@ -61,7 +70,7 @@
         cursor: pointer;
     }
 
-    .post-body {
+    .post-body1 {
         display: flex;
         align-items: center;
     }
@@ -102,6 +111,35 @@
         margin-right: 0;
     }
 
+    .post-body2 {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .post-actions-container {
+        background-color: #e0e0e0;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .post-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .action-box {
+        width: 33.33%;
+        text-align: center;
+    }
+
+    .action-icon {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
 </style>
 
 {% endblock %}
@@ -111,6 +149,7 @@
 <body>
     <div class="recent-posts">
         <h1>Recent Posts</h1>
+        <img src="..\static\filter.png" alt="Filter Icon" class="filter-icon">
         <div class="posts-container">
             <article class="post">
                 <div class="post-header">
@@ -118,7 +157,7 @@
                     <p><strong>ID 1</strong></p>
                     <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
-                <div class="post-body">
+                <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
@@ -148,7 +187,53 @@
                     <p><strong>ID 1</strong></p>
                     <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
-                <div class="post-body">
+                <div class="post-body2">
+                    <p>This is the body text of the post. It has been modified to remove the images and other content originally present.</p>
+                </div>
+                <div class="post-actions-container">
+                    <div class="post-actions">
+                        <div class="action-box">
+                            <img src="..\static\like.png" alt="Like Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\comment.png" alt="Comment Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\reply.png" alt="Reply Icon" class="action-icon">
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body2">
+                    <p>This is the body text of the post. It has been modified to remove the images and other content originally present.</p>
+                </div>
+                <div class="post-actions-container">
+                    <div class="post-actions">
+                        <div class="action-box">
+                            <img src="..\static\like.png" alt="Like Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\comment.png" alt="Comment Icon" class="action-icon">
+                        </div>
+                        <div class="action-box">
+                            <img src="..\static\reply.png" alt="Reply Icon" class="action-icon">
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
@@ -178,7 +263,7 @@
                     <p><strong>ID 1</strong></p>
                     <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
-                <div class="post-body">
+                <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
@@ -208,7 +293,7 @@
                     <p><strong>ID 1</strong></p>
                     <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
-                <div class="post-body">
+                <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
@@ -238,7 +323,7 @@
                     <p><strong>ID 1</strong></p>
                     <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
-                <div class="post-body">
+                <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
@@ -268,7 +353,7 @@
                     <p><strong>ID 1</strong></p>
                     <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
-                <div class="post-body">
+                <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
