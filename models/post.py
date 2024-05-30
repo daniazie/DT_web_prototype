@@ -135,3 +135,17 @@ class Post_content:
     @contributer.setter
     def contributer(self,contributer):
         self.__contributer = contributer
+
+    @property
+    def like(self):
+        return self.__like
+    @like.setter
+    def like(self,like):
+        self.__like = like
+
+    @property
+    def unlike(self):
+        return self.__unlike
+    @unlike.setter
+    def unlike(self,unlike):
+        self.__unlike = unlike
