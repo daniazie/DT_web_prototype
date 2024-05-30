@@ -1,5 +1,4 @@
 from flask import Flask, request, url_for, redirect, session, render_template
-#from flask_login import login_user, LoginManager
 from view import login_view, home_view, signup_view, create_profile_view
 from view import posts_view, community_view, message_view, my_profile_view, edit_profile_view
 
