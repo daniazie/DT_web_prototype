@@ -23,14 +23,9 @@ def login():
 
         user_info = user.User()
         
-<<<<<<< HEAD
-        flag, user_info = user_control.pull_user_info_from_db(user_id)
-        if flag:
-=======
         user_info = user_control.pull_user_info_from_db(user_id)
         print(user_info)
         if user_info != None:
->>>>>>> 40630042bbe85e159588169357851ca3bcb659ef
             if user_control.check_password(user_info, user_pw):
                 login_user(user_info)
                 return redirect('/home')
