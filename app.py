@@ -22,9 +22,9 @@ def home():
 def community():
     return render_template("community.html")
 
-@app.route("/community-posts")
+@app.route("/community1")
 def community_posts():
-    return render_template("community-posts.html")
+    return render_template("/community/community1.html")
 
 @app.route("/posts")
 def posts():
