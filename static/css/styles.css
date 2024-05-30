@@ -5,8 +5,8 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #deddc6;
-    color: #000000;
+    background-color: #333;
+    color: #fff;
 }
 
 .left-container {

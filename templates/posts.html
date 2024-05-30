@@ -1,0 +1,302 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #fefbea;
+    }
+
+    .recent-posts {
+        width: 100%;
+        margin: 20px;
+    }
+
+    .recent-posts h1 {
+        margin-top: 0;
+    }
+
+    .posts-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .recent-posts .post {
+        border: 1px solid #ccc;
+        background-color: #F0EDDC;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .recent-posts .post:hover {
+        background-color: #d6d3c2;
+    }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .favorite-icon {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        cursor: pointer;
+    }
+
+    .post-body {
+        display: flex;
+        align-items: center;
+    }
+
+    .post-content {
+        flex-grow: 1;
+    }
+
+    .medium-pic {
+        width: 150px;
+        margin-left: 10px;
+    }
+
+    .icon-text {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0px;
+    }
+
+    .small-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .icon-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0px;
+    }
+
+    .icon-row .icon-text {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .icon-row .icon-text:last-child {
+        margin-right: 0;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="recent-posts">
+        <h1>Recent Posts</h1>
+        <div class="posts-container">
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                <p>Item 2</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                <p>Item 2</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                <p>Item 2</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                <p>Item 2</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                <p>Item 2</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <article class="post">
+                <div class="post-header">
+                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                <p>Item 2</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <!-- Repeat the above article block for multiple posts -->
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+</html>

@@ -23,9 +23,9 @@ def pull_user_info_from_db(user_id):
         data.id = result['id']
         data.password = result['password']
         data.name = result['name']
-        return True
+        return data
     else: # failed to search id from database
-        return False
+        return None
     
 def push_user_info_to_db(user_info):
     connection = db.DataBase()

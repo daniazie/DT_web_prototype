@@ -1,0 +1,153 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #fefbea;
+    }
+
+    .profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    .profile-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        padding: 20px;
+        text-align: center;
+    }   
+
+    .profile-container h1 {
+        font-size: 24px;
+        margin: 10px;
+    }
+
+    .profile-container h2 {
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .profile-container img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .profile-container p {
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #000000;
+    }
+
+    .profile-container .element {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-container .element label {
+        font-size: 14px;
+        width: 70px;
+        text-align: left;
+        padding-right: 5px;
+    }
+
+    .profile-container .element .colon {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .profile-container .element input,
+    .profile-container .element select {
+        font-size: 14px;
+        text-align: left;
+        margin-left: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: calc(100% - 85px);
+    }
+
+    .profile-container button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .profile-container button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="profile">
+        <div class="profile-container">
+            <h1>My Profile</h1>
+            <img src="..\static\hehe.jpg" alt="Profile Photo">
+            <h2>Kyrie Irving</h2>
+            <p>Australian</p>
+            <div class="element">
+                <label for="name">Name</label><span class="colon">:</span><input type="text" id="name" name="name" value="Kyrie Irving">
+            </div>
+            <div class="element">
+                <label for="gender">Gender</label><span class="colon">:</span>
+                <select id="gender" name="gender">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="element">
+                <label for="language">Language</label><span class="colon">:</span>
+                <select id="language" name="language">
+                    <option value="English" selected>English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="German">German</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="element">
+                <label for="city">City</label><span class="colon">:</span>
+                <select id="city" name="city">
+                    <option value="Melbourne" selected>Melbourne</option>
+                    <option value="Sydney">Sydney</option>
+                    <option value="Brisbane">Brisbane</option>
+                    <option value="Perth">Perth</option>
+                    <option value="Adelaide">Adelaide</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <a href="/my-profile">
+                <button>Save</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+</html>
