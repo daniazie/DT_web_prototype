@@ -13,6 +13,7 @@ def on_load(state):
 
 @login_view.route("/login", methods = ['GET', 'POST'])
 def login():
+    session.clear()
     if request.method == "POST":
         user_id = request.form.get('Username')
         user_pw = request.form.get('Password')

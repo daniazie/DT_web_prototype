@@ -2,6 +2,9 @@ from flask_login import UserMixin
 import models.database as db
 
 class User(UserMixin): 
+    def __str__(self) -> str:
+        return "id : {0}".format(self.id)
+    
     @property
     def id(self):
         return self.__id
