@@ -140,6 +140,135 @@
         cursor: pointer;
     }
 
+    /* Popup filter styles */
+    .filter-popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 40px;
+    }
+
+    .filter-popup-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 10px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .filter-options {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter-options label {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .filter-options select, .filter-options input {
+        padding: 8px; /* Increase padding */
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        margin-top: 5px; /* Add margin between border and options */
+    }
+
+    .filter-options .border {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 15px;
+    }
+
+    .filter-options div {
+        margin-bottom: 15px; /* Increase margin between label and options */
+    }
+
+    .filter-options div label {
+        margin-right: 10px; /* Add margin between checkbox and label */
+    }
+
+    .days-of-week {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .days-of-week button {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .days-of-week button.selected {
+        background-color: #d6d3c2;
+    }
+
+    .working-hours {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .working-hours div {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .working-hours div input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .custom-hours {
+        display: flex;
+        align-items: center;
+    }
+
+    .custom-hours input[type="number"] {
+        width: 50px;
+        margin-left: 10px;
+    }
+
+    .apply-btn-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .apply-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 </style>
 
 {% endblock %}
@@ -149,36 +278,37 @@
 <body>
     <div class="recent-posts">
         <h1>Recent Posts</h1>
-        <img src="..\static\filter.png" alt="Filter Icon" class="filter-icon">
+        <img src="../static/filter.png" alt="Filter Icon" class="filter-icon" id="filterBtn">
         <div class="posts-container">
-            <article class="post" onclick="window.location.href='/posts1'">
+            <!-- Example post -->
+            <article class="post" data-category="category1" data-location="location1">
                 <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
                     <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
                 <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
-                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <img src="../static/clock.png" alt="Icon" class="small-icon">
                                 <p>Item 1</p>
                             </div>
                             <div class="icon-text">
-                                <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                <p>Item 2</p>
+                                <img src="../static/location.png" alt="Icon" class="small-icon">
+                                <p>Location 1</p>
                             </div>
                         </div>
                         <div class="icon-text">
-                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <img src="../static/dollar.png" alt="Icon" class="small-icon">
                             <p>Item 3</p>
                         </div>
                         <div class="icon-text">
-                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <img src="../static/globe.png" alt="Icon" class="small-icon">
                             <p>Item 4</p>
                         </div>
                     </div>
-                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
                 </div>
             </article>
             <article class="post">
@@ -229,157 +359,149 @@
             </article>
             <article class="post">
                 <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                    <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
                     <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
+                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
                 <div class="post-body1">
                     <div class="post-content">
                         <div class="icon-row">
                             <div class="icon-text">
-                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                <img src="../static/clock.png" alt="Icon" class="small-icon">
                                 <p>Item 1</p>
                             </div>
                             <div class="icon-text">
-                                <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                <p>Item 2</p>
+                                <img src="../static/location.png" alt="Icon" class="small-icon">
+                                <p>Location 1</p>
                             </div>
                         </div>
                         <div class="icon-text">
-                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                            <img src="../static/dollar.png" alt="Icon" class="small-icon">
                             <p>Item 3</p>
                         </div>
                         <div class="icon-text">
-                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                            <img src="../static/globe.png" alt="Icon" class="small-icon">
                             <p>Item 4</p>
                         </div>
                     </div>
-                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
                 </div>
             </article>
-            <article class="post">
-                <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                </div>
-                <div class="post-body1">
-                    <div class="post-content">
-                        <div class="icon-row">
-                            <div class="icon-text">
-                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                <p>Item 1</p>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                <p>Item 2</p>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                            <p>Item 3</p>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                            <p>Item 4</p>
-                        </div>
-                    </div>
-                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
-                </div>
-            </article>
-            <article class="post">
-                <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                </div>
-                <div class="post-body1">
-                    <div class="post-content">
-                        <div class="icon-row">
-                            <div class="icon-text">
-                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                <p>Item 1</p>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                <p>Item 2</p>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                            <p>Item 3</p>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                            <p>Item 4</p>
-                        </div>
-                    </div>
-                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
-                </div>
-            </article>
-            <article class="post">
-                <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                </div>
-                <div class="post-body1">
-                    <div class="post-content">
-                        <div class="icon-row">
-                            <div class="icon-text">
-                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                <p>Item 1</p>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                <p>Item 2</p>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                            <p>Item 3</p>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                            <p>Item 4</p>
-                        </div>
-                    </div>
-                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
-                </div>
-            </article>
-            <article class="post">
-                <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                </div>
-                <div class="post-body1">
-                    <div class="post-content">
-                        <div class="icon-row">
-                            <div class="icon-text">
-                                <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                <p>Item 1</p>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                <p>Item 2</p>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                            <p>Item 3</p>
-                        </div>
-                        <div class="icon-text">
-                            <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                            <p>Item 4</p>
-                        </div>
-                    </div>
-                    <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
-                </div>
-            </article>
-            <!-- Repeat the above article block for multiple posts -->
+            <!-- Repeat the above article block for multiple posts with different data-category and data-location -->
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="filterPopup" class="filter-popup">
+        <div class="filter-popup-content">
+            <span class="close">&times;</span>
+            <h2>Filter Posts</h2>
+            <div class="filter-options">
+                <div class="border"></div>
+
+                <!-- Working Days -->
+                <div>
+                    <label for="days">Working Day:</label>
+                    <div class="days-of-week">
+                        <button class="day-btn">S</button>
+                        <button class="day-btn">M</button>
+                        <button class="day-btn">T</button>
+                        <button class="day-btn">W</button>
+                        <button class="day-btn">T</button>
+                        <button class="day-btn">F</button>
+                        <button class="day-btn">S</button>
+                    </div>
+                </div>
+                <div class="border"></div>
+
+                
+                <!-- Working Hours -->
+                <div>
+                    <label>Working Hours:</label>
+                    <div class="working-hours">
+                        <div><input type="checkbox" id="morning" name="morning"><label for="morning">Morning</label></div>
+                        <div><input type="checkbox" id="evening" name="evening"><label for="evening">Evening</label></div>
+                        <div><input type="checkbox" id="night" name="night"><label for="night">Night</label></div>
+                    </div>
+                    <div class="custom-hours">
+                        <input type="checkbox" id="other" name="other">
+                        <label for="other">Others</label>
+                        <input type="number" id="fromHour" name="fromHour" placeholder="From" min="0" max="23">
+                        <input type="number" id="toHour" name="toHour" placeholder="To" min="0" max="23">
+                    </div>
+                </div>
+                <div class="border"></div>
+
+                <!-- Place -->
+                <div>
+                    <label for="place">Place:</label>
+                    <select id="place" name="place">
+                        <option value="city1">City 1</option>
+                        <option value="city2">City 2</option>
+                        <option value="city3">City 3</option>
+                    </select>
+                </div>
+                <div class="border"></div>
+
+                <!-- Language -->
+                <div>
+                    <label for="language">Language:</label>
+                    <select id="language" name="language">
+                        <option value="english">English</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="french">French</option>
+                    </select>
+                </div>
+                <div class="border"></div>
+
+                <!-- Apply Button -->
+                <div class="apply-btn-container">
+                    <button class="apply-btn" id="applyFilter">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var filterPopup = document.getElementById('filterPopup');
+
+        // Get the button that opens the modal
+        var filterBtn = document.getElementById('filterBtn');
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName('close')[0];
+
+        // When the user clicks the button, open the modal
+        filterBtn.onclick = function() {
+            filterPopup.style.display = 'block';
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            filterPopup.style.display = 'none';
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == filterPopup) {
+                filterPopup.style.display = 'none';
+            }
+        }
+
+        // Toggle day buttons
+        document.querySelectorAll('.day-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('selected');
+            });
+        });
+
+        // Apply filter button click event
+        document.getElementById('applyFilter').addEventListener('click', () => {
+            // You can implement your filter logic here
+            filterPopup.style.display = 'none';
+        });
+    </script>
 </body>
 
 {% endblock %}
