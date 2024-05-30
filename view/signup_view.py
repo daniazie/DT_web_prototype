@@ -26,6 +26,10 @@ def singup():
         session['user_password_temp'] =  user_control.encode_password(input_password)
         session['user_country_temp'] =  input_country
         
+        # id = session['user_id_temp']
+        # email = session['user_email_temp']
+        # country = session['user_country_temp']
+        
         return redirect("/create-profile")
     else:
         return render_template("signup.html")
