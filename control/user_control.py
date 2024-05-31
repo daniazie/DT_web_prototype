@@ -3,8 +3,7 @@ import models.user as user
 import models.database as db
 
 def check_password(user_info, input):
-    encoded = base64.b64encode(input.encode("UTF-8")).decode("UTF-8")
-    return user_info.password == encoded
+    return user_info.password == encode_password(input)
 
 def encode_password(input):
     return base64.b64encode(input.encode("UTF-8")).decode("UTF-8")
