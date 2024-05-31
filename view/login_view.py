@@ -1,5 +1,5 @@
 from flask import Flask, request, url_for, redirect, session, render_template, Blueprint
-from flask_login import login_user, LoginManager
+from flask_login import login_user, LoginManager, logout_user
 import control.user_control as user_control
 import models.user as user
 
@@ -13,6 +13,7 @@ def on_load(state):
 
 @login_view.route("/login", methods = ['GET', 'POST'])
 def login():
+    logout_user()
     if request.method == "POST":
         user_id = request.form.get('Username')
         user_pw = request.form.get('Password')

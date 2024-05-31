@@ -5,7 +5,7 @@
 <style>
     .profile {
         font-family: Arial, sans-serif;
-        background-color: #fefbea;
+        background-color: #f4f4f4;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -14,11 +14,13 @@
     }
 
     .profile-container {
+        background-color: #fff;
         border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         width: 300px;
         padding: 20px;
         text-align: center;
-    }   
+    }
 
     .profile-container h1 {
         font-size: 24px;
@@ -51,12 +53,19 @@
         margin-bottom: 5px;
     }
 
-    .profile-container .element select,
+    .profile-container .element select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #0000EE;
+        border-radius: 4px;
+    }
+
     .profile-container .element input {
         width: 100%;
         padding: 8px;
         box-sizing: border-box;
-        border: 1px solid #ccc;
+        border: 1px solid #0000EE;
         border-radius: 4px;
     }
 
@@ -74,6 +83,8 @@
         background-color: #0056b3;
     }
     
+
+    
 </style>
 
 {% endblock %}
@@ -81,15 +92,18 @@
 {% block body %}
 
 <body>
-    <div class ="profile">
+    <div class="profile">
+    <form class="profile_form" method="post">
         <div class="profile-container">
             <h1>Create your profile</h1>
             <img src="..\static\hehe.jpg" alt="Profile Photo">
             <p>Profile Photo</p>
+            
             <div class="element">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name">
             </div>
+            
             <div class="element">
                 <label for="gender">Gender</label>
                 <select id="gender" name="gender">
@@ -98,6 +112,7 @@
                     <option value="Female">Female</option>
                 </select>
             </div>
+            
             <div class="element">
                 <label for="language">Language</label>
                 <select id="language" name="language">
@@ -106,6 +121,7 @@
                     <option value="English">English</option>
                 </select>
             </div>
+            
             <div class="element">
                 <label for="city">City</label>
                 <select id="city" name="city">
@@ -115,13 +131,12 @@
                     <option value="Incheon">Incheon</option>
                 </select>
             </div>
-            <a href="/home">
-                <button>Create</button>
-            </a>
-        </div>
-    </div>
+            
+            <button type="submit">Create</button>
 
-    <script src="script.js"></script>
+        </div>
+    </form></div>
+    <!--<script src="script.js"></script>-->
 </body>
 
 {% endblock %}

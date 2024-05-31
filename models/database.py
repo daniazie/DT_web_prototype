@@ -19,7 +19,7 @@ class DataBase:
         if self.__db:
             self.__db.close()
 
-    def execute_select(self, sql):
+    def execute_select_one(self, sql):
         try:
             self.__cursor.execute(sql)
             row = self.__cursor.fetchone()
@@ -27,7 +27,23 @@ class DataBase:
         except:
             return None
         
-    def execute_else(self, sql):
+    def execute_select_all(self, sql):
+        try:
+            self.__cursor.execute(sql)
+            rows = self.__cursor.fetchall()
+            return rows
+        except:
+            return None
+        
+    def count_select_rows(self, sql):
+        try:
+            self.__cursor.execute(sql)
+            rows = self.__cursor.fetchall(n)
+            return len(rows)
+        except:
+            return -1
+        
+    def execute_with_commit(self, sql):
         try:
             self.__cursor.execute(sql)
             self.__db.commit()
