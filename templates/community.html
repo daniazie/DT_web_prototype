@@ -13,7 +13,6 @@
 
     main {
         display: flex;
-        width: 100%;
         justify-content: space-between;
         padding: 2rem;
         flex-wrap: wrap;
@@ -117,7 +116,6 @@
         position: static;
         margin-top: 0.5rem;
     }
-
 </style>
 
 {% endblock %}
@@ -128,44 +126,44 @@
     <main>
         <section class="joined-communities">
             <h2>My Community</h2>
-            <div class="community" onclick="window.location.href='/community1'">
+            <div class="community" onclick="window.location.href='/community-posts'">
                 <h3 class="community-name">Community Name 1</h3>
                 <span class="members-count"><strong>Members:</strong> 150</span>
-                <p>This is the community for Thai people</p>
+                <p>Description of community 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-            <div class="community" onclick="window.location.href='/community2'">
+            <div class="community">
                 <h3 class="community-name">Community Name 2</h3>
                 <span class="members-count"><strong>Members:</strong> 200</span>
-                <p>For foreigners in Suwon</p>
+                <p>Description of community 2. Nulla facilisi. Cras ac felis a mauris ultrices scelerisque.</p>
             </div>
-            <div class="community" onclick="window.location.href='/community3'">
+            <div class="community">
                 <h3 class="community-name">Community Name 3</h3>
                 <span class="members-count"><strong>Members:</strong> 75</span>
-                <p>Busan born only! (heavy on dialect)</p>
+                <p>Description of community 3. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
-            <div class="community" onclick="window.location.href='/community4'">
+            <div class="community">
                 <h3 class="community-name">Community Name 4</h3>
                 <span class="members-count"><strong>Members:</strong> 50</span>
-                <p>Looking for part-time jobs in Seoul</p>
+                <p>Description of community 4. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
             </div>
         </section>
         <section class="suggested-communities">
             <h2>Suggested</h2>
             <div class="community">
                 <h3 class="community-name">Community Name A</h3>
-                <p>Community for non-students</p>
+                <p>Description of community A. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
                 <span class="members-count"><strong>Members:</strong> 300</span>
                 <button class="join-btn">Join</button>
             </div>
             <div class="community">
                 <h3 class="community-name">Community Name B</h3>
-                <p>English-friendly community</p>
+                <p>Description of community B. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
                 <span class="members-count"><strong>Members:</strong> 250</span>
                 <button class="join-btn">Join</button>
             </div>
             <div class="community">
                 <h3 class="community-name">Community Name C</h3>
-                <p>Ajou University students community</p>
+                <p>Description of community C. Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</p>
                 <span class="members-count"><strong>Members:</strong> 180</span>
                 <button class="join-btn">Join</button>
             </div>
@@ -174,5 +172,6 @@
 </body>
 
 {% endblock %}
+
 
 </html>

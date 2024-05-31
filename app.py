@@ -1,71 +1,28 @@
-from flask import Flask, render_template
+from flask import Flask, request, url_for, redirect, session, render_template
+from view import login_view, home_view, signup_view, create_profile_view
+from view import posts_view, community_view, message_view, my_profile_view, edit_profile_view
 
 app = Flask(__name__)
+app.secret_key = '1q2w3e4r!'
+
+app.register_blueprint(login_view.login_view)
+app.register_blueprint(home_view.home_view)
+app.register_blueprint(signup_view.signup_view)
+app.register_blueprint(create_profile_view.create_profile_view)
+app.register_blueprint(edit_profile_view.edit_profile_view)
+app.register_blueprint(posts_view.posts_view)
+app.register_blueprint(community_view.community_view)
+app.register_blueprint(message_view.message_view)
+app.register_blueprint(my_profile_view.my_profile_view)
 
 @app.route("/")
+def hello_world():
+    return redirect("/login")
+
+@app.route("/index")
 def index():
-    return render_template("login.html")
+    return render_template('index.html')
 
-@app.route("/signup")
-def signup():
-    return render_template("signup.html")
-
-@app.route("/create-profile")
-def create_profile():
-    return render_template("create-profile.html")
-
-@app.route("/home")
-def home():
-    return render_template("home.html")
-
-@app.route("/community")
-def community():
-    return render_template("community.html")
-
-@app.route("/community1")
-def community1():
-    return render_template("/community/community1.html")
-
-@app.route("/community2")
-def community2():
-    return render_template("/community/community2.html")
-
-@app.route("/community3")
-def community3():
-    return render_template("/community/community3.html")
-
-@app.route("/community4")
-def community4():
-    return render_template("/community/community4.html")
-
-@app.route("/posts")
-def posts():
-    return render_template("posts.html")
-
-@app.route("/posts1")
-def posts1():
-    return render_template("/posts/posts1.html")
-
-@app.route("/posts2")
-def posts2():
-    return render_template("/posts/posts2.html")
-
-@app.route("/posts3")
-def posts3():
-    return render_template("/posts/posts3.html")
-
-@app.route("/posts4")
-def posts4():
-    return render_template("/posts/posts4.html")
-
-@app.route("/message")
-def message():
-    return render_template("message.html")
-
-@app.route("/my-profile")
-def my_profile():
-    return render_template("my-profile.html")
-
-@app.route("/my-profile-edit")
-def my_profile_edit():
-    return render_template("my-profile-edit.html")
+if __name__ == '__main__':  
+   app.run('0.0.0.0',port=5000,debug=True)
+   
