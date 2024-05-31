@@ -11,14 +11,14 @@ def encode_password(input):
 
 def is_exist_id(user_id):
     connection = db.DataBase()
-    result = connection.execute_select("SELECT * FROM User WHERE id='{0}'".format(user_id))
+    result = connection.execute_select_one("SELECT * FROM User WHERE id='{0}'".format(user_id))
     if result: return True
     else : return False
 
 def pull_user_info_from_db(user_id):
     connection = db.DataBase()
     data = user.User()
-    result = connection.execute_select("SELECT * FROM User WHERE id='{0}'".format(user_id))
+    result = connection.execute_select_one("SELECT * FROM User WHERE id='{0}'".format(user_id))
     if result:
         data = user.User()
         data.id = result['id']
@@ -66,7 +66,7 @@ def push_user_info_to_db(user_info):
             user_info.language,
             user_info.city
         )
-    result,_ = connection.execute_else(sql)
+    result,_ = connection.execute_with_commit(sql)
     return result
 
 def is_empty(*args):
