@@ -11,6 +11,10 @@
         background-color: #fefbea;
     }
 
+    .content {
+        display: flex;
+    }
+
     .main-content {
         display: flex;
         flex-direction: column;
@@ -39,7 +43,7 @@
         margin: 10px;
         box-sizing: border-box;
         min-width: 300px;
-        background-color: #a7bdb6;
+        background-color: white;
         border-radius: 10px;
     }
 
@@ -56,8 +60,15 @@
         position: relative;
     }
 
-    .recent-posts .post:hover {
-        background-color: #d6d3c2;
+    .my-community .community {
+        background-color: beige;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .post-header {
@@ -123,8 +134,13 @@
         margin-right: 0;
     }
 
+    .community button {
+        display: flex;
+        justify-content: center;
+    }
+
     button {
-        background-color: #1F2A2F;
+        background-color: #4CAF50;
         color: white;
         border: none;
         padding: 10px 20px;
@@ -135,26 +151,10 @@
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 5px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     button:hover {
         background-color: #45a049;
-    }
-
-    .my-community .section {
-        border: 1px solid #ccc;
-        background-color: #F0EDDC;
-        border-radius: 10px;
-        padding: 15px;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-
-    .my-community .section:hover {
-        background-color: #d6d3c2;
     }
 
     @media (max-width: 768px) {
@@ -186,10 +186,10 @@
         <div class="row-container">
             <section class="recent-posts">
                 <h2>Recent Posts</h2>
-                <article class="post" onclick="window.location.href='/posts1'">
+                <article class="post">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>ID 1</strong></p>
+                        <p><strong>{{list[0].writer}}</strong></p>
                         <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                     </div>
                     <div class="post-body">
@@ -197,50 +197,20 @@
                             <div class="icon-row">
                                 <div class="icon-text">
                                     <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                    <p>Item 1</p>
+                                    <p>{{list[0].job_info.working_days}} {{list[0].job_info.working_hours}}</p>
                                 </div>
                                 <div class="icon-text">
                                     <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                    <p>Item 2</p>
+                                    <p>{{list[0].job_info.place}}</p>
                                 </div>
                             </div>
                             <div class="icon-text">
                                 <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                                <p>Item 3</p>
+                                <p>{{list[0].job_info.pay}}원 / {{list[0].job_info.time_unit}}</p>
                             </div>
                             <div class="icon-text">
                                 <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                                <p>Item 4</p>
-                            </div>
-                        </div>
-                        <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
-                    </div>
-                </article>
-                <article class="post" onclick="window.location.href='/posts2'">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>ID 2</strong></p>
-                        <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                    </div>
-                    <div class="post-body">
-                        <div class="post-content">
-                            <div class="icon-row">
-                                <div class="icon-text">
-                                    <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                    <p>Item 1</p>
-                                </div>
-                                <div class="icon-text">
-                                    <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                    <p>Item 2</p>
-                                </div>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                                <p>Item 3</p>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                                <p>Item 4</p>
+                                <p>{{list[0].job_info.lang_level}}</p>
                             </div>
                         </div>
                         <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
@@ -249,7 +219,7 @@
                 <article class="post">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>ID 1</strong></p>
+                        <p><strong>{{list[1].writer}}</strong></p>
                         <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                     </div>
                     <div class="post-body">
@@ -257,20 +227,20 @@
                             <div class="icon-row">
                                 <div class="icon-text">
                                     <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                    <p>Item 1</p>
+                                    <p>{{list[1].job_info.working_days}} {{list[1].job_info.working_hours}}</p>
                                 </div>
                                 <div class="icon-text">
                                     <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                    <p>Item 2</p>
+                                    <p>{{list[1].job_info.place}}</p>
                                 </div>
                             </div>
                             <div class="icon-text">
                                 <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                                <p>Item 3</p>
+                                <p>{{list[1].job_info.pay}}원 / {{list[1].job_info.time_unit}}</p>
                             </div>
                             <div class="icon-text">
                                 <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                                <p>Item 4</p>
+                                <p>{{list[1].job_info.lang_level}}</p>
                             </div>
                         </div>
                         <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
@@ -279,7 +249,7 @@
                 <article class="post">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>ID 1</strong></p>
+                        <p><strong>{{list[2].writer}}</strong></p>
                         <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                     </div>
                     <div class="post-body">
@@ -287,20 +257,20 @@
                             <div class="icon-row">
                                 <div class="icon-text">
                                     <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                    <p>Item 1</p>
+                                    <p>{{list[2].job_info.working_days}} {{list[2].job_info.working_hours}}</p>
                                 </div>
                                 <div class="icon-text">
                                     <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                    <p>Item 2</p>
+                                    <p>{{list[2].job_info.place}}</p>
                                 </div>
                             </div>
                             <div class="icon-text">
                                 <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                                <p>Item 3</p>
+                                <p>{{list[2].job_info.pay}}원 / {{list[2].job_info.time_unit}}</p>
                             </div>
                             <div class="icon-text">
                                 <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                                <p>Item 4</p>
+                                <p>{{list[2].job_info.lang_level}}</p>
                             </div>
                         </div>
                         <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
@@ -309,41 +279,45 @@
             </section>
             <section class="my-community">
                 <h2>My Community</h2>
-                <div class="section">
+                <div class="community">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>Community 1</strong></p>
+                        <p><strong>community1</strong></p>
                     </div>
-                    <p>This is some body text about the user.</p>
+                    <p>body text</p>
                 </div>
-                <div class="section">
+                <div class="community">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>Community 2</strong></p>
+                        <p><strong>community2</strong></p>
                     </div>
-                    <p>This is some body text about the member.</p>
+                    <p>body text</p>
                 </div>
-                <a href="/community">
+                <a href="/community" style="display: flex; justify-content: center;">
                     <button>See More</button>
                 </a>
-                <h2>Join Other Community</h2>
-                <div class="section">
+                <h2>Suggested Community</h2>
+                <div class="community">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>Community 3</strong></p>
+                        <p><strong>community3</strong></p>
                     </div>
-                    <p>This is some body text about the user.</p>
-                    <button>Join</button>
+                    <p>body text</p>
+                    <a href="/community" style="display: flex; justify-content: center;">
+                        <button>Join</button>
+                    </a>
                 </div>
-                <div class="section">
+                <div class="community">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>Community 4</strong></p>
+                        <p><strong>community4</strong></p>
                     </div>
-                    <p>This is some body text about the member.</p>
-                    <button>Join</button>
+                    <p>body text</p>
+                    <a href="/community" style="display: flex; justify-content: center;">
+                        <button>Join</button>
+                    </a>
                 </div>
-                <a href="/community">
+                <a href="/community" style="display: flex; justify-content: center;">
                     <button>See More</button>
                 </a>
             </section>

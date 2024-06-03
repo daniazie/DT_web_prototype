@@ -11,7 +11,7 @@
         background-color: #fefbea;
     }
 
-    .profile {
+    .edit-profile {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -102,14 +102,14 @@
 {% block body %}
 
 <body>
-    <div class="profile">
+    <form class="edit-profile" method="post">
         <div class="profile-container">
             <h1>My Profile</h1>
             <img src="..\static\hehe.jpg" alt="Profile Photo">
-            <h2>Kyrie Irving</h2>
-            <p>Australian</p>
+            <h2>{{name}}</h2>
+            <p>{{country}}</p>
             <div class="element">
-                <label for="name">Name</label><span class="colon">:</span><input type="text" id="name" name="name" value="Kyrie Irving">
+                <label for="name">Name</label><span class="colon">:</span><input type="text" id="name" name="name" value={{name}}>
             </div>
             <div class="element">
                 <label for="gender">Gender</label><span class="colon">:</span>
@@ -133,19 +133,17 @@
             <div class="element">
                 <label for="city">City</label><span class="colon">:</span>
                 <select id="city" name="city">
-                    <option value="Melbourne" selected>Melbourne</option>
-                    <option value="Sydney">Sydney</option>
-                    <option value="Brisbane">Brisbane</option>
-                    <option value="Perth">Perth</option>
-                    <option value="Adelaide">Adelaide</option>
+                    <option value="Seoul">Seoul</option>
+                    <option value="Suwon">Suwon</option>
+                    <option value="Incheon">Incheon</option>
                     <!-- Add more options as needed -->
                 </select>
             </div>
-            <a href="/my-profile">
+            <a href="/my_profile">
                 <button>Save</button>
             </a>
         </div>
-    </div>
+</form>
 </body>
 
 {% endblock %}

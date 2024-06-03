@@ -465,43 +465,115 @@
     <script>
         // Get the modal
         var filterPopup = document.getElementById('filterPopup');
-
+    
         // Get the button that opens the modal
         var filterBtn = document.getElementById('filterBtn');
-
+    
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName('close')[0];
-
+    
         // When the user clicks the button, open the modal
         filterBtn.onclick = function() {
             filterPopup.style.display = 'block';
         }
-
+    
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             filterPopup.style.display = 'none';
         }
-
+    
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == filterPopup) {
                 filterPopup.style.display = 'none';
             }
         }
-
+    
         // Toggle day buttons
         document.querySelectorAll('.day-btn').forEach(button => {
             button.addEventListener('click', () => {
                 button.classList.toggle('selected');
             });
         });
-
+    
         // Apply filter button click event
         document.getElementById('applyFilter').addEventListener('click', () => {
-            // You can implement your filter logic here
+            applyFilters();
             filterPopup.style.display = 'none';
         });
+    
+        function applyFilters() {
+            // Get selected days
+            var selectedDays = [];
+            document.querySelectorAll('.day-btn.selected').forEach(button => {
+                selectedDays.push(button.innerText);
+            });
+    
+            // Get selected working hours
+            var workingHours = [];
+            if (document.getElementById('morning').checked) workingHours.push('morning');
+            if (document.getElementById('evening').checked) workingHours.push('evening');
+            if (document.getElementById('night').checked) workingHours.push('night');
+            if (document.getElementById('other').checked) {
+                var fromHour = document.getElementById('fromHour').value;
+                var toHour = document.getElementById('toHour').value;
+                workingHours.push({ from: fromHour, to: toHour });
+            }
+    
+            // Get selected place
+            var place = document.getElementById('place').value;
+    
+            // Get selected language
+            var language = document.getElementById('language').value;
+    
+            // Filter posts
+            var posts = document.querySelectorAll('.post');
+            posts.forEach(post => {
+                var postDays = post.getAttribute('data-days').split(',');
+                var postHours = post.getAttribute('data-hours').split(',');
+                var postPlace = post.getAttribute('data-place');
+                var postLanguage = post.getAttribute('data-language');
+    
+                var showPost = true;
+    
+                // Check days
+                if (selectedDays.length > 0) {
+                    showPost = selectedDays.some(day => postDays.includes(day));
+                }
+    
+                // Check working hours
+                if (showPost && workingHours.length > 0) {
+                    showPost = workingHours.some(hour => {
+                        if (typeof hour === 'string') {
+                            return postHours.includes(hour);
+                        } else {
+                            var postFrom = parseInt(post.getAttribute('data-from-hour'));
+                            var postTo = parseInt(post.getAttribute('data-to-hour'));
+                            return postFrom >= hour.from && postTo <= hour.to;
+                        }
+                    });
+                }
+    
+                // Check place
+                if (showPost && place !== '') {
+                    showPost = (postPlace === place);
+                }
+    
+                // Check language
+                if (showPost && language !== '') {
+                    showPost = (postLanguage === language);
+                }
+    
+                // Show or hide post
+                if (showPost) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
     </script>
+    
 </body>
 
 {% endblock %}
