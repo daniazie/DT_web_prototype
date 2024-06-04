@@ -92,42 +92,43 @@ def pull_content_from_db(post_id):
 
 def push_post_to_db(_post: post.Post, post_content: post.Post_content):
     con = db.DataBase()
-    preview=post_content.content[0:98]
     
-    sql_post_head = "INSERT INTO posts_head(type,writer,preview)\
+    sql_post_head = "INSERT INTO Posts_head(type,writer,preview)\
          VALUE({0},'{1}','{2}')".format(
-            post.POST_TYPE_JOB,
+            _post.type,
             _post.writer,
-            preview
+            _post.preview
         )
     success, e = con.execute_with_commit(sql_post_head)
     if not success:
         print(e)
-        return
-    
-    post_id = con.execute_select_one("SELECT post_id FROM Posts_head\
-                                     WHERE writer='{0}' and preview={1}"
-                                    .format(_post.writer,preview))['post_id']
-    
+        return success
+
+    post_id = con.execute_select_one("SELECT post_id FROM Posts_head WHERE writer='{0}' and preview='{1}'"
+                                    .format(_post.writer,_post.preview))
+    print(post_id)
+
     if post_id != None:
-        sql_post_job = "INSERT INTO posts_job_info(post_id,place,pay,time_unit,\
-            working_hours,lang_level,working_days)\
-             VALUE({0},{1},{2},{3},{4},{5},{6})".format(
+        post_id = post_id['post_id']
+        sql_post_job = "INSERT INTO Posts_job_info(post_id,location,pay,time_unit,\
+            working_hours,lang_level,working_days,workplace)\
+             VALUE({0},'{1}',{2},'{3}','{4}','{5}','{6}','{7}')".format(
                 post_id,
-                _post.job_info.place,
+                _post.job_info.location,
                 _post.job_info.pay,
                 _post.job_info.time_unit,
                 _post.job_info.working_hours,
                 _post.job_info.lang_level,
-                _post.job_info.working_days
+                _post.job_info.working_days,
+                _post.job_info.workplace
              )
         success, e = con.execute_with_commit(sql_post_job)
         if not success:
             print(e)
-            return
+            return success
         
-        sql_post_content = "INSERT INTO posts_content(post_id,content,origin,language,contributer)\
-             VALUE({0},{1},{2},{3},{4})".format(
+        sql_post_content = "INSERT INTO Posts_content(post_id,content,origin,language,contributer)\
+             VALUE({0},'{1}',{2},'{3}','{4}')".format(
                 post_id,
                 post_content.content,
                 post_content.origin,
@@ -137,4 +138,14 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
         success, e = con.execute_with_commit(sql_post_content)
         if not success:
             print(e)
-            return
+            return success
+        else :
+            return success
+        
+def is_empty(*args):
+    result = False
+    
+    for i in args:
+        result = result or (i == "") or (i == None)
+    
+    return result

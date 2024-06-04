@@ -1,6 +1,8 @@
 POST_TYPE_NORMAL = 0
 POST_TYPE_JOB = 1
 
+# =========================================================
+
 class Post:
     def __str__(self):
         return "post_id : {0}, writer : {1}".format(self.post_id, self.writer)
@@ -46,6 +48,8 @@ class Post:
     @job_info.setter
     def job_info(self,job_info):
         self.__job_info = job_info
+
+# =========================================================
 
 class Post_job_info:
     @property
@@ -103,6 +107,8 @@ class Post_job_info:
     @workplace.setter
     def workplace(self,workplace):
         self.__workplace = workplace
+
+# =========================================================
 
 class Post_content:
     def __str__(self) -> str:
