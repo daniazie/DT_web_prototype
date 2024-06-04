@@ -21,6 +21,17 @@ def __convert_dict_to_job_info(dict):
     data.working_hours = dict['working_hours']
     return data
 
+def __convert_dict_to_post_content(dict):
+    data = post.Post_content()
+    data.post_id = dict['post_id']
+    data.content = dict['content']
+    data.origin = dict['origin']
+    data.language = dict['language']
+    data.contributer = dict['contributer']
+    data.like = dict['like']
+    data.unlike = dict['unlike']
+    return data
+
 def __add_job_info_to_post(data, con):
     if data.type == post.POST_TYPE_JOB:
         result = con.execute_select_one("SELECT * FROM Posts_job_info WHERE post_id='{0}'"
@@ -35,6 +46,7 @@ def pull_post_from_db_by_postID(post_id):
     if result: 
         data = __convert_dict_to_post(result)
         data = __add_job_info_to_post(data, con)
+        return data
     else: # failed to search id from database
         return None
 
@@ -67,8 +79,15 @@ def pull_post_from_db_rows(n):
     else:
         return None
     
-def pull_content_from_db(post):
-    pass
+def pull_content_from_db(post_id):
+    con = db.DataBase()
+    result = con.execute_select_one("SELECT * FROM Posts_content WHERE post_id='{0}'"
+                                    .format(post_id))
+    if result: 
+        data = __convert_dict_to_post_content(result)
+        return data
+    else: # failed to search id from database
+        return None
 
 def push_post_to_db(_post: post.Post, post_content: post.Post_content):
     con = db.DataBase()
