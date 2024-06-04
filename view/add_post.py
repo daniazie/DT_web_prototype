@@ -58,7 +58,6 @@ def add_post():
 
         result = post_control.push_post_to_db(_post,post_content)
 
-        print(result)
         if result:
             return redirect("/posts")
         else:

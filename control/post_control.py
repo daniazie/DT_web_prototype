@@ -106,7 +106,6 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
 
     post_id = con.execute_select_one("SELECT post_id FROM Posts_head WHERE writer='{0}' and preview='{1}'"
                                     .format(_post.writer,_post.preview))
-    print(post_id)
 
     if post_id != None:
         post_id = post_id['post_id']
