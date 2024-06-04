@@ -55,15 +55,6 @@
         font-size: 16px;
         position: absolute;
         top: 20px;
-        right: 155px;
-        cursor: pointer;
-    }
-
-    .favorite-icon {
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        top: 22px;
         right: 90px;
         cursor: pointer;
     }
@@ -96,7 +87,7 @@
     .icon-row {
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
     .icon-row img {
@@ -114,12 +105,88 @@
         margin: 20px;
     }
 
-    .pict-attached {
-        max-width: 100%;
-        margin: 0;
-        width: 200px;
-        height: 200px;
-        
+    .recent-posts {
+        width: 100%;
+        margin: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .recent-posts-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .recent-posts .post {
+        border: 1px solid #ccc;
+        background-color: #d6d3c2;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .recent-posts .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .recent-posts .profile-pic {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .recent-posts .favorite-icon {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 22px;
+        right: 30px;
+        cursor: pointer;
+    }
+
+    .recent-posts .post-body1 {
+        display: flex;
+        align-items: center;
+    }
+
+    .recent-posts .post-content {
+        flex-grow: 1;
+    }
+
+    .recent-posts .icon-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0px;
+    }
+
+    .recent-posts .icon-text {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0px;
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .recent-posts .icon-text:last-child {
+        margin-right: 0;
+    }
+
+    .recent-posts .small-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .recent-posts .medium-pic {
+        width: 100px;
+        height: 100px;
+        margin-left: 10px;
     }
 
 </style>
@@ -136,24 +203,86 @@
                 <div class="id">Hyunjin (Employer)</div>
             </div>
             <button class="message-btn">Message</button>
-            <img src="../static/star.png" alt="Favorite" class="favorite-icon">
             <img src="../static/globe.png" alt="Translate" class="translate-icon">
         </div>
         <div class="details-section">
             <div class="icons-column">
                 <div class="icon-row">
-                    <img src="../static/nation.png" alt="Time">
+                    <img src="../static/nation.png" alt="Nationality">
                     <span>South Korean</span>
+                </div>
                 <div class="icon-row">
                     <img src="../static/location.png" alt="Location">
                     <span>Yeongtong-dong</span>
-                </div>
                 </div>
                 <div class="icon-row">
                     <img src="../static/globe.png" alt="Language">
                     <span>Korean Language (Intermediate)</span>
                 </div>
             </div>
+        </div>
+        <div class="recent-posts">
+            <div class="recent-posts-title">Posts by this user</div>
+            <article class="post" onclick="window.location.href='/posts1'" data-category="category1" data-location="location1">
+                <div class="post-header">
+                    <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body1">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="../static/clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="../static/location.png" alt="Icon" class="small-icon">
+                                <p>Location 1</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
+            <article class="post" onclick="window.location.href='/posts1'" data-category="category1" data-location="location1">
+                <div class="post-header">
+                    <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
+                    <p><strong>ID 1</strong></p>
+                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
+                </div>
+                <div class="post-body1">
+                    <div class="post-content">
+                        <div class="icon-row">
+                            <div class="icon-text">
+                                <img src="../static/clock.png" alt="Icon" class="small-icon">
+                                <p>Item 1</p>
+                            </div>
+                            <div class="icon-text">
+                                <img src="../static/location.png" alt="Icon" class="small-icon">
+                                <p>Location 1</p>
+                            </div>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/dollar.png" alt="Icon" class="small-icon">
+                            <p>Item 3</p>
+                        </div>
+                        <div class="icon-text">
+                            <img src="../static/globe.png" alt="Icon" class="small-icon">
+                            <p>Item 4</p>
+                        </div>
+                    </div>
+                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
+                </div>
+            </article>
         </div>
     </div>
 </body>

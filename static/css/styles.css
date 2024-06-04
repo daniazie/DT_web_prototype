@@ -128,30 +128,35 @@ header {
 }
 
 /* Styles for signup page */
-.container {
-    max-width: 400px;
-    margin: 50px auto;
+.signup-container {
+    width: 40%;
+    margin: 20px auto;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 20px;
-  }
-  .form-group label {
+}
+
+.form-group label {
     display: block;
     font-weight: bold;
-  }
-  .form-group input, .form-group select {
+}
+
+.form-group input, .form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  .form-group small {
+}
+
+.form-group small {
     color: #888;
-  }
-  .sign-up-btn {
+}
+
+.sign-up-btn {
     display: block;
     width: 100%;
     padding: 10px;
@@ -161,11 +166,11 @@ header {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  .sign-up-btn:hover {
-    background-color: #0056b3;
-  }
+}
 
+.sign-up-btn:hover {
+    background-color: #0056b3;
+}
 
 @media screen and (max-width: 768px) {
     .menu-btn {

@@ -1,0 +1,238 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fefbea;
+    }
+
+    .container {
+        background-color: #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        margin: 10px auto;
+    }
+
+    .container .head-items {
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-back {
+        background: none;
+        border: none;
+        font-size: 48px;
+        padding-bottom: 15px;
+        margin-right: 10px;
+        cursor: pointer;
+        color: black;
+    }
+
+    .btn-back:hover {
+        color: blue;
+    }
+
+    .container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #3a3a3c;
+        color: #fff;
+    }
+
+    .form-group input[type="checkbox"] {
+        width: auto;
+    }
+
+    .working-time {
+        display: flex;
+        align-items: center;
+    }
+
+    .working-time input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #3a3a3c;
+        color: #fff;
+        margin: 0 5px;
+    }
+
+    .working-time span {
+        color: #3a3a3c;
+    }
+
+    .form-group .days-of-week {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .form-group .day {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .form-group .day label {
+        margin-left: 5px;
+    }
+
+    .form-group .languages {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .form-group .languages select {
+        flex: 1;
+    }
+
+    .btn-add-language, .btn-post {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ff9500;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .btn-add-language {
+        margin-bottom: 15px;
+    }
+
+    .btn-delete-language {
+        display: block;
+        width: 10%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: blue;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="container">
+        <div class="head-items">
+            <button class="btn-back" onclick="window.location.href='/posts'">&#8592;</button>
+            <h1>Create a new post</h1>
+        </div>
+        <div class="form-group">
+            <label for="picture">Picture</label>
+            <input type="file" id="picture" name="picture">
+        </div>
+        <div class="form-group">
+            <label for="shop-name">Name of Shop</label>
+            <input type="text" id="shop-name" name="shop-name">
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location">
+        </div>
+        <div class="form-group">
+            <label for="payrate">Payrate</label>
+            <input type="text" id="payrate" name="payrate">
+        </div>
+        <div class="form-group">
+            <label for="days-of-week">Days of the Week</label>
+            <div class="days-of-week">
+                <div class="day"><input type="checkbox" id="monday" name="days" value="Monday"><label for="monday">Monday</label></div>
+                <div class="day"><input type="checkbox" id="tuesday" name="days" value="Tuesday"><label for="tuesday">Tuesday</label></div>
+                <div class="day"><input type="checkbox" id="wednesday" name="days" value="Wednesday"><label for="wednesday">Wednesday</label></div>
+                <div class="day"><input type="checkbox" id="thursday" name="days" value="Thursday"><label for="thursday">Thursday</label></div>
+                <div class="day"><input type="checkbox" id="friday" name="days" value="Friday"><label for="friday">Friday</label></div>
+                <div class="day"><input type="checkbox" id="saturday" name="days" value="Saturday"><label for="saturday">Saturday</label></div>
+                <div class="day"><input type="checkbox" id="sunday" name="days" value="Sunday"><label for="sunday">Sunday</label></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="working-time">Working Time</label>
+            <div class="working-time">
+                <input type="text" id="working-time-start" name="working-time-start" placeholder="Start Time">
+                <span>~</span>
+                <input type="text" id="working-time-end" name="working-time-end" placeholder="End Time">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="language-preferred">Language Preferred</label>
+            <select id="language-preferred" name="language-preferred">
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="level-language">Level of Language</label>
+            <select id="level-language" name="level-language">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+        <button class="btn-add-language" type="button" onclick="addLanguage()">Add another language</button>
+        <div id="language-container"></div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="6"></textarea>
+        </div>
+        <button class="btn-post">Post</button>
+    </div>
+
+    <script>
+        function addLanguage() {
+            const container = document.createElement('div');
+            container.classList.add('form-group', 'languages');
+            container.innerHTML = `
+                <select name="language-preferred">
+                    <option value="english">English</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="french">French</option>
+                </select>
+                <select name="level-language">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+                <button type="button" class="btn-delete-language" onclick="deleteLanguage(this)">Delete</button>
+            `;
+            document.getElementById('language-container').appendChild(container);
+        }
+
+        function deleteLanguage(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+
+{% endblock %}
+
+</html>
