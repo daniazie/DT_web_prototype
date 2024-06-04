@@ -15,10 +15,11 @@ def __convert_dict_to_job_info(dict):
     data.post_id = dict['post_id']
     data.time_unit = dict['time_unit']
     data.pay = dict['pay']
-    data.place = dict['place']
+    data.location = dict['location']
     data.lang_level = dict['lang_level']
     data.working_days = dict['working_days']
     data.working_hours = dict['working_hours']
+    data.workplace = dict['workplace']
     return data
 
 def __convert_dict_to_post_content(dict):

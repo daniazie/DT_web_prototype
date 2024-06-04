@@ -56,11 +56,11 @@ class Post_job_info:
         self.__post_id = post_id
 
     @property
-    def place(self):
-        return self.__place
-    @place.setter
-    def place(self,place):
-        self.__place = place
+    def location(self):
+        return self.__location
+    @location.setter
+    def location(self,location):
+        self.__location = location
 
     @property
     def pay(self):
@@ -96,6 +96,13 @@ class Post_job_info:
     @working_hours.setter
     def working_hours(self,working_hours):
         self.__working_hours = working_hours
+
+    @property
+    def workplace(self):
+        return self.__workplace
+    @workplace.setter
+    def workplace(self,workplace):
+        self.__workplace = workplace
 
 class Post_content:
     def __str__(self) -> str:
