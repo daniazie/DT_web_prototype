@@ -67,3 +67,54 @@ def pull_post_from_db_rows(n):
     else:
         return None
     
+def pull_content_from_db(post):
+    pass
+
+def push_post_to_db(_post: post.Post, post_content: post.Post_content):
+    con = db.DataBase()
+    preview=post_content.content[0:98]
+    
+    sql_post_head = "INSERT INTO posts_head(type,writer,preview)\
+         VALUE({0},'{1}','{2}')".format(
+            post.POST_TYPE_JOB,
+            _post.writer,
+            preview
+        )
+    success, e = con.execute_with_commit(sql_post_head)
+    if not success:
+        print(e)
+        return
+    
+    post_id = con.execute_select_one("SELECT post_id FROM Posts_head\
+                                     WHERE writer='{0}' and preview={1}"
+                                    .format(_post.writer,preview))['post_id']
+    
+    if post_id != None:
+        sql_post_job = "INSERT INTO posts_job_info(post_id,place,pay,time_unit,\
+            working_hours,lang_level,working_days)\
+             VALUE({0},{1},{2},{3},{4},{5},{6})".format(
+                post_id,
+                _post.job_info.place,
+                _post.job_info.pay,
+                _post.job_info.time_unit,
+                _post.job_info.working_hours,
+                _post.job_info.lang_level,
+                _post.job_info.working_days
+             )
+        success, e = con.execute_with_commit(sql_post_job)
+        if not success:
+            print(e)
+            return
+        
+        sql_post_content = "INSERT INTO posts_content(post_id,content,origin,language,contributer)\
+             VALUE({0},{1},{2},{3},{4})".format(
+                post_id,
+                post_content.content,
+                post_content.origin,
+                post_content.language,
+                post_content.contributer
+             )
+        success, e = con.execute_with_commit(sql_post_content)
+        if not success:
+            print(e)
+            return
