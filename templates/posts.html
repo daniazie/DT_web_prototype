@@ -26,7 +26,8 @@
         height: 25px;
         cursor: pointer;
         float: right;
-        margin-top: 5px;
+        margin-inline-end: 30px;
+        margin-top: 7px;
     }
 
     .posts-container {
@@ -269,6 +270,15 @@
         border-radius: 5px;
         cursor: pointer;
     }
+
+    .add-post-icon {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        float: inline-end;
+        margin-top: 0;
+    }
+
 </style>
 
 {% endblock %}
@@ -278,6 +288,7 @@
 <body>
     <div class="recent-posts">
         <h1>Recent Posts</h1>
+        <img src="../static/add.png" alt="Add Post Icon" class="add-post-icon" id="addPostBtn">
         <img src="../static/filter.png" alt="Filter Icon" class="filter-icon" id="filterBtn">
         <div class="posts-container">
             <!-- Example post -->
