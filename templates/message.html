@@ -3,13 +3,100 @@
 {% block head %}
 
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-    background-color: #fefbea;
-    margin: 0;
-    padding: 0;
-  }
+    body {
+        font-family: Arial, sans-serif;
+        box-sizing: border-box;
+        background-color: #fefbea;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .container header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #333;
+    }
+
+    .container header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .icons {
+        display: flex;
+    }
+
+    .icon {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .container nav {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        border-bottom: 1px solid #333;
+    }
+
+    .container nav button {
+        background: none;
+        border: none;
+        color: #888;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .container nav button.active {
+        color: #ffffff;
+        border-bottom: 2px solid #ffffff;
+    }
+
+    .container main {
+        margin-top: 20px;
+    }
+
+    .chat {
+        display: flex;
+        align-items: flex-start;
+        padding: 10px 0;
+        border-bottom: 1px solid #333;
+    }
+
+    .chat .profile-pic {
+        font-size: 36px;
+        margin-right: 10px;
+    }
+
+    .chat .chat-info {
+        flex: 1;
+    }
+
+    .chat .name-time {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .chat .name {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .chat .time {
+        font-size: 14px;
+        color: #888;
+    }
+
+    .chat p {
+        margin: 0;
+        font-size: 14px;
+    }
 
 </style>
 
@@ -18,7 +105,74 @@
 {% block body %}
 
 <body>
-
+    <div class="container">
+        <header>
+            <h1>Chats</h1>
+            <div class="icons">
+                <div class="icon">⚙️</div>
+                <div class="icon">🔍</div>
+                <div class="icon">🔔</div>
+            </div>
+        </header>
+        <nav>
+            <button class="active">All</button>
+            <button>Sent</button>
+            <button>Unread</button>
+            <button>Archived</button>
+        </nav>
+        <main>
+            <div class="chat">
+                <div class="profile-pic">👤</div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">모무매모무매</span>
+                        <span class="time">4d</span>
+                    </div>
+                    <p>혹시 아직 있나요?</p>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="profile-pic">👤</div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">크크크</span>
+                        <span class="time">1w</span>
+                    </div>
+                    <p>혹시 진행 하셨을까요? ㅎㅎ</p>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="profile-pic">👤</div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">미녀</span>
+                        <span class="time">1w</span>
+                    </div>
+                    <p>내 보냈어요!</p>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="profile-pic">👤</div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">남준혁</span>
+                        <span class="time">2w</span>
+                    </div>
+                    <p>네 문서가 보냈어요.</p>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="profile-pic">👤</div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">gram</span>
+                        <span class="time">2w</span>
+                    </div>
+                    <p>알바 잘 하셨나요?</p>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
 
 {% endblock %}

@@ -43,7 +43,7 @@
         margin: 10px;
         box-sizing: border-box;
         min-width: 300px;
-        background-color: #F0EDDC;
+        background-color: white;
         border-radius: 10px;
     }
 
@@ -53,11 +53,22 @@
 
     .recent-posts .post {
         border: 1px solid #ccc;
-        background-color: #F0EDDC;
+        background-color: white;
         border-radius: 10px;
         padding: 15px;
         margin-bottom: 10px;
         position: relative;
+    }
+
+    .my-community .community {
+        background-color: beige;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .post-header {
@@ -121,6 +132,11 @@
 
     .icon-row .icon-text:last-child {
         margin-right: 0;
+    }
+
+    .community button {
+        display: flex;
+        justify-content: center;
     }
 
     button {
@@ -263,8 +279,47 @@
             </section>
             <section class="my-community">
                 <h2>My Community</h2>
-                <p>This is some text about the community.</p>
-                <button>Go to Community</button>
+                <div class="community">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>community1</strong></p>
+                    </div>
+                    <p>body text</p>
+                </div>
+                <div class="community">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>community2</strong></p>
+                    </div>
+                    <p>body text</p>
+                </div>
+                <a href="/community" style="display: flex; justify-content: center;">
+                    <button>See More</button>
+                </a>
+                <h2>Suggested Community</h2>
+                <div class="community">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>community3</strong></p>
+                    </div>
+                    <p>body text</p>
+                    <a href="/community" style="display: flex; justify-content: center;">
+                        <button>Join</button>
+                    </a>
+                </div>
+                <div class="community">
+                    <div class="post-header">
+                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                        <p><strong>community4</strong></p>
+                    </div>
+                    <p>body text</p>
+                    <a href="/community" style="display: flex; justify-content: center;">
+                        <button>Join</button>
+                    </a>
+                </div>
+                <a href="/community" style="display: flex; justify-content: center;">
+                    <button>See More</button>
+                </a>
             </section>
         </div>
     </div>
