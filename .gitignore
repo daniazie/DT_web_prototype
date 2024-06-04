@@ -1,8 +1,9 @@
-*.pyc
-*.venv
-!*.png
-
 __pycache__/
 control/__pycache__/
 models/__pycache__/
 view/__pycache__/
+
+
+*.pyc
+*.venv
+!*.png
