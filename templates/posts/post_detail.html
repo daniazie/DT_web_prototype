@@ -133,7 +133,7 @@
         <div class="profile-section">
             <div class="profile-info">
                 <img src="../static/profile.png" alt="Profile Picture">
-                <div class="id">Username123</div>
+                <div class="id">{{post.writer}}</div>
             </div>
             <button class="message-btn">Message</button>
             <img src="../static/star.png" alt="Favorite" class="favorite-icon">
@@ -143,15 +143,15 @@
             <div class="icons-column">
                 <div class="icon-row">
                     <img src="../static/organization.png" alt="Organization">
-                    <span>Text for Icon 1</span>
+                    <span>{{}}</span>
                 </div>
                 <div class="icon-row">
                     <img src="../static/location.png" alt="Location">
-                    <span>Text for Icon 2</span>
+                    <span>{{post.job_info.place}}</span>
                 </div>
                 <div class="icon-row">
                     <img src="../static/clock.png" alt="Time">
-                    <span>Text for Icon 3</span>
+                    <span>{{post.job_info.working_days}} {{post.job_info.working_hours}}</span>
                 </div>
                 <div class="icon-row">
                     <img src="../static/globe.png" alt="Language">

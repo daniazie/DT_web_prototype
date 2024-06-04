@@ -47,6 +47,10 @@
         border-radius: 10px;
     }
 
+    .block{
+        display: block;
+    }
+
     .my-community h2, .recent-posts h2 {
         margin-top: 0;
     }
@@ -179,36 +183,38 @@
             <section class="recent-posts">
                 <h2>Recent Posts</h2>
                 {% for post in post_list%}
-                <article class="post">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>{{post.writer}}</strong></p>
-                        <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                    </div>
-                    <div class="post-body">
-                        <div class="post-content">
-                            <div class="icon-row">
-                                <div class="icon-text">
-                                    <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                    <p>{{post.job_info.working_days}} {{post.job_info.working_hours}}</p>
-                                </div>
-                                <div class="icon-text">
-                                    <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                    <p>{{post.job_info.place}}</p>
-                                </div>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\dollar.png" alt="Icon" class="small-icon">
-                                <p>{{post.job_info.pay}}원 / {{post.job_info.time_unit}}</p>
-                            </div>
-                            <div class="icon-text">
-                                <img src="..\static\globe.png" alt="Icon" class="small-icon">
-                                <p>{{post.job_info.lang_level}}</p>
-                            </div>
+                <a class="post-container">
+                    <article class="post" onclick="location.href='post_detail?post_id={{post.post_id}}'">
+                        <div class="post-header">
+                            <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
+                            <p><strong>{{post.writer}}</strong></p>
+                            <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
                         </div>
-                        <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
-                    </div>
-                </article>
+                        <div class="post-body">
+                            <div class="post-content">
+                                <div class="icon-row">
+                                    <div class="icon-text">
+                                        <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                        <p>{{post.job_info.working_days}} {{post.job_info.working_hours}}</p>
+                                    </div>
+                                    <div class="icon-text">
+                                        <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                        <p>{{post.job_info.place}}</p>
+                                    </div>
+                                </div>
+                                <div class="icon-text">
+                                    <img src="..\static\dollar.png" alt="Icon" class="small-icon">
+                                    <p>{{post.job_info.pay}}원 / {{post.job_info.time_unit}}</p>
+                                </div>
+                                <div class="icon-text">
+                                    <img src="..\static\globe.png" alt="Icon" class="small-icon">
+                                    <p>{{post.job_info.lang_level}}</p>
+                                </div>
+                            </div>
+                            <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
+                        </div>
+                    </article>
+                </a>
                 {% endfor %}
             </section>
             <section class="my-community">
