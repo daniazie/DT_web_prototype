@@ -52,7 +52,7 @@ def pull_messages_from_db_by_thread(thread_id):
     chat_messages = [messages.Messages(**row) for row in results]
     return chat_messages
 
-def get_chat_recipient_id(name):
+def get_chat_recipient_name(name):
     con = db.DataBase()
     query = """
     SELECT name
