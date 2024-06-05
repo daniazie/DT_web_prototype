@@ -1,6 +1,7 @@
 {% extends 'base-login.html' %}
 
 {% block head %}
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -98,9 +99,10 @@
     }
 
 </style>
-{% endblock %}
 
+{% endblock %}
 {% block body %}
+
 <body>
     <div class="container">
         <header>
@@ -117,44 +119,26 @@
             <button>Unread</button>
             <button>Archived</button>
         </nav>
-        <main id="chat-container">
-            <!-- Chat messages will be dynamically loaded here -->
+        <main>
+            <!-- This part should be dynamically generated in the future -->
+            {% for chat in chats %}
+            <div class="chat">
+                <a href="{{ url_for('message_view.view_chat', thread_id=chat.thread_id) }}">
+                    <div class="profile-pic">👤</div>
+                    <div class="chat-info">
+                        <div class="name-time">
+                            <span class="name">{{ chat.sender_name }}</span>
+                            <span class="time">{{ chat.timestamp }}</span>
+                        </div>
+                        <p>{{ chat.last_message }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
         </main>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script>
-        const socket = io();
-
-        function fetchMessages() {
-            fetch('/api/messages') // Replace with your actual API endpoint
-                .then(response => response.json())
-                .then(data => {
-                    const chatContainer = document.getElementById('chat-container');
-                    chatContainer.innerHTML = ''; // Clear existing messages
-                    data.forEach(message => {
-                        const chatElement = document.createElement('div');
-                        chatElement.classList.add('chat');
-                        chatElement.innerHTML = `
-                            <div class="profile-pic">👤</div>
-                            <div class="chat-info">
-                                <div class="name-time">
-                                    <span class="name">${message.sender_name}</span>
-                                    <span class="time">${message.timestamp}</span>
-                                </div>
-                                <p>${message.body}</p>
-                            </div>
-                        `;
-                        chatContainer.appendChild(chatElement);
-                    });
-                });
-        }
-
-        socket.on('new_message', message => {
-            fetchMessages(); // Fetch new messages when a new message is received
-        });
-
-        document.addEventListener('DOMContentLoaded', fetchMessages); // Initial fetch on page load
-    </script>
 </body>
+
 {% endblock %}
+
+</html>

@@ -15,11 +15,10 @@ def singup():
         
         def websocket_check():
             websocket_id = uuid4().hex
-            print(websocket_id)
-            if user_control.websocket_id_exists(websocket_id):
-                return websocket_check()
-            else:
+            if not user_control.websocket_id_exists(websocket_id):
                 return websocket_id
+            else:
+                return websocket_check()
         
         websocket_id = websocket_check()
         flag_empty = user_control.is_empty(input_id, input_email,

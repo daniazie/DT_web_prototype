@@ -24,7 +24,8 @@ class DataBase:
             self.__cursor.execute(sql)
             row = self.__cursor.fetchone()
             return row
-        except:
+        except Exception as e:
+            print(e)
             return None
         
     def execute_select_all(self, sql):
@@ -32,7 +33,8 @@ class DataBase:
             self.__cursor.execute(sql)
             rows = self.__cursor.fetchall()
             return rows
-        except:
+        except Exception as e:
+            print(e)
             return None
         
     def count_select_rows(self, sql):
@@ -40,7 +42,8 @@ class DataBase:
             self.__cursor.execute(sql)
             rows = self.__cursor.fetchall()
             return len(rows)
-        except:
+        except Exception as e:
+            print(e)
             return -1
         
     def execute_with_commit(self, sql):

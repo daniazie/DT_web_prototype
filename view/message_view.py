@@ -29,7 +29,19 @@ def on_load(state):
 @message_view.route("/messages")
 @login_required
 def home():
-    return render_template("message.html")
+    # Fetch all chat threads for the current user
+    user_id = current_user.id
+    chat_threads = messages_control.get_user_chat_threads(user_id)
+    return render_template("message.html", chats=chat_threads)
+
+@message_view.route("/messages/<thread_id>")
+@login_required
+def view_chat(thread_id):
+    # Fetch messages for the specific chat thread
+    chat_messages = messages_control.pull_messages_from_db_by_thread(thread_id)
+    chat_recipient_name = messages_control.get_chat_recipient_name(current_user.id)
+    return render_template("chat_detail.html", messages=chat_messages, chat_recipient_name=chat_recipient_name, thread_id=thread_id)
+
 
 @message_view.route("/messages/send", methods=["POST"])
 @login_required
