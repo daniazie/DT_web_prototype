@@ -2,4 +2,4 @@ test
 .venv
 __pycache__
 *.pyc
-save
+save.txt
