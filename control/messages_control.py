@@ -37,7 +37,7 @@ def mark_thread_as_read(thread_id, user_id):
 def get_user_chat_threads(user_id):
     con = db.DataBase()
     query = """
-    SELECT thread_id, sender_id, last_message, timestamp 
+    SELECT thread_id, sender_id, message, timestamp 
     FROM Messages 
     WHERE sender_id = %s
     """
