@@ -13,9 +13,11 @@ def posts():
     current_page = int(request.args.get('pages',1))
     post_list = post_control.pull_post_from_db_rows(
         _MAX_POST_IN_SINGLE_PAGE, 
-        start=(current_page-1)*_MAX_POST_IN_SINGLE_PAGE+1
+        start=(current_page-1)*_MAX_POST_IN_SINGLE_PAGE
         )
-    
+    if post_list[-1].post_id == 0:
+        post_list.pop()
+
     pagination_start = max(1,current_page-3)
     pagination_end = min(pagination_start+6,page_max)
 
