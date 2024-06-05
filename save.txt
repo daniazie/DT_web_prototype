@@ -1,0 +1,166 @@
+from flask import Flask, url_for, redirect, render_template, Blueprint, request, flash
+from flask_login import login_required, login_manager, session, current_user
+from flask_socketio import SocketIO, join_room, leave_room, send
+import models.user as user
+import models.messages as messages
+import control.messages_control as messages_control
+import control.user_control as user_control
+import models.database as db
+import string, random
+import datetime
+from uuid import uuid4
+
+
+message_view = Blueprint("message_view", __name__)
+socketio = SocketIO()
+
+def randstrurl(type, pmthread=None):
+    con = db.DataBase()
+    letters = string.ascii_lowercase
+    randstr = ''.join(random.choice(letters) for _ in range(8))
+    
+    if pmthread:
+        existing_msg = con.execute_select_one("SELECT * FROM messages WHERE thread_id = %s", (randstr,))
+        if not existing_msg:
+            return randstr
+        else:
+            return randstrurl(type=messages.Messages, pmthread=True)  # Return the result of the recursive call
+    if not con.execute_select_one("SELECT * FROM Messages WHERE url == %s", (randstr,)):
+        return randstr
+    else:
+        randstrurl(type=type)
+
+@message_view.record_once
+def on_load(state):
+    socketio.init_app(state.app)
+
+@message_view.route("/messages")
+@login_required
+def home():
+    return render_template("message.html")
+
+@message_view.route("/messages/<recipient_id>", methods=["POST"])
+@login_required
+def send_message():
+    if request.json.get('thread_id'):
+        thread_id = request.json.get('thread_id')
+    else:
+        thread_id = randstrurl(type=messages.Messages, pmthread=True)
+    
+    url = randstrurl(type=messages.Messages)
+    if request.method == 'POST':
+        message = messages.Messages()
+        message.sender_id = current_user.id
+        message.recipient_id = request.json.get('recipient_id')
+        message.message = request.json.get('message')
+        message.url = url 
+        message.timestamp = datetime.utcnow()
+        if not messages_control.push_messages_to_db(message) :
+            flash("failed to create user data at server",category="error")
+            
+        recipient_websocket_id = user_control.websocket_id_query(request.get('recipient_id'))
+        
+        socketio.emit(recipient_websocket_id+'_newmsg', {'message_url': url})
+        socketio.emit(current_user.websocket_id+'_newmsg', {'message_url': url}, namespace='/messages')
+        socketio.emit(thread_id, {'message_url': url}, namespace='/messages')
+
+        return {'status': 200}
+
+
+import models.messages as messages
+import models.database as db
+import random, string
+
+def __convert_dict_to_messages(dict):
+    data = messages.Messages()
+    data.msg_id = dict['msg_id']
+    data.sender_id = dict['sender_id']
+    data.recipient_id = dict['recipient_id']
+    data.message = dict['message']
+    data.timestamp = dict['timestamp']
+    data.thread_id = dict['thread_id']
+    return data
+
+def is_exist_thread_id(thread_id):
+    connection = db.DataBase()
+    result = connection.execute_select_one("SELECT * FROM Messages WHERE thread_id='{5}'".format(thread_id))
+    if result: return True
+    else : return False
+
+def push_messages_to_db(data):
+    con = db.DataBase()   
+    result = con.execute_with_commit("INSERT INTO Messages (sender_id, recipient_id, message, timestamp, thread_id, url) \
+        VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}')").format(
+            data.sender_id,
+            data.recipient_id,
+            data.message,
+            data.timestamp,
+            data.thread_id,
+            data.url
+        )
+    return result
+
+def pull_messages_from_db(sender_id, recipient_id):
+    con = db.DataBase()
+    result = con.execute_select_all("SELECT * FROM messages WHERE sender_id = {1} AND recipient_id = '{2}'".format(sender_id, recipient_id))
+    if result:
+        msg_lst = []
+        for i in result:
+            data = __convert_dict_to_messages(i)
+            msg_lst.append(data)
+        return msg_lst
+    else:
+        return None
+    
+class Messages():
+    def __str__(self):
+        return "msg_id : {0}, sender_id: {1}, recipient_id: {2}, message: {3}, timestamp: {4}, thread_id: {5}, url: {6}".format(self.msg_id, self.sender_id, self.recipient_id, self.message, self.timestamp, self.thread_id, self.url)
+    
+    @property
+    def msg_id(self):
+        return self.__msg_id
+    @msg_id.setter
+    def msg_id(self, msg_id):
+        self.__msg_id = msg_id
+        
+    @property
+    def sender_id(self):
+        return self.__sender_id
+    @sender_id.setter
+    def sender_id(self, sender_id):
+        self.__sender_id = sender_id
+        
+    @property
+    def recipient_id(self):
+        return self.__recipient_id
+    @recipient_id.setter
+    def recipient_id(self, recipient_id):
+        self.__recipient_id = recipient_id
+        
+    @property
+    def message(self):
+        return self.__message
+    @message.setter
+    def message(self, message):
+        self.__message = message
+        
+    @property
+    def timestamp(self):
+        return self.__timestamp
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        self.__timestamp = timestamp
+        
+    @property
+    def thread_id(self):
+        return self.__thread_id
+    @thread_id.setter
+    def thread_id(self, thread_id):
+        self.__thread_id = thread_id
+        
+    @property
+    def url(self):
+        return self.__url
+    @url.setter
+    def url(self, url):
+        self.__url = url
