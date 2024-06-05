@@ -22,7 +22,7 @@ def websocket_id_query(user_id):
     
 def websocket_id_exists(websocket_id):
     connection = db.DataBase()
-    result = connection.execute_select_one("SELECT * FROM User WHERE websocket_id='{8}'".format(websocket_id))
+    result = connection.execute_select_one("SELECT * FROM User WHERE websocket_id='{0}'".format(websocket_id))
     if result: return True
     else : return False
 

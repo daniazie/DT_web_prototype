@@ -21,6 +21,7 @@ class DataBase:
 
     def execute_select_one(self, sql):
         try:
+            print(sql)
             self.__cursor.execute(sql)
             row = self.__cursor.fetchone()
             return row
