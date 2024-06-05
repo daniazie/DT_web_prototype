@@ -52,12 +52,12 @@ def pull_messages_from_db_by_thread(thread_id):
     chat_messages = [messages.Messages(**row) for row in results]
     return chat_messages
 
-def get_chat_recipient_name(name):
+def get_chat_recipient_name(id):
     con = db.DataBase()
     query = """
     SELECT name
     FROM User 
     WHERE id != %s
     """
-    result = con.execute_select_one(query, (name,))
+    result = con.execute_select_one(query, (id,))
     return result['name'] if result else "Unknown"
