@@ -5,7 +5,7 @@ from models import post
 
 add_post_view = Blueprint("add_post_view", __name__)
 
-@add_post_view.route("/add_post", methods = ['GET', 'POST'])
+@add_post_view.route("/posts/add_post", methods = ['GET', 'POST'])
 @login_required
 def add_post():
     if request.method == "POST":

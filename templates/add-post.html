@@ -146,7 +146,7 @@
             <button class="btn-back" onclick="window.location.href='/posts'">&#8592;</button>
             <h1>Create a new post</h1>
         </div>
-        <form method="POST">
+        <form name="input_form" method="POST">
             <div class="form-group">
                 <label for="picture">Picture</label>
                 <input type="file" id="picture" name="picture">
@@ -178,9 +178,9 @@
             <div class="form-group">
                 <label for="working-time">Working Time</label>
                 <div class="working-time">
-                    <input type="text" id="working-time-start" name="working-time-start" placeholder="Start Time">
+                    <input type="text" id="working-time-start" name="working-time-start" Value="00:00">
                     <span>~</span>
-                    <input type="text" id="working-time-end" name="working-time-end" placeholder="End Time">
+                    <input type="text" id="working-time-end" name="working-time-end" Value="23:59">
                 </div>
             </div>
             <div class="form-group">
@@ -205,7 +205,7 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" rows="6"></textarea>
             </div>
-            <button class="btn-post" type="submit">Post</button>
+            <button class="btn-post" type="button" onclick="checkInput()">Post</button>
         </form>
     </div>
 
@@ -232,6 +232,48 @@
         function deleteLanguage(button) {
             button.parentElement.remove();
         }
+
+        function checkInput(){
+            var shop_name = document.querySelector('input[name="shop-name"]').value;
+            var location = document.querySelector('input[name="location"]').value;
+            var payrate = document.querySelector('input[name="payrate"]').value;
+            var days = document.querySelectorAll('input[name="days"]');
+            var days_checked = false;
+            
+            days.forEach(function(day) {
+                if (day.checked) {
+                    days_checked = true;
+                }
+            });
+            
+            var work_start = document.querySelector('input[name="working-time-start"]').value;
+            var work_end = document.querySelector('input[name="working-time-end"]').value;
+            var description = document.querySelector('textarea[name="description"]').value;
+            
+            // Empty test
+            var isEmpty = (shop_name === '') || (location === '') || (payrate === '')
+            || (description === '') || !days_checked;
+            if (isEmpty){
+                alert("입력하지 않은 란이 존재합니다");
+                return;
+            }
+
+            // is Number test
+            var numberPattern = /^\d+$/;
+            if (!numberPattern.test(payrate)){
+                alert("payrate는 자연수만 입력 가능합니다");
+                return;
+            }
+
+            // is right time pattern
+            var timeFormat = /^([01]\d|2[0-3]):([0-5]\d)$/;
+            if (!timeFormat.test(work_start) || !timeFormat.test(work_end)){
+                alert('잘못된 시간 형식입니다. "HH:MM" 형식으로 입력하세요.');
+                return;
+            }
+            input_form.submit();
+        }
+        
     </script>
 </body>
 

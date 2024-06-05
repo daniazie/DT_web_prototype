@@ -16,7 +16,7 @@ app.register_blueprint(community_view.community_view)
 app.register_blueprint(message_view.message_view)
 app.register_blueprint(my_profile_view.my_profile_view)
 app.register_blueprint(post_detail_view.post_detail_view)
-app.register_blueprint(add_post.add_post_view, url_prefix='/posts')
+app.register_blueprint(add_post.add_post_view)
 
 @app.route("/")
 def hello_world():
