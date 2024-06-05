@@ -9,7 +9,8 @@ def singup():
     if 'user_id_temp' in session or \
      'user_email_temp'in session or \
      'user_password_temp'in session or \
-     'user_country_temp': 
+     'user_country_temp' in session or \
+         'user_websocket_id_temp': 
         redirect("/signup")
     
 
@@ -34,6 +35,8 @@ def singup():
         user_info.gender = input_gender
         user_info.language = input_language
         user_info.city = input_city
+        user_info.websocket_id = session['user_websocket_id_temp']
+        
 
         if not user_control.push_user_info_to_db(user_info) :
             flash("failed to create user data at server",category="error")
@@ -42,6 +45,7 @@ def singup():
         session.pop('user_email_temp',None)
         session.pop('user_password_temp',None)
         session.pop('user_country_temp',None)
+        session.pop('user_websocket_id_temp', None)
 
         return redirect("/login")
     else:

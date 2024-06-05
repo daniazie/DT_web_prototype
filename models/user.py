@@ -60,3 +60,10 @@ class User(UserMixin):
     @city.setter    
     def city(self,city):
         self.__city = city
+        
+    @property
+    def websocket_id(self):
+        return self.__websocket_id
+    @websocket_id.setter
+    def websocket_id(self, websocket_id):
+        self.__websocket_id = websocket_id
