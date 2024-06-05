@@ -65,10 +65,10 @@ def pull_post_from_db_by_userID(user_id):
     else:
         return None
     
-def pull_post_from_db_rows(n):
+def pull_post_from_db_rows(n, start=0):
     con = db.DataBase()
-    result = con.execute_select_all("SELECT * FROM Posts_head ORDER BY post_id DESC limit {0}"
-                                    .format(n))
+    result = con.execute_select_all("SELECT * FROM Posts_head ORDER BY post_id DESC limit {0} OFFSET {1}"
+                                    .format(n,start))
     if result: 
         post_lst = []
         for i in result:
@@ -141,6 +141,11 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
         else :
             return success
         
+def count_post():
+    con = db.DataBase()
+    result = con.count_select_rows("SELECT * FROM Posts_head")
+    return result
+
 def is_empty(*args):
     result = False
     

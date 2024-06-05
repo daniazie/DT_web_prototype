@@ -102,6 +102,10 @@
         flex-grow: 1;
     }
 
+    .post:hover {
+        background-color: #d6d3c2;
+    }
+
     .medium-pic {
         width: 150px;
         margin-left: 10px;
@@ -178,8 +182,7 @@
         <div class="row-container">
             <section class="recent-posts">
                 <h2>Recent Posts</h2>
-                {% for post in post_list%}
-                <a class="post-container">
+                {% for post in post_list %}
                     <article class="post" onclick="location.href='post_detail?post_id={{post.post_id}}'">
                         <div class="post-header">
                             <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
@@ -210,7 +213,6 @@
                             <img src="..\static\blank.png" alt="Medium Picture" class="medium-pic">
                         </div>
                     </article>
-                </a>
                 {% endfor %}
             </section>
             <section class="my-community">
