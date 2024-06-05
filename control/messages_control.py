@@ -22,7 +22,7 @@ def push_messages_to_db(data):
 def pull_messages_from_db_by_thread(thread_id):
     con = db.DataBase()
     sql = "SELECT * FROM messages WHERE thread_id = %s ORDER BY timestamp ASC"
-    result = con.execute_select_all(sql, (thread_id,))
+    result = con.execute_select_all(sql, (thread_id))
     if result:
         return [__convert_dict_to_messages(row) for row in result]
     else:
