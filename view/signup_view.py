@@ -18,7 +18,7 @@ def singup():
             if user_control.websocket_id_exists(websocket_id):
                 return websocket_id
             else:
-                websocket_check
+                return websocket_check()
         
         websocket_id = websocket_check()
         flag_empty = user_control.is_empty(input_id, input_email,

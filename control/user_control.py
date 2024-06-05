@@ -17,8 +17,8 @@ def is_exist_id(user_id):
 def websocket_id_query(user_id):
     connection = db.DataBase()
     result = connection.execute_select_one("SELECT websocket_id FROM User WHERE id='{0}'".format(user_id))
-    if result: return True
-    else : return False
+    if result: return result
+    else : return None
     
 def websocket_id_exists(websocket_id):
     connection = db.DataBase()
@@ -69,7 +69,7 @@ def push_user_info_to_db(user_info):
             user_info.websocket_id
         )
     else:
-        sql = "INSERT INTO dt.User (id, password, name, email, country, gender, language, city) \
+        sql = "INSERT INTO dt.User (id, password, name, email, country, gender, language, city, websocket_id) \
         VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}', '{8}')".format(
             user_info.id,
             user_info.password,

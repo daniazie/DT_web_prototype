@@ -26,7 +26,7 @@ def randstrurl():
 def on_load(state):
     socketio.init_app(state.app)
 
-@message_view.route("/message")
+@message_view.route("/messages")
 @login_required
 def home():
     return render_template("message.html")
