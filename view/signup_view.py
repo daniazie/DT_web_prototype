@@ -15,7 +15,7 @@ def singup():
         
         def websocket_check():
             websocket_id = uuid4().hex
-            if user_control.websocket_id_exists(websocket_id):
+            if not user_control.websocket_id_exists(websocket_id):
                 return websocket_id
             else:
                 return websocket_check()

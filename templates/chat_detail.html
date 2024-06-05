@@ -1,0 +1,78 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+<style>
+    /* Your CSS code as before */
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Chat with {{ chat_recipient_name }}</h1>
+            <div class="icons">
+                <div class="icon">⚙️</div>
+                <div class="icon">🔍</div>
+                <div class="icon">🔔</div>
+            </div>
+        </header>
+        <main id="chat-container">
+            <!-- Chat messages will be dynamically loaded here -->
+            {% for message in messages %}
+            <div class="chat">
+                <div class="profile-pic">{{ message.sender_avatar }}</div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">{{ message.sender_name }}</span>
+                        <span class="time">{{ message.timestamp }}</span>
+                    </div>
+                    <p>{{ message.body }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+        <div class="message-input">
+            <form id="send-message-form">
+                <input type="text" id="message" placeholder="Type a message">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        document.getElementById('send-message-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message').value;
+            socket.emit('send_message', { thread_id: '{{ thread_id }}', message: message });
+            document.getElementById('message').value = '';
+        });
+
+        socket.on('new_message', message => {
+            const chatContainer = document.getElementById('chat-container');
+            const chatElement = document.createElement('div');
+            chatElement.classList.add('chat');
+            chatElement.innerHTML = `
+                <div class="profile-pic">👤</div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">${message.sender_name}</span>
+                        <span class="time">${message.timestamp}</span>
+                    </div>
+                    <p>${message.body}</p>
+                </div>
+            `;
+            chatContainer.appendChild(chatElement);
+        });
+    </script>
+</body>
+
+{% endblock %}
+
+</html>

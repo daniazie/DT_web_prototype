@@ -38,7 +38,7 @@ class DataBase:
     def count_select_rows(self, sql):
         try:
             self.__cursor.execute(sql)
-            rows = self.__cursor.fetchall(n)
+            rows = self.__cursor.fetchall(n) # type: ignore
             return len(rows)
         except:
             return -1
