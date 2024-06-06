@@ -146,6 +146,7 @@
             <button class="btn-back" onclick="window.location.href='/posts'">&#8592;</button>
             <h1>Create a new post</h1>
         </div>
+<<<<<<< HEAD
         <div class="form-group">
             <label for="picture">Picture</label>
             <input type="file" id="picture" name="picture">
@@ -205,6 +206,69 @@
             <textarea id="description" name="description" rows="6"></textarea>
         </div>
         <button class="btn-post">Post</button>
+=======
+        <form name="input_form" method="POST">
+            <div class="form-group">
+                <label for="picture">Picture</label>
+                <input type="file" id="picture" name="picture">
+            </div>
+            <div class="form-group">
+                <label for="shop-name">Name of Shop</label>
+                <input type="text" id="shop-name" name="shop-name">
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location">
+            </div>
+            <div class="form-group">
+                <label for="payrate">Payrate</label>
+                <input type="text" id="payrate" name="payrate">
+            </div>
+            <div class="form-group">
+                <label for="days-of-week">Days of the Week</label>
+                <div class="days-of-week">
+                    <div class="day"><input type="checkbox" id="monday" name="days" value="Monday"><label for="monday">Monday</label></div>
+                    <div class="day"><input type="checkbox" id="tuesday" name="days" value="Tuesday"><label for="tuesday">Tuesday</label></div>
+                    <div class="day"><input type="checkbox" id="wednesday" name="days" value="Wednesday"><label for="wednesday">Wednesday</label></div>
+                    <div class="day"><input type="checkbox" id="thursday" name="days" value="Thursday"><label for="thursday">Thursday</label></div>
+                    <div class="day"><input type="checkbox" id="friday" name="days" value="Friday"><label for="friday">Friday</label></div>
+                    <div class="day"><input type="checkbox" id="saturday" name="days" value="Saturday"><label for="saturday">Saturday</label></div>
+                    <div class="day"><input type="checkbox" id="sunday" name="days" value="Sunday"><label for="sunday">Sunday</label></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="working-time">Working Time</label>
+                <div class="working-time">
+                    <input type="text" id="working-time-start" name="working-time-start" Value="00:00">
+                    <span>~</span>
+                    <input type="text" id="working-time-end" name="working-time-end" Value="23:59">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="language-preferred">Language Preferred</label>
+                <select id="language-preferred" name="language-preferred">
+                    <option value="english">English</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="french">French</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="level-language">Level of Language</label>
+                <select id="level-language" name="level-language">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+            <button class="btn-add-language" type="button" onclick="addLanguage()">Add another language</button>
+            <div id="language-container"></div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="6"></textarea>
+            </div>
+            <button class="btn-post" type="button" onclick="checkInput()">Post</button>
+        </form>
+>>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
     </div>
 
     <script>
@@ -230,6 +294,51 @@
         function deleteLanguage(button) {
             button.parentElement.remove();
         }
+<<<<<<< HEAD
+=======
+
+        function checkInput(){
+            var shop_name = document.querySelector('input[name="shop-name"]').value;
+            var location = document.querySelector('input[name="location"]').value;
+            var payrate = document.querySelector('input[name="payrate"]').value;
+            var days = document.querySelectorAll('input[name="days"]');
+            var days_checked = false;
+            
+            days.forEach(function(day) {
+                if (day.checked) {
+                    days_checked = true;
+                }
+            });
+            
+            var work_start = document.querySelector('input[name="working-time-start"]').value;
+            var work_end = document.querySelector('input[name="working-time-end"]').value;
+            var description = document.querySelector('textarea[name="description"]').value;
+            
+            // Empty test
+            var isEmpty = (shop_name === '') || (location === '') || (payrate === '')
+            || (description === '') || !days_checked;
+            if (isEmpty){
+                alert("입력하지 않은 란이 존재합니다");
+                return;
+            }
+
+            // is Number test
+            var numberPattern = /^\d+$/;
+            if (!numberPattern.test(payrate)){
+                alert("payrate는 자연수만 입력 가능합니다");
+                return;
+            }
+
+            // is right time pattern
+            var timeFormat = /^([01]\d|2[0-3]):([0-5]\d)$/;
+            if (!timeFormat.test(work_start) || !timeFormat.test(work_end)){
+                alert('잘못된 시간 형식입니다. "HH:MM" 형식으로 입력하세요.');
+                return;
+            }
+            input_form.submit();
+        }
+        
+>>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
     </script>
 </body>
 

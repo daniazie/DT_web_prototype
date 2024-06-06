@@ -3,8 +3,7 @@ import models.user as user
 import models.database as db
 
 def check_password(user_info, input):
-    encoded = base64.b64encode(input.encode("UTF-8")).decode("UTF-8")
-    return user_info.password == encoded
+    return user_info.password == encode_password(input)
 
 def encode_password(input):
     return base64.b64encode(input.encode("UTF-8")).decode("UTF-8")
@@ -23,7 +22,11 @@ def websocket_id_query(user_id):
     
 def websocket_id_exists(websocket_id):
     connection = db.DataBase()
+<<<<<<< HEAD
     result = connection.execute_select_one("SELECT * FROM User WHERE websocket_id='{8}'".format(websocket_id))
+=======
+    result = connection.execute_select_one("SELECT * FROM User WHERE websocket_id='{0}'".format(websocket_id))
+>>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
     if result: return True
     else : return False
 

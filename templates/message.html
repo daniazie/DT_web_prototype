@@ -123,6 +123,7 @@
             <!-- This part should be dynamically generated in the future -->
             {% for chat in chats %}
             <div class="chat">
+<<<<<<< HEAD
                 <a href="{{ url_for('message_view.view_chat', thread_id=chat.thread_id) }}">
                     <div class="profile-pic">👤</div>
                     <div class="chat-info">
@@ -131,6 +132,16 @@
                             <span class="time">{{ chat.timestamp }}</span>
                         </div>
                         <p>{{ chat.last_message }}</p>
+=======
+                <a href="messages/room?id={{chat['thread_id']}}">
+                    <div class="profile-pic">👤</div>
+                    <div class="chat-info">
+                        <div class="name-time">
+                            <span class="name">{{ chat['recipient_name'] }}</span>
+                            <span class="time">{{ chat['timestamp'] }}</span>
+                        </div>
+                        <p>{{ chat['last_message'] }}</p>
+>>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
                     </div>
                 </a>
             </div>

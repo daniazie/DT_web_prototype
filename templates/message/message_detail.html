@@ -1,0 +1,184 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            background-color: #fefbea;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 80px);
+            width: 100vw;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ccc;
+            padding: 10px 20px;
+        }
+
+        .header .back-button,
+        .header .options-button {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .header .chat-name {
+            font-size: 18px;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message .bubble {
+            max-width: 60%;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.sent .bubble {
+            background-color: #FF6500;
+            color: #FFFFFF;
+            border-bottom-right-radius: 0;
+        }
+
+        .message.received .bubble {
+            background-color: #3A3A3A;
+            color: #FFFFFF;
+            border-bottom-left-radius: 0;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            background-color: #ccc;
+            padding: 10px;
+        }
+
+        .footer .attach-button {
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .footer input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .footer .send-button {
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+    <body>
+        <div class="chat-container">
+            <div class="header">
+                <div class="back-button">&#8592;</div>
+                <div class="chat-name">{{ chat_recipient_name }}</div>
+                <div class="options-button">&#8942;</div>
+            </div>
+            {% for message in messages %}
+            <div class="chat-box">
+                {% if message.recipient_id != my_id %}
+                <div class="message sent">
+                    <div class="bubble">{{ message.message }}</div>
+                </div>
+                {% else %}
+                <div class="message received">
+                    <div class="bubble">{{ message.message }}</div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="footer">
+                <div class="attach-button">&#10010;</div>
+                <input type="text" id="message-input" placeholder="Message">
+                <div class="send-button" type="submit">&#10148;</div>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+    <script>
+        //     // Create a new message bubble
+        //     var chatBox = document.querySelector(".chat-box");
+        //     var newMessage = document.createElement("div");
+        //     newMessage.classList.add("message", "sent");
+        //     newMessage.innerHTML = `
+        //         <div class="bubble">${messageText}</div>
+        //     `;
+        //     chatBox.appendChild(newMessage);
+
+        const socket = io(document.location.href);
+        document.getElementById('send-message-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message-input').value;
+            if (message !== "") {
+                socket.emit('send_message', { 
+                    thread_id: '{{ thread_id }}',
+                    message: message,
+                    recipient_id : '{{ chat_recipient_id }}',
+                    recipient_name : '{{ recipient_name }}'
+                });
+            }
+            document.getElementById('message-input').value = '';
+            document.getElementById('message-input').focus();
+        });
+
+        socket.on('{{thread_id}}_newmsg', (newmsg) => {          
+            const chatContainer = document.querySelector(".chat-box");
+            const chatElement = document.createElement('div');
+            chatElement.classList.add("message", "sent");
+            if(newmsg.recipient_id !== '{{ my_id }}'){
+            chatElement.innerHTML = `
+                <div class="message sent">
+                    <div class="bubble">${newmsg.message}</div>
+                </div>
+            `;}
+            else {
+                chatElement.innerHTML = `
+                <div class="message received">
+                    <div class="bubble">${newmsg.message}</div>
+                </div>
+            `;}
+            chatContainer.appendChild(chatElement);
+        });
+    </script>
+
+{% endblock %}
+
+</html>
