@@ -52,4 +52,5 @@ class DataBase:
             self.__db.commit()
             return True, None
         except Exception as e:
+            print(e)
             return False, e

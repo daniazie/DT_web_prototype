@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template, Blueprint
-from flask_login import login_required, login_manager
+from flask_login import login_required, current_user
 from control import post_control
 from models import post
 
@@ -13,4 +13,4 @@ def post_detail():
     post_content = post_control.pull_content_from_db(post_id)
 
     return render_template("/posts/post_detail.html",
-                           post=post_info,post_content=post_content)
+                           post=post_info,post_content=post_content,my_id=current_user.id)

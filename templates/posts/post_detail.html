@@ -135,7 +135,9 @@
                 <img src="../static/profile.png" alt="Profile Picture">
                 <div class="id">{{post.writer}}</div>
             </div>
-            <button class="message-btn">Message</button>
+            {% if my_id != post.writer %}
+            <button class="message-btn" id="send_message">Message</button>
+            {% endif %}
             <img src="../static/star.png" alt="Favorite" class="favorite-icon">
             <img src="../static/globe.png" alt="Translate" class="translate-icon">
         </div>
@@ -165,6 +167,12 @@
         </div>
     </div>
 </body>
+
+<script>
+    send_message.onclick = function() {
+            location.href="messages/room/redirect?uid1={{my_id}}&uid2={{post.writer}}";
+        }
+</script>
 
 {% endblock %}
 

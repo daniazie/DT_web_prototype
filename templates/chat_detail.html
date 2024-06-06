@@ -27,10 +27,14 @@
                 <div class="profile-pic">{{ message.sender_avatar }}</div>
                 <div class="chat-info">
                     <div class="name-time">
-                        <span class="name">{{ message.sender_name }}</span>
-                        <span class="time">{{ message.timestamp }}</span>
+                        {% if message.recipient_id != my_id %}
+                            <span class="name">{{ my_name }}</span>
+                        {% else %}
+                            <span class="name">{{ chat_recipient_name }}</span>
+                        {% endif %}
+                        <span class="time">{{ message.timestamp.strftime('%m/%d %H:%M:%S') }}</span>
                     </div>
-                    <p>{{ message.body }}</p>
+                    <p>{{ message.message }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -46,30 +50,47 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script>
         const socket = io(document.location.href);
-        console.log()
         document.getElementById('send-message-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const message = document.getElementById('message').value;
-            console.log(message);
-            socket.emit('send_message', { thread_id: '{{ thread_id }}', message: message });
+            if (message !== "") {
+                socket.emit('send_message', { 
+                    thread_id: '{{ thread_id }}',
+                    message: message,
+                    recipient_id : '{{ chat_recipient_id }}',
+                    recipient_name : '{{ recipient_name }}'
+                });
+            }
             document.getElementById('message').value = '';
             document.getElementById('message').focus();
         });
 
-        socket.on('new_message', message => {
+        socket.on('{{thread_id}}_newmsg', (newmsg) => {
             const chatContainer = document.getElementById('chat-container');
             const chatElement = document.createElement('div');
             chatElement.classList.add('chat');
+            if(newmsg.recipient_id !== '{{ my_id }}'){
             chatElement.innerHTML = `
+                <div class="profile-pic"></div>
+                <div class="chat-info">
+                    <div class="name-time">
+                        <span class="name">${newmsg.sender_name}</span>
+                        <span class="time">${newmsg.timestamp}</span>
+                    </div>
+                    <p>${newmsg.message}</p>
+                </div>
+            `;}
+            else {
+                chatElement.innerHTML = `
                 <div class="profile-pic">👤</div>
                 <div class="chat-info">
                     <div class="name-time">
-                        <span class="name">${message.sender_name}</span>
-                        <span class="time">${message.timestamp}</span>
+                        <span class="name">${newmsg.recipient_name}</span>
+                        <span class="time">${newmsg.timestamp}</span>
                     </div>
-                    <p>${message.body}</p>
+                    <p>${newmsg.message}</p>
                 </div>
-            `;
+            `;}
             chatContainer.appendChild(chatElement);
         });
     </script>

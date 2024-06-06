@@ -108,44 +108,75 @@
         <div class="chat-container">
             <div class="header">
                 <div class="back-button">&#8592;</div>
-                <div class="chat-name">gram</div>
+                <div class="chat-name">{{ chat_recipient_name }}</div>
                 <div class="options-button">&#8942;</div>
             </div>
+            {% for message in messages %}
             <div class="chat-box">
-                <div class="message received">
-                    <div class="bubble">알바 잘 하셨나요?</div>
+                {% if message.recipient_id != my_id %}
+                <div class="message sent">
+                    <div class="bubble">{{ message.message }}</div>
                 </div>
+                {% else %}
+                <div class="message received">
+                    <div class="bubble">{{ message.message }}</div>
+                </div>
+                {% endif %}
             </div>
+            {% endfor %}
             <div class="footer">
                 <div class="attach-button">&#10010;</div>
                 <input type="text" id="message-input" placeholder="Message">
-                <div class="send-button" onclick="sendMessage()">&#10148;</div>
+                <div class="send-button" type="submit">&#10148;</div>
             </div>
         </div>
     </body>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script>
-        function sendMessage() {
-            // Get the input message
-            var messageInput = document.getElementById("message-input");
-            var messageText = messageInput.value.trim();
-    
-            if (messageText === "") {
-                return; // Don't send empty messages
+        //     // Create a new message bubble
+        //     var chatBox = document.querySelector(".chat-box");
+        //     var newMessage = document.createElement("div");
+        //     newMessage.classList.add("message", "sent");
+        //     newMessage.innerHTML = `
+        //         <div class="bubble">${messageText}</div>
+        //     `;
+        //     chatBox.appendChild(newMessage);
+
+        const socket = io(document.location.href);
+        document.getElementById('send-message-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message-input').value;
+            if (message !== "") {
+                socket.emit('send_message', { 
+                    thread_id: '{{ thread_id }}',
+                    message: message,
+                    recipient_id : '{{ chat_recipient_id }}',
+                    recipient_name : '{{ recipient_name }}'
+                });
             }
-    
-            // Create a new message bubble
-            var chatBox = document.querySelector(".chat-box");
-            var newMessage = document.createElement("div");
-            newMessage.classList.add("message", "sent");
-            newMessage.innerHTML = `
-                <div class="bubble">${messageText}</div>
-            `;
-            chatBox.appendChild(newMessage);
-    
-            // Clear the input field after sending
-            messageInput.value = "";
-        }
+            document.getElementById('message-input').value = '';
+            document.getElementById('message-input').focus();
+        });
+
+        socket.on('{{thread_id}}_newmsg', (newmsg) => {          
+            const chatContainer = document.querySelector(".chat-box");
+            const chatElement = document.createElement('div');
+            chatElement.classList.add("message", "sent");
+            if(newmsg.recipient_id !== '{{ my_id }}'){
+            chatElement.innerHTML = `
+                <div class="message sent">
+                    <div class="bubble">${newmsg.message}</div>
+                </div>
+            `;}
+            else {
+                chatElement.innerHTML = `
+                <div class="message received">
+                    <div class="bubble">${newmsg.message}</div>
+                </div>
+            `;}
+            chatContainer.appendChild(chatElement);
+        });
     </script>
 
 {% endblock %}
