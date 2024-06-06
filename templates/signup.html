@@ -39,6 +39,9 @@
   </form>
     
   <script>
+    if ('{{idfailed}}')
+      alert("이미 사용 중인 아이디입니다");
+
     function checkSignUp(){
       var id = document.querySelector('input[name="id"]').value;
       var email = document.querySelector('input[name="email"]').value;
@@ -71,7 +74,7 @@
       }
 
       document.signup_form.submit();
-    }
+    }    
   </script>
 </body>
 

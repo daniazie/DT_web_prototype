@@ -28,8 +28,7 @@ def singup():
             return render_template("signup.html")
         
         if user_control.is_exist_id(input_id):
-            flash("an already existing ID", category="error")
-            return render_template("signup.html") 
+            return render_template("signup.html", idfailed=True) 
                   
         
         session['user_id_temp'] =  input_id
