@@ -11,5 +11,4 @@ def home():
     language = current_user.language
     country = current_user.country
     city = current_user.city
-    print(name, gender, language, city)
     return render_template("my-profile.html", name=name, gender=gender, language=language, country=country, city=city)

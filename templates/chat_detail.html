@@ -43,15 +43,17 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script>
-        const socket = io();
-
+        const socket = io(document.location.href);
+        console.log()
         document.getElementById('send-message-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const message = document.getElementById('message').value;
+            console.log(message);
             socket.emit('send_message', { thread_id: '{{ thread_id }}', message: message });
             document.getElementById('message').value = '';
+            document.getElementById('message').focus();
         });
 
         socket.on('new_message', message => {

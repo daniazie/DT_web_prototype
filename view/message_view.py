@@ -11,7 +11,11 @@ from datetime import datetime
 from uuid import uuid4
 
 message_view = Blueprint("message_view", __name__)
-socketio = SocketIO()
+socketio = SocketIO(logger=True, engineio_logger=True)
+
+@message_view.record_once
+def on_load(state):
+    socketio.init_app(state.app, cors_allowed_origins="*")
 
 def randstrurl():
     con = db.DataBase()
@@ -21,10 +25,6 @@ def randstrurl():
         return randstr
     else:
         return randstrurl()
-
-@message_view.record_once
-def on_load(state):
-    socketio.init_app(state.app)
 
 @message_view.route("/messages")
 @login_required
@@ -42,12 +42,13 @@ def view_chat(thread_id):
     chat_recipient_name = messages_control.get_chat_recipient_name(current_user.id)
     return render_template("chat_detail.html", messages=chat_messages, chat_recipient_name=chat_recipient_name, thread_id=thread_id)
 
-
-@message_view.route("/messages/send", methods=["POST"])
-@login_required
+@socketio.on("send_message")
 def send_message():
+    print("send_message recieved")
     data = request.json
     thread_id = data.get('thread_id') or randstrurl()
+    message=data.get('message')
+    print(message)
     message = messages.Messages(
         msg_id=str(uuid4()),
         sender_id=current_user.id,
