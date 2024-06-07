@@ -46,9 +46,10 @@ class DataBase:
             print(e)
             return -1
         
-    def execute_with_commit(self, sql):
+    def execute_with_commit(self, *sql):
         try:
-            self.__cursor.execute(sql)
+            for i in sql:
+                self.__cursor.execute(i)
             self.__db.commit()
             return True, None
         except Exception as e:
