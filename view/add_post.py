@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, Blueprint
+from flask import Flask, request, redirect, render_template, Blueprint, flash
 from flask_login import login_required, current_user
 from control import post_control
 from models import post
@@ -61,6 +61,7 @@ def add_post():
         if result:
             return redirect("/posts")
         else:
+            flash("Failed to add a post",category="error")
             return redirect("/posts/add_post")
     else:
         return render_template("add-post.html")

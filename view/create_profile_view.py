@@ -6,20 +6,23 @@ create_profile_view = Blueprint("create_profile_view", __name__)
 
 @create_profile_view.route("/create-profile", methods = ['GET', 'POST'])
 def singup():
-    if 'user_id_temp' in session or \
-     'user_email_temp'in session or \
-     'user_password_temp'in session or \
-     'user_country_temp' in session or \
-         'user_websocket_id_temp': 
-        redirect("/signup")
-    
+    try:
+        if 'user_id_temp' in session or \
+        'user_email_temp'in session or \
+        'user_password_temp'in session or \
+        'user_country_temp' in session or \
+            'user_websocket_id_temp': 
+            redirect("/signup")
+    except:
+        flash("회원가입 중 예상치 못한 문제가 발생했습니다.\n이전 페이지로 돌아갑니다.",category="error")
+        redirect("/login")
+
 
     if request.method == "POST":
         input_name = request.form.get('name')
         input_gender = request.form.get('gender')
         input_language = request.form.get('language')
         input_city = request.form.get('city')
-        print(input_name,input_gender,input_language,input_city)
         flag_empty = user_control.is_empty(input_name, input_gender,
                                            input_language, input_city)
         
@@ -39,7 +42,11 @@ def singup():
         
 
         if not user_control.push_user_info_to_db(user_info) :
+        #if True :
             flash("failed to create user data at server",category="error")
+            print("messaged")
+        else:
+            flash("회원가입 완료",category="success")
 
         session.pop('user_id_temp',None)
         session.pop('user_email_temp',None)

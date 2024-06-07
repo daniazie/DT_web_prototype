@@ -57,10 +57,12 @@ def view_chat():
     
     chat_messages = messages_control.pull_messages_from_db_by_thread(thread_id)
     chat_recipient_id, chat_recipient_name = messages_control.get_recipient_id_and_name(thread_id, current_user.id)
-    #"message/message_detail.html"
     return render_template("chat_detail.html", messages=chat_messages,
                 chat_recipient_id=chat_recipient_id, chat_recipient_name=chat_recipient_name,
             my_id=current_user.id, my_name=current_user.name, thread_id=thread_id)
+    # return render_template("message/message_detail.html", messages=chat_messages,
+    #             chat_recipient_id=chat_recipient_id, chat_recipient_name=chat_recipient_name,
+    #         my_id=current_user.id, my_name=current_user.name, thread_id=thread_id)
 
 @socketio.on("send_message", namespace="/messages/room")
 def send_message(data):
