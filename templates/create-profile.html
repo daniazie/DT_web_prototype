@@ -5,7 +5,7 @@
 <style>
     .profile {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background-color: #fefbea;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -28,6 +28,8 @@
     }
 
     .profile-container img {
+        display: block;
+        margin: 0 auto;
         border-radius: 50%;
         width: 100px;
         height: 100px;
@@ -47,13 +49,18 @@
         text-align: left;
     }
 
+    .profile-container .element-center {
+        text-align: center;
+    }
+
     .profile-container .element label {
         display: block;
         font-size: 14px;
         margin-bottom: 5px;
     }
 
-    .profile-container .element select {
+    .profile-container .element select,
+    .profile-container .element input {
         width: 100%;
         padding: 8px;
         box-sizing: border-box;
@@ -61,12 +68,10 @@
         border-radius: 4px;
     }
 
-    .profile-container .element input {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        border: 1px solid #0000EE;
-        border-radius: 4px;
+    .profile-container .element-center input[type="file"] {
+        border: none;
+        display: inline-block;
+        text-align: center;
     }
 
     .profile-container button {
@@ -82,9 +87,6 @@
     .profile-container button:hover {
         background-color: #0056b3;
     }
-    
-
-    
 </style>
 
 {% endblock %}
@@ -93,50 +95,74 @@
 
 <body>
     <div class="profile">
-    <form class="profile_form" method="post">
-        <div class="profile-container">
-            <h1>Create your profile</h1>
-            <img src="..\static\hehe.jpg" alt="Profile Photo">
-            <p>Profile Photo</p>
-            
-            <div class="element">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name">
+        <form class="profile_form" method="post" enctype="multipart/form-data">
+            <div class="profile-container">
+                <h1>Create your profile</h1>
+                
+                <div class="element-center">
+                    <img id="profile_preview" src="#" alt="Profile Photo Preview" style="display:none;">
+                    <input type="file" id="profile_photo" name="profile_photo" accept="image/*" onchange="previewPhoto();">
+                    <p>Upload Profile Photo</p>
+                </div>
+                
+                <div class="element">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                
+                <div class="element">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender">
+                        <option value="" disabled selected>Choose your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                
+                <div class="element">
+                    <label for="language">Language</label>
+                    <select id="language" name="language">
+                        <option value="" disabled selected>Choose your first language</option>
+                        <option value="한국어">한국어</option>
+                        <option value="English">English</option>
+                    </select>
+                </div>
+                
+                <div class="element">
+                    <label for="city">City</label>
+                    <select id="city" name="city">
+                        <option value="" disabled selected>Choose your location</option>
+                        <option value="Seoul">Seoul</option>
+                        <option value="Suwon">Suwon</option>
+                        <option value="Incheon">Incheon</option>
+                    </select>
+                </div>
+                
+                <button type="submit">Create</button>
             </div>
-            
-            <div class="element">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender">
-                    <option value="" disabled selected>Choose your gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
-            
-            <div class="element">
-                <label for="language">Language</label>
-                <select id="language" name="language">
-                    <option value="" disabled selected>Choose your first language</option>
-                    <option value="한국어">한국어</option>
-                    <option value="English">English</option>
-                </select>
-            </div>
-            
-            <div class="element">
-                <label for="city">City</label>
-                <select id="city" name="city">
-                    <option value="" disabled selected>Choose your location</option>
-                    <option value="Seoul">Seoul</option>
-                    <option value="Suwon">Suwon</option>
-                    <option value="Incheon">Incheon</option>
-                </select>
-            </div>
-            
-            <button type="submit">Create</button>
+        </form>
+    </div>
 
-        </div>
-    </form></div>
-    <!--<script src="script.js"></script>-->
+    <script>
+        function previewPhoto() {
+            var file = document.getElementById('profile_photo').files[0];
+            var reader = new FileReader();
+            
+            reader.onloadend = function() {
+                var preview = document.getElementById('profile_preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                var preview = document.getElementById('profile_preview');
+                preview.src = "#";
+                preview.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 
 {% endblock %}
