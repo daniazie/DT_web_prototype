@@ -1,4 +1,17 @@
+<<<<<<< HEAD
 test
 .venv
 __pycache__
 *.pyc
+save.txt
+=======
+__pycache__/
+control/__pycache__/
+models/__pycache__/
+view/__pycache__/
+
+
+*.pyc
+*.venv
+!*.png
+>>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362

@@ -101,7 +101,6 @@
 </style>
 
 {% endblock %}
-
 {% block body %}
 
 <body>
@@ -121,56 +120,32 @@
             <button>Archived</button>
         </nav>
         <main>
+            <!-- This part should be dynamically generated in the future -->
+            {% for chat in chats %}
             <div class="chat">
-                <div class="profile-pic">👤</div>
-                <div class="chat-info">
-                    <div class="name-time">
-                        <span class="name">모무매모무매</span>
-                        <span class="time">4d</span>
+<<<<<<< HEAD
+                <a href="{{ url_for('message_view.view_chat', thread_id=chat.thread_id) }}">
+                    <div class="profile-pic">👤</div>
+                    <div class="chat-info">
+                        <div class="name-time">
+                            <span class="name">{{ chat.sender_name }}</span>
+                            <span class="time">{{ chat.timestamp }}</span>
+                        </div>
+                        <p>{{ chat.last_message }}</p>
+=======
+                <a href="messages/room?id={{chat['thread_id']}}">
+                    <div class="profile-pic">👤</div>
+                    <div class="chat-info">
+                        <div class="name-time">
+                            <span class="name">{{ chat['recipient_name'] }}</span>
+                            <span class="time">{{ chat['timestamp'] }}</span>
+                        </div>
+                        <p>{{ chat['last_message'] }}</p>
+>>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
                     </div>
-                    <p>혹시 아직 있나요?</p>
-                </div>
+                </a>
             </div>
-            <div class="chat">
-                <div class="profile-pic">👤</div>
-                <div class="chat-info">
-                    <div class="name-time">
-                        <span class="name">크크크</span>
-                        <span class="time">1w</span>
-                    </div>
-                    <p>혹시 진행 하셨을까요? ㅎㅎ</p>
-                </div>
-            </div>
-            <div class="chat">
-                <div class="profile-pic">👤</div>
-                <div class="chat-info">
-                    <div class="name-time">
-                        <span class="name">미녀</span>
-                        <span class="time">1w</span>
-                    </div>
-                    <p>내 보냈어요!</p>
-                </div>
-            </div>
-            <div class="chat">
-                <div class="profile-pic">👤</div>
-                <div class="chat-info">
-                    <div class="name-time">
-                        <span class="name">남준혁</span>
-                        <span class="time">2w</span>
-                    </div>
-                    <p>네 문서가 보냈어요.</p>
-                </div>
-            </div>
-            <div class="chat">
-                <div class="profile-pic">👤</div>
-                <div class="chat-info">
-                    <div class="name-time">
-                        <span class="name">gram</span>
-                        <span class="time">2w</span>
-                    </div>
-                    <p>알바 잘 하셨나요?</p>
-                </div>
-            </div>
+            {% endfor %}
         </main>
     </div>
 </body>

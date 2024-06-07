@@ -279,6 +279,52 @@
         margin-top: 0;
     }
 
+<<<<<<< HEAD
+=======
+    .pagination {
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination li a {
+        text-decoration: none;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: #333;
+    }
+
+    .pagination li a:hover{
+        background-color: #d6d3c2;
+    }
+
+    .pagination li a {
+        text-decoration: none;
+        padding: 5px 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: #333;
+        font-size: 25px;
+        font-weight: 450;
+    }
+
+    .current_page {
+        background-color: #888;
+    }
+
+    </style>
+
+>>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
 </style>
 
 {% endblock %}
@@ -292,10 +338,11 @@
         <img src="../static/filter.png" alt="Filter Icon" class="filter-icon" id="filterBtn">
         <div class="posts-container">
             <!-- Example post -->
-            <article class="post" onclick="window.location.href='/posts1'" data-category="category1" data-location="location1">
+            {% for post in post_list %}
+            <article class="post" onclick="location.href='post_detail?post_id={{post.post_id}}'">
                 <div class="post-header">
                     <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
+                    <p><strong>{{post.writer}}</strong></p>
                     <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
                 </div>
                 <div class="post-body1">
@@ -303,102 +350,38 @@
                         <div class="icon-row">
                             <div class="icon-text">
                                 <img src="../static/clock.png" alt="Icon" class="small-icon">
-                                <p>Item 1</p>
+                                <p>{{post.job_info.working_days}} {{post.job_info.working_hours}}</p>
                             </div>
                             <div class="icon-text">
                                 <img src="../static/location.png" alt="Icon" class="small-icon">
-                                <p>Location 1</p>
+                                <p>{{post.job_info.location}}</p>
                             </div>
                         </div>
                         <div class="icon-text">
                             <img src="../static/dollar.png" alt="Icon" class="small-icon">
-                            <p>Item 3</p>
+                            <p>{{post.job_info.pay}}원 / {{post.job_info.time_unit}}</p>
                         </div>
                         <div class="icon-text">
                             <img src="../static/globe.png" alt="Icon" class="small-icon">
-                            <p>Item 4</p>
+                            <p>{{post.job_info.lang_level}}</p>
                         </div>
                     </div>
                     <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
                 </div>
             </article>
-            <article class="post">
-                <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                </div>
-                <div class="post-body2">
-                    <p>This is the body text of the post. It has been modified to remove the images and other content originally present.</p>
-                </div>
-                <div class="post-actions-container">
-                    <div class="post-actions">
-                        <div class="action-box">
-                            <img src="..\static\like.png" alt="Like Icon" class="action-icon">
-                        </div>
-                        <div class="action-box">
-                            <img src="..\static\comment.png" alt="Comment Icon" class="action-icon">
-                        </div>
-                        <div class="action-box">
-                            <img src="..\static\reply.png" alt="Reply Icon" class="action-icon">
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="post">
-                <div class="post-header">
-                    <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
-                    <img src="..\static\star.png" alt="Favorite Icon" class="favorite-icon">
-                </div>
-                <div class="post-body2">
-                    <p>This is the body text of the post. It has been modified to remove the images and other content originally present.</p>
-                </div>
-                <div class="post-actions-container">
-                    <div class="post-actions">
-                        <div class="action-box">
-                            <img src="..\static\like.png" alt="Like Icon" class="action-icon">
-                        </div>
-                        <div class="action-box">
-                            <img src="..\static\comment.png" alt="Comment Icon" class="action-icon">
-                        </div>
-                        <div class="action-box">
-                            <img src="..\static\reply.png" alt="Reply Icon" class="action-icon">
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="post">
-                <div class="post-header">
-                    <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
-                    <p><strong>ID 1</strong></p>
-                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
-                </div>
-                <div class="post-body1">
-                    <div class="post-content">
-                        <div class="icon-row">
-                            <div class="icon-text">
-                                <img src="../static/clock.png" alt="Icon" class="small-icon">
-                                <p>Item 1</p>
-                            </div>
-                            <div class="icon-text">
-                                <img src="../static/location.png" alt="Icon" class="small-icon">
-                                <p>Location 1</p>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <img src="../static/dollar.png" alt="Icon" class="small-icon">
-                            <p>Item 3</p>
-                        </div>
-                        <div class="icon-text">
-                            <img src="../static/globe.png" alt="Icon" class="small-icon">
-                            <p>Item 4</p>
-                        </div>
-                    </div>
-                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
-                </div>
-            </article>
+            {% endfor %}
             <!-- Repeat the above article block for multiple posts with different data-category and data-location -->
+        </div>
+        <div class="pagination">
+            <ul>
+                {% for i in range(pagination_start,pagination_end+1) %}
+                    {% if i == current_page %}
+                    <li><a onclick="location.href='posts?pages={{i}}'" class="current_page">{{i}}</a></li>
+                    {% else %}
+                    <li><a onclick="location.href='posts?pages={{i}}'">{{i}}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
     </div>
 
@@ -474,6 +457,9 @@
     </div>
 
     <script>
+        addPostBtn.onclick = function() {
+            location.href="posts/add_post";
+        }
         // Get the modal
         var filterPopup = document.getElementById('filterPopup');
     
@@ -582,6 +568,7 @@
                     post.style.display = 'none';
                 }
             });
+
         }
     </script>
     
