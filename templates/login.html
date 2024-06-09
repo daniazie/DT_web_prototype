@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 
-
-
-
 {% block body %}
 
 <body>
@@ -12,6 +9,7 @@
             <input type="text" name="Username" placeholder="ID" required>
             <input type="password" name="Password" placeholder="Password" required>
             <button type="submit">Login</button>
+            <button type="button" id="signupButton">Sign Up</button>
         </form>
         {% if message %}
             <div class='container'>
@@ -21,10 +19,13 @@
                 </div>
             </div>
         {% endif %}
-        <a href="signup" class="create-account-link">or create an account</a>
     </div>
 
-    <!---<script src="script.js"></script>-->
+    <script>
+        document.getElementById('signupButton').addEventListener('click', function() {
+            window.location.href = 'signup';
+        });
+    </script>
 </body>
 
 {% endblock %}
