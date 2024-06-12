@@ -69,26 +69,25 @@
         margin-right: 35px;
     }
 
-    .reply-button {
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        border: none;
-        border-radius: 50%;
-        background-color: #ffffff;
-        width: 40px;
-        height: 40px;
+    .post-footer {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        padding: 0;
+        justify-content: space-around;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
     }
 
-    .reply-button img {
+    .footer-item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .footer-item img {
         width: 20px;
         height: 20px;
+        margin-right: 5px;
     }
+
 </style>
 
 {% endblock %}
@@ -108,9 +107,20 @@
             <div class="post-body">
                 This is the body text of the first post. It contains some information and content.
             </div>
-            <button class="reply-button">
-                <img src="..\static\reply.png" alt="Reply Icon">
-            </button>
+            <div class="post-footer">
+                <div class="footer-item">
+                    <img src="..\static\like.png" alt="Like Icon">
+                    <span>Like</span>
+                </div>
+                <div class="footer-item">
+                    <img src="..\static\reply.png" alt="Reply Icon">
+                    <span>Reply</span>
+                </div>
+                <div class="footer-item">
+                    <img src="..\static\comment.png" alt="Comments Icon">
+                    <span>Comments</span>
+                </div>
+            </div>
         </div>
         <!-- Add more posts as needed -->
     </div>
