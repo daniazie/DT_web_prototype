@@ -9,7 +9,7 @@
     <style>
 
         .content {
-        display: flex;
+            display: flex;
         }
 
         .side-menu {
@@ -63,6 +63,23 @@
             height: 24px;
         }
 
+        .logout-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #ff1a1a;
+        }
+
     </style>
 </head>
 
@@ -72,19 +89,12 @@
             <div class="logo">whyAlba</div>
         </div>
         <div class="right-container">
-            <button class="icon-btn search-icon">
-                <img src="..\static\search.png" alt="Search">
+            <button class="icon-btn img">
+                <img src="..\static\uk.png" alt="UK">
             </button>
-            <button class="icon-btn notification-icon">
-                <img src="..\static\bell.png" alt="Notification">
+            <button class="icon-btn img">
+                <img src="..\static\korean.png" alt="KR">
             </button>
-            <div class="dropdown">
-                <select>
-                    <option value="en">English</option>
-                    <option value="kr">한국어</option>
-                    <!-- Add other language options here -->
-                </select>
-            </div>
         </div>
     </header>
 
@@ -97,6 +107,7 @@
                 <li><a href="/messages">Message</a></li>
                 <li><a href="/my_profile">My Profile</a></li>
             </ul>
+            <button class="logout-btn" onclick="window.location.href='login'">Logout</button>
         </nav>
         {% block body %}{% endblock %}
     </div>
