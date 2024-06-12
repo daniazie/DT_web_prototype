@@ -59,10 +59,14 @@ header {
 .login-container {
     margin: 50px auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-container .logo {
-    font-size: 36px;
+    width: 300px;
+    height: 200px;
     margin-bottom: 20px;
 }
 
@@ -88,13 +92,6 @@ header {
     cursor: pointer;
     border-radius: 5px;
     margin-bottom: 15px;
-}
-
-.create-account-link {
-    display: block;
-    margin-top: 20px;
-    text-decoration: underline;
-    color: #0000EE;
 }
 
 /* Styles for left menu */
