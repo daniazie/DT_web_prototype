@@ -1,5 +1,4 @@
-{% extends 'base-login.html' %}
-
+{% extends 'base-guest.html' %}
 {% block head %}
 
 <style>
@@ -191,15 +190,13 @@
                         </div>
                         <div class="post-body">
                             <div class="post-content">
-                                <div class="icon-row">
-                                    <div class="icon-text">
-                                        <img src="..\static\clock.png" alt="Icon" class="small-icon">
-                                        <p>{{post.job_info.working_days}} {{post.job_info.working_hours}}</p>
-                                    </div>
-                                    <div class="icon-text">
-                                        <img src="..\static\location.png" alt="Icon" class="small-icon">
-                                        <p>{{post.job_info.location}}</p>
-                                    </div>
+                                <div class="icon-text">
+                                    <img src="..\static\clock.png" alt="Icon" class="small-icon">
+                                    <p>{{post.job_info.working_days}} {{post.job_info.working_hours}}</p>
+                                </div>
+                                <div class="icon-text">
+                                    <img src="..\static\location.png" alt="Icon" class="small-icon">
+                                    <p>{{post.job_info.location}}</p>
                                 </div>
                                 <div class="icon-text">
                                     <img src="..\static\dollar.png" alt="Icon" class="small-icon">
@@ -216,29 +213,11 @@
                 {% endfor %}
             </section>
             <section class="my-community">
-                <h2>My Community</h2>
+                <h2>Communities</h2>
                 <div class="community">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
                         <p><strong>community1</strong></p>
-                    </div>
-                    <p>body text</p>
-                </div>
-                <div class="community">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community2</strong></p>
-                    </div>
-                    <p>body text</p>
-                </div>
-                <a href="/community">
-                    <button>See More</button>
-                </a>
-                <h2>Suggested Community</h2>
-                <div class="community">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community3</strong></p>
                     </div>
                     <p>body text</p>
                     <a href="/community">
@@ -248,7 +227,7 @@
                 <div class="community">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community4</strong></p>
+                        <p><strong>community2</strong></p>
                     </div>
                     <p>body text</p>
                     <a href="/community">

@@ -112,6 +112,7 @@
     .body-text {
         width: 80%;
         margin: 20px;
+        font-size: 24px;
     }
 
     .pict-attached {
@@ -139,7 +140,7 @@
             <button class="message-btn" id="send_message">Message</button>
             {% endif %}
             <img src="../static/star.png" alt="Favorite" class="favorite-icon">
-            <img src="../static/globe.png" alt="Translate" class="translate-icon">
+            <img src="../static/globe.png" alt="Translate" id="openTranslationPopup" class="translate-icon">
         </div>
         <div class="details-section">
             <div class="icons-column">
@@ -170,8 +171,128 @@
 
 <script>
     send_message.onclick = function() {
-            location.href="messages/room/redirect?uid1={{my_id}}&uid2={{post.writer}}";
+        location.href = "messages/room/redirect?uid1={{my_id}}&uid2={{post.writer}}";
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create the translation popup HTML and append it to the body
+        const translationPopupHTML = `
+            <div id="translationPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <p>Select the language to translate to.</p>
+                    <select id="languageSelect">
+                        <option value="">Choose Language</option>
+                        <option value="English">English</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <button id="translateBtn">Translate</button>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', translationPopupHTML);
+
+        // Get the translation popup
+        const translationPopup = document.getElementById('translationPopup');
+
+        // Get the button that opens the translation popup
+        const openTranslationPopup = document.getElementById('openTranslationPopup');
+
+        // Get the <span> element that closes the translation popup
+        const translationCloseBtn = translationPopup.getElementsByClassName('close')[0];
+
+        // When the user clicks the button, open the translation popup
+        openTranslationPopup.onclick = function() {
+            translationPopup.style.display = 'block';
         }
+
+        // When the user clicks on <span> (x), close the translation popup
+        translationCloseBtn.onclick = function() {
+            translationPopup.style.display = 'none';
+        }
+
+        // When the user clicks anywhere outside of the translation popup, close it
+        window.onclick = function(event) {
+            if (event.target == translationPopup) {
+                translationPopup.style.display = 'none';
+            }
+        }
+
+        // Translate button click event
+        document.getElementById('translateBtn').addEventListener('click', () => {
+            const selectedLanguage = document.getElementById('languageSelect').value;
+            if (selectedLanguage !== "") {
+                alert('Translating to ' + selectedLanguage);
+                // Implement the translation logic here
+                translationPopup.style.display = 'none';
+            } else {
+                alert('Please select a language');
+            }
+        });
+    });
+
+    // Styles for the popup
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .popup-content {
+            background-color: #fefbea;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+        .popup .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .popup .close:hover,
+        .popup .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .popup select {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        .popup button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #aaa;
+        }
+    `;
+    document.head.appendChild(style);
 </script>
 
 {% endblock %}
