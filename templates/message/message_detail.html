@@ -36,15 +36,20 @@
             font-size: 18px;
         }
 
+        .chat-content{
+            flex: 1;
+            overflow-y: scroll;
+            justify-content: flex-end;
+        }
+
         .chat-box {
             flex: 1;
-            padding: 10px;
-            overflow-y: auto;
+            padding: 5px 10px;
+            
         }
 
         .message {
             display: flex;
-            margin-bottom: 10px;
         }
 
         .message.sent {
@@ -111,24 +116,26 @@
                 <div class="chat-name">{{ chat_recipient_name }}</div>
                 <div class="options-button">&#8942;</div>
             </div>
-            {% for message in messages %}
-            <div class="chat-box">
-                {% if message.recipient_id != my_id %}
-                <div class="message sent">
-                    <div class="bubble">{{ message.message }}</div>
+            <div class="chat-content" id="chat-content">
+                {% for message in messages %}
+                <div class="chat-box">
+                    {% if message.recipient_id != my_id %}
+                    <div class="message sent">
+                        <div class="bubble">{{ message.message }}</div>
+                    </div>
+                    {% else %}
+                    <div class="message received">
+                        <div class="bubble">{{ message.message }}</div>
+                    </div>
+                    {% endif %}
                 </div>
-                {% else %}
-                <div class="message received">
-                    <div class="bubble">{{ message.message }}</div>
-                </div>
-                {% endif %}
+                {% endfor %}
             </div>
-            {% endfor %}
-            <div class="footer">
+            <form class="footer" id="send-message-form">
                 <div class="attach-button">&#10010;</div>
                 <input type="text" id="message-input" placeholder="Message">
                 <div class="send-button" type="submit">&#10148;</div>
-            </div>
+            </form>
         </div>
     </body>
 
@@ -142,6 +149,11 @@
         //         <div class="bubble">${messageText}</div>
         //     `;
         //     chatBox.appendChild(newMessage);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chat-content');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        });
 
         const socket = io(document.location.href);
         document.getElementById('send-message-form').addEventListener('submit', function(e) {
@@ -160,9 +172,9 @@
         });
 
         socket.on('{{thread_id}}_newmsg', (newmsg) => {          
-            const chatContainer = document.querySelector(".chat-box");
+            const chatContainer = document.getElementById('chat-content');
             const chatElement = document.createElement('div');
-            chatElement.classList.add("message", "sent");
+            chatElement.classList.add("chat-box");
             if(newmsg.recipient_id !== '{{ my_id }}'){
             chatElement.innerHTML = `
                 <div class="message sent">
@@ -176,6 +188,7 @@
                 </div>
             `;}
             chatContainer.appendChild(chatElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         });
     </script>
 
