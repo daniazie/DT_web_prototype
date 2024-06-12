@@ -49,9 +49,6 @@ class Messages():
         return self.__url
     @url.setter
     def url(self, url):
-<<<<<<< HEAD
-        self.__url = url
-=======
         self.__url = url
 
 
@@ -79,4 +76,3 @@ class Messages():
 #     @recipient_id.setter
 #     def recipient_id(self, recipient_id):
 #         self.__recipient_id = recipient_id
->>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362

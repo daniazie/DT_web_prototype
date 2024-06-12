@@ -1,4 +1,5 @@
 from flask import Flask, request, url_for, redirect, session, render_template
+from flask_login import logout_user
 from view import login_view, home_view, signup_view, create_profile_view
 from view import posts_view, community_view, message_view, my_profile_view, edit_profile_view
 from view import post_detail_view, add_post
@@ -20,11 +21,16 @@ app.register_blueprint(add_post.add_post_view)
 
 @app.route("/")
 def hello_world():
-    return redirect("/login")
+    return redirect("/home")
 
 @app.route("/index")
 def index():
     return render_template('index.html')
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect("/home")
 
 if __name__ == '__main__':  
    app.run('0.0.0.0',port=5000,debug=True)
