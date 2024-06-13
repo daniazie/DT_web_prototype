@@ -42,10 +42,6 @@
         position: relative;
     }
 
-    .post:hover {
-        background-color: #d6d3c2;
-    }
-
     .post-header {
         display: flex;
         align-items: center;
@@ -74,12 +70,19 @@
         justify-content: space-around;
         border-top: 1px solid #ccc;
         padding-top: 10px;
+        gap: 10px;
     }
 
     .footer-item {
         display: flex;
         align-items: center;
+        justify-content: center;
         cursor: pointer;
+        background-color: #deddc6;
+        border-radius: 5px;
+        flex: 1;
+        padding: 10px;
+        box-sizing: border-box;
     }
 
     .footer-item img {
@@ -88,6 +91,27 @@
         margin-right: 5px;
     }
 
+    .comments-section, .reply-section {
+        display: none;
+        background-color: #f9f9f9;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .comment {
+        margin-bottom: 10px;
+    }
+
+    .reply-input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
 </style>
 
 {% endblock %}
@@ -108,23 +132,66 @@
                 This is the body text of the first post. It contains some information and content.
             </div>
             <div class="post-footer">
-                <div class="footer-item">
+                <div class="footer-item like-btn">
                     <img src="..\static\like.png" alt="Like Icon">
                     <span>Like</span>
                 </div>
-                <div class="footer-item">
+                <div class="footer-item reply-btn">
                     <img src="..\static\reply.png" alt="Reply Icon">
                     <span>Reply</span>
                 </div>
-                <div class="footer-item">
+                <div class="footer-item comments-btn">
                     <img src="..\static\comment.png" alt="Comments Icon">
                     <span>Comments</span>
                 </div>
+            </div>
+            <div class="reply-section">
+                <input type="text" class="reply-input" placeholder="Write a reply...">
+            </div>
+            <div class="comments-section">
+                <div class="comment">User456: This is a comment.</div>
+                <div class="comment">User789: This is another comment.</div>
+                <!-- Add more comments dynamically -->
             </div>
         </div>
         <!-- Add more posts as needed -->
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const replyBtns = document.querySelectorAll('.reply-btn');
+        const commentsBtns = document.querySelectorAll('.comments-btn');
+
+        replyBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                const replySection = document.querySelectorAll('.reply-section')[index];
+                replySection.style.display = replySection.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        commentsBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                const commentsSection = document.querySelectorAll('.comments-section')[index];
+                commentsSection.style.display = commentsSection.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        document.querySelectorAll('.reply-input').forEach((input, index) => {
+            input.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    const commentsSection = document.querySelectorAll('.comments-section')[index];
+                    const newComment = document.createElement('div');
+                    newComment.classList.add('comment');
+                    newComment.textContent = `User: ${input.value}`;
+                    commentsSection.appendChild(newComment);
+                    input.value = '';
+                    commentsSection.style.display = 'block';
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}
 
