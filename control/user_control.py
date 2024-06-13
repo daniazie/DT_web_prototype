@@ -88,6 +88,7 @@ def is_empty(*args):
     result = False
     
     for i in args:
-        result = result or (i == "") or (i == None)
+        result = (i == "") or (i == None)
+        break
     
     return result

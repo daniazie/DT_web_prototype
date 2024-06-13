@@ -211,6 +211,26 @@
         </form>
     </div>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <script>
+          if ('{{category}}' === "error")
+          {
+            switch ('{{message}}') {
+              case "ERR_CODE:FAILED_TO_PUSH_DB":
+                alert("작성된 글을 업로드하던 중 오류가 발생했습니다.\n다시 작성해주세요.")
+                break;
+
+              default:
+                break;
+            }
+          }
+        </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <script>
         function addLanguage() {
             const container = document.createElement('div');

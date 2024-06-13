@@ -148,6 +148,26 @@
 </form>
 </body>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
+    <script>
+      if ('{{category}}' === "error")
+      {
+        switch ('{{message}}') {
+          case "ERR_CODE:FAILED_TO_PUSH_DB":
+            alert("프로필 변경 중 예기치 않은 오류가 발생했습니다.\n다시 시도해주세요.")
+            break;
+
+          default:
+            break;
+        }
+      }
+    </script>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
 {% endblock %}
 
 </html>

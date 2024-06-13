@@ -37,10 +37,50 @@
       <button type="button" class="sign-up-btn" onclick="checkSignUp()">Sign Up</button>
     </div>
   </form>
-    
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <script>
+          if ('{{category}}' === "error")
+          {
+            switch ('{{message}}') {
+              case "ERR_CODE:EXIST_ID":
+                alert("이미 사용중인 아이디입니다.")
+                break;
+
+              // create profile에서 발생한 메세지
+              case "ERR_CODE:USER_INFO_LOST":
+                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                break;
+
+              case "ERR_CODE:FAILED_TO_PUSH_DB":
+                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                break;
+
+              default:
+                break;
+            }
+          }
+        </script>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
   <script>
-    if ('{{idfailed}}')
-      alert("이미 사용 중인 아이디입니다");
+      // document.addEventListener('DOMContentLoaded', function() {
+      //     //var flashMessages = get_flashed_messages(with_categories=true);
+
+      //     flashMessages.forEach(function([category, message]) {
+      //       console.log(message);
+      //       switch (message) {
+      //         case "ERR_CODE:EXIST_ID":
+      //           alert("이미 사용중인 아이디입니다.")
+      //           break;
+            
+      //         default:
+      //           break;
+      //       }
+      //       });
+      //   });
 
     function checkSignUp(){
       var id = document.querySelector('input[name="id"]').value;

@@ -22,13 +22,15 @@ def singup():
         
         websocket_id = websocket_check()
         flag_empty = user_control.is_empty(input_id, input_email,
-                                           input_password, input_country, websocket_id)
+                                           input_password, input_country)
+        print(input_id, input_email,input_password, input_country)
+        print(flag_empty)
 
         if flag_empty:
             return render_template("signup.html")
         
         if user_control.is_exist_id(input_id):
-            flash("an already existing ID", category="error")
+            flash("ERR_CODE:EXIST_ID", category="error")
             return render_template("signup.html") 
                   
         

@@ -139,24 +139,39 @@
     </form>
     </div>
     {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                {% if category == "error" %}
-                    <!-- error 메시지 -->
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% elif category == "success" %}
-                    <!-- success 메시지 -->
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <script>
+          if ('{{category}}' === "error")
+          {
+            switch ('{{message}}') {
+              case "ERR_CODE:USER_INFO_LOST":
+                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                break;
+
+              case "ERR_CODE:FAILED_TO_PUSH_DB":
+                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                break;
+
+              default:
+                break;
+            }
+          }
+          else if ('{{category}}' === "success")
+          {
+            switch ('{{message}}') {
+              case "SUC_CODE:SIGNUP_SUCCEEDS":
+                alert("회원가입에 성공했습니다.\n 로그인 페이지로 이동합니다.")
+                break;
+              
+              default:
+                break;
+            }
+          }
+        </script>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
 
     <!--<script src="script.js"></script>-->
 </body>

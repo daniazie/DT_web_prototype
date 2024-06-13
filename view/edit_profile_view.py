@@ -30,7 +30,7 @@ def edit():
         user_info.city = input_city
 
         if not user_control.push_user_info_to_db(user_info) :
-            flash("failed to create user data at server",category="error")
+            flash("ERR_CODE:FAILED_TO_PUSH_DB",category="error")
 
         return redirect("/my_profile")
     else:

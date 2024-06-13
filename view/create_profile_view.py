@@ -7,15 +7,18 @@ create_profile_view = Blueprint("create_profile_view", __name__)
 @create_profile_view.route("/create-profile", methods = ['GET', 'POST'])
 def singup():
     try:
-        if 'user_id_temp' in session or \
-        'user_email_temp'in session or \
-        'user_password_temp'in session or \
-        'user_country_temp' in session or \
-            'user_websocket_id_temp': 
-            redirect("/signup")
+        sessionFlag = 'user_id_temp' in session and \
+        'user_email_temp'in session and \
+        'user_password_temp'in session and \
+        'user_country_temp' in session and \
+            'user_websocket_id_temp'
+        
+        if not sessionFlag :
+            flash("ERR_CODE:USER_INFO_LOST",category="error")
+            return redirect("/signup")
     except:
-        flash("회원가입 중 예상치 못한 문제가 발생했습니다.\n이전 페이지로 돌아갑니다.",category="error")
-        redirect("/login")
+        flash("ERR_CODE:USER_INFO_LOST",category="error")
+        return redirect("/signup")
 
 
     if request.method == "POST":
@@ -40,13 +43,13 @@ def singup():
         user_info.city = input_city
         user_info.websocket_id = session['user_websocket_id_temp']
         
-
-        if not user_control.push_user_info_to_db(user_info) :
-        #if True :
-            flash("failed to create user data at server",category="error")
+        flag = False
+        if flag :
+        #if not user_control.push_user_info_to_db(user_info) :
+            flash("ERR_CODE:FAILED_TO_PUSH_DB",category="error")
             print("messaged")
         else:
-            flash("회원가입 완료",category="success")
+            flash("SUC_CODE:SIGNUP_SUCCEEDS",category="success")
 
         session.pop('user_id_temp',None)
         session.pop('user_email_temp',None)
