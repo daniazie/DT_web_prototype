@@ -69,6 +69,9 @@ class Post_job_info:
     @property
     def pay(self):
         return self.__pay
+    @property
+    def pay_formatted(self):
+        return f"{self.__pay:,}"
     @pay.setter
     def pay(self,pay):
         self.__pay = pay
