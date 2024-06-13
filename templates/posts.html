@@ -452,6 +452,39 @@
         </div>
     </div>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <script>
+        if ('{{category}}' === "error")
+        {
+            switch ('{{message}}') {
+            // post deatil에서 발생한 메세지
+            case "ERR_CODE:FAILED_TO_DELETE_POST":
+                alert("글 삭제 중 예기치 않은 오류가 발생하여 삭제하지 못 하였습니다.")
+                break;
+            
+            default:
+                break;
+            }
+        }
+        else if ('{{category}}' === "success")
+        {
+            switch ('{{message}}') {
+            // post deatil에서 발생한 메세지
+            case "SUC_CODE:POST_DELETED":
+                alert("글이 정상적으로 삭제되었습니다.")
+                break;
+            
+            default:
+                break;
+            }
+        }
+        </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <script>
         addPostBtn.onclick = function() {
             location.href="posts/add_post";

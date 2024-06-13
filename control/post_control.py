@@ -146,6 +146,11 @@ def count_post():
     result = con.count_select_rows("SELECT * FROM Posts_head")
     return result
 
+def delete_post(post_id):
+    con = db.DataBase()
+    result = con.execute_with_commit("DELETE FROM Posts_head WHERE post_id = {0}".format(post_id))
+    return result
+
 def is_empty(*args):
     result = False
     
