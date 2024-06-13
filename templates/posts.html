@@ -471,6 +471,10 @@
         else if ('{{category}}' === "success")
         {
             switch ('{{message}}') {
+            // post add에서 발생한 메세지
+            case "SUC_CODE:POST_UPLOADED":
+                alert("글이 정상적으로 업로드되었습니다.")
+                break;
             // post deatil에서 발생한 메세지
             case "SUC_CODE:POST_DELETED":
                 alert("글이 정상적으로 삭제되었습니다.")

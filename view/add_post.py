@@ -13,7 +13,7 @@ def add_post():
         location = request.form.get('location')
         pay = request.form.get('payrate')
 
-        working_days = ','.join(request.form.getlist('days'))
+        working_days = post_control.change_days_list_to_str(request.form.getlist('days'))
         working_hours = '{0} ~ {1}'.format(
             request.form.get('working-time-start'),
             request.form.get('working-time-end')
@@ -59,6 +59,7 @@ def add_post():
         result = post_control.push_post_to_db(_post,post_content)
 
         if result:
+            flash("SUC_CODE:POST_UPLOADED",category="success")
             return redirect("/posts")
         else:
             flash("ERR_CODE:FAILED_TO_PUSH_DB",category="error")

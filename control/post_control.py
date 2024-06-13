@@ -151,6 +151,25 @@ def delete_post(post_id):
     result = con.execute_with_commit("DELETE FROM Posts_head WHERE post_id = {0}".format(post_id))
     return result
 
+def change_days_list_to_str(days_list):
+    if days_list == None:
+        return None
+    result = ""
+    for i in days_list:
+        result = result + i[0:3] + ","
+
+    result = result[:-1]
+
+    if result.lower() == "Mon,Tue,Wed,Thu,Fri,Sat,Sun".lower():
+        result = "Everyday"
+    elif result.lower() == "Mon,Tue,Wed,Thu,Fri".lower():
+        result = "Weekdays"
+    elif result.lower() == "Sat,Sun".lower():
+        result = "Weekends"
+
+    return result
+    
+
 def is_empty(*args):
     result = False
     
