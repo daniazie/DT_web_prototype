@@ -40,11 +40,7 @@ class DataBase:
     def count_select_rows(self, sql):
         try:
             self.__cursor.execute(sql)
-<<<<<<< HEAD
-            rows = self.__cursor.fetchall(n) # type: ignore
-=======
             rows = self.__cursor.fetchall()
->>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
             return len(rows)
         except Exception as e:
             print(e)

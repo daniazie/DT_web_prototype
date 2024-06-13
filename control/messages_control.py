@@ -131,7 +131,8 @@ def is_in_thread(thread_id,user_id):
     result = con.execute_select_one(query)
     return result != None
 
-get_chat_room_list("test01")import models.messages as messages
+get_chat_room_list("test01")
+import models.messages as messages
 import models.user as user
 import models.database as db
 import datetime

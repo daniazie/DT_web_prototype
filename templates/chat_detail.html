@@ -27,12 +27,6 @@
                 <div class="profile-pic">{{ message.sender_avatar }}</div>
                 <div class="chat-info">
                     <div class="name-time">
-<<<<<<< HEAD
-                        <span class="name">{{ message.sender_name }}</span>
-                        <span class="time">{{ message.timestamp }}</span>
-                    </div>
-                    <p>{{ message.body }}</p>
-=======
                         {% if message.recipient_id != my_id %}
                             <span class="name">{{ my_name }}</span>
                         {% else %}
@@ -41,7 +35,6 @@
                         <span class="time">{{ message.timestamp.strftime('%m/%d %H:%M:%S') }}</span>
                     </div>
                     <p>{{ message.message }}</p>
->>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
                 </div>
             </div>
             {% endfor %}
@@ -54,33 +47,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script>
-        const socket = io();
-
-        document.getElementById('send-message-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const message = document.getElementById('message').value;
-            socket.emit('send_message', { thread_id: '{{ thread_id }}', message: message });
-            document.getElementById('message').value = '';
-        });
-
-        socket.on('new_message', message => {
-            const chatContainer = document.getElementById('chat-container');
-            const chatElement = document.createElement('div');
-            chatElement.classList.add('chat');
-            chatElement.innerHTML = `
-                <div class="profile-pic">👤</div>
-                <div class="chat-info">
-                    <div class="name-time">
-                        <span class="name">${message.sender_name}</span>
-                        <span class="time">${message.timestamp}</span>
-                    </div>
-                    <p>${message.body}</p>
-                </div>
-            `;
-=======
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script>
         const socket = io(document.location.href);
@@ -125,7 +91,6 @@
                     <p>${newmsg.message}</p>
                 </div>
             `;}
->>>>>>> ade23fe966ba49c3f00fa1822e0947117ffe9362
             chatContainer.appendChild(chatElement);
         });
     </script>

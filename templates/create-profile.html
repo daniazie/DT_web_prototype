@@ -97,48 +97,48 @@
     <div class="profile">
         <form class="profile_form" method="post" enctype="multipart/form-data">
             <div class="profile-container">
-                <h1>Create your profile</h1>
+                <h1 id="create_profile_title">Create your profile</h1>
                 
                 <div class="element-center">
                     <img id="profile_preview" src="#" alt="Profile Photo Preview" style="display:none;">
                     <input type="file" id="profile_photo" name="profile_photo" accept="image/*" onchange="previewPhoto();">
-                    <p>Upload Profile Photo</p>
+                    <p id="profile_photo_label">Upload Profile Photo</p>
                 </div>
                 
                 <div class="element">
-                    <label for="name">Name</label>
+                    <label id="name_label" for="name">Name</label>
                     <input type="text" id="name" name="name">
                 </div>
                 
                 <div class="element">
-                    <label for="gender">Gender</label>
+                    <label id="gender_label" for="gender">Gender</label>
                     <select id="gender" name="gender">
-                        <option value="" disabled selected>Choose your gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option id="gender_placeholder" value="" disabled selected>Choose your gender</option>
+                        <option id="male_option" value="Male">Male</option>
+                        <option id="female_option" value="Female">Female</option>
                     </select>
                 </div>
                 
                 <div class="element">
-                    <label for="language">Language</label>
+                    <label id="language_label" for="language">Language</label>
                     <select id="language" name="language">
-                        <option value="" disabled selected>Choose your first language</option>
-                        <option value="한국어">한국어</option>
-                        <option value="English">English</option>
+                        <option id="language_placeholder" value="" disabled selected>Choose your first language</option>
+                        <option id="korean_option" value="한국어">한국어</option>
+                        <option id="english_option" value="English">English</option>
                     </select>
                 </div>
                 
                 <div class="element">
-                    <label for="city">City</label>
+                    <label id="city_labe" for="city">City</label>
                     <select id="city" name="city">
-                        <option value="" disabled selected>Choose your location</option>
-                        <option value="Seoul">Seoul</option>
-                        <option value="Suwon">Suwon</option>
-                        <option value="Incheon">Incheon</option>
+                        <option id="city_placeholder" value="" disabled selected>Choose your location</option>
+                        <option id="seoul_option" value="Seoul">Seoul</option>
+                        <option id="suwon_option" value="Suwon">Suwon</option>
+                        <option id="incheon_option" value="Incheon">Incheon</option>
                     </select>
                 </div>
                 
-                <button type="submit">Create</button>
+                <button id="create_button" type="submit">Create</button>
             </div>
         </form>
     </div>
@@ -163,6 +163,7 @@
             }
         }
     </script>
+    <script src="../static/js/script.js"></script>
 </body>
 
 {% endblock %}

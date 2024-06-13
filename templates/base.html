@@ -20,15 +20,15 @@
         </div>
         <div class="right-container">
             <a href="/signup">
-                <button class="signup-btn">Sign Up</button>
+                <button id="sign_up" class="signup-btn">Sign Up</button>
             </a>
             <a href="/">
-                <button class="login-btn">Login</button>
+                <button id="log_in"class="login-btn">Log in</button>
             </a>
             <div class="dropdown">
-                <select>
+                <select id="languageSelector">
                     <option value="en">English</option>
-                    <option value="kr">한국어</option>
+                    <option value="ko">한국어</option>
                     <!-- Add other language options here -->
                 </select>
             </div>
@@ -37,6 +37,7 @@
     
     {% block body %}{% endblock %}
 
-    <!--<script src="script.js"></script>-->
+    <!-- <script src="../static/js/script.js"></script>
+    -->
 </body>
 </html>
