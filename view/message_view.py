@@ -31,7 +31,6 @@ def randstrurl():
 def home():
     # Fetch all chat threads for the current user
     chat_rooms = messages_control.get_chat_room_list(current_user.id)
-    print(chat_rooms)
     return render_template("message.html", chats=chat_rooms)
 
 @message_view.route("/messages/room/redirect")
@@ -43,7 +42,6 @@ def redirect_chat():
         return redirect("/messages")
 
     thread_id = messages_control.get_thread_id(user1_id,user2_id)
-    print("/messages/room?id={0}".format(thread_id))
     return redirect("/messages/room?id={0}".format(thread_id))
 
 @message_view.route("/messages/room")
@@ -82,11 +80,12 @@ def send_message(data):
     #recipient_websocket_id = user_control.websocket_id_query(data.get('recipient_id'))
 
     socketio.emit(f"{thread_id}_newmsg",
-                  {'message': data.get('message'),
-                   'recipient_id' : message.recipient_id,
-                   'recipient_name' : data.get('chat_recipient_name'),
-                   'sender_name' : current_user.name,
-                   'timestamp' : timestamp.strftime('%m/%d %H:%M:%S')
+                  {'thread_id': data.get('thread_id'),
+                    'message': data.get('message'),
+                    'recipient_id' : message.recipient_id,
+                    'recipient_name' : data.get('chat_recipient_name'),
+                    'sender_name' : current_user.name,
+                    'timestamp' : timestamp.strftime('%m/%d %H:%M:%S')
                    }, 
                   namespace='/messages/room')
     return jsonify({"status": "Message sent", "thread_id": thread_id}), 200
