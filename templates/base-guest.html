@@ -88,11 +88,11 @@
         <div class="left-container">
             <div class="logo">whyAlba</div>
         </div>
-        <div class="right-container">
-            <button class="icon-btn img">
+        <div class="right-container" id="lang-container">
+            <button class="icon-btn img" id="lang_en">
                 <img src="..\static\uk.png" alt="UK">
             </button>
-            <button class="icon-btn img">
+            <button class="icon-btn img" id="lang_ko">
                 <img src="..\static\korean.png" alt="KR">
             </button>
         </div>
@@ -109,7 +109,7 @@
         {% block body %}{% endblock %}
     </div>
 
-    <!--<script src="script.js"></script>-->
+    <script src="../static/javascript/select_lang.js"></script>
 
 </body>
 

@@ -1,0 +1,12 @@
+{
+    "en" : {
+        "Recent_Posts":"Recent Posts",
+        "My_community":"My Communities",
+        "Suggested_community":"Suggested Communities"
+    },
+    "ko" : {
+        "Recent_Posts":"최근 올라온 글",
+        "My_community":"가입한 커뮤니티",
+        "Suggested_community":"추천하는 커뮤니티"
+    }
+}

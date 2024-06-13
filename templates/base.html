@@ -18,17 +18,17 @@
         <div class="left-container">
             <div class="logo">whyAlba</div>
         </div>
-        <div class="right-container">
+        <div class="right-container" id="lang-container">
             <a href="/signup">
                 <button class="signup-btn">Sign Up</button>
             </a>
             <a href="/">
                 <button class="login-btn">Login</button>
             </a>
-            <button class="icon-btn img">
-                <img src="..\static\uk.png" alt="UK">
+            <button class="icon-btn img" id="lang_en">
+                <img src="..\static\uk.png" alt="UK" >
             </button>
-            <button class="icon-btn img">
+            <button class="icon-btn img" id="lang_ko">
                 <img src="..\static\korean.png" alt="KR">
             </button>
         </div>
@@ -36,6 +36,6 @@
     
     {% block body %}{% endblock %}
 
-    <!--<script src="script.js"></script>-->
+    <script src="../static/javascript/select_lang.js"></script>
 </body>
 </html>

@@ -180,7 +180,8 @@
     <div class="main-content">
         <div class="row-container">
             <section class="recent-posts">
-                <h2>Recent Posts</h2>
+                <h2>{{ labels['Recent_Posts'] }}</h2>
+                <h2>{{ lang }}</h2>
                 {% for post in post_list %}
                     <article class="post" onclick="location.href='post_detail?post_id={{post.post_id}}'">
                         <div class="post-header">
@@ -213,7 +214,7 @@
                 {% endfor %}
             </section>
             <section class="my-community">
-                <h2>Communities</h2>
+                <h2>{{ labels['My_community'] }}</h2>
                 <div class="community">
                     <div class="post-header">
                         <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
