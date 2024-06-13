@@ -65,7 +65,7 @@ def push_user_info_to_db(user_info):
             user_info.email,
             user_info.country,
             user_info.gender,
-            user_info.language,
+            language.convert_lang_to_code(user_info.language),
             user_info.city,
             user_info.websocket_id
         )
@@ -78,7 +78,7 @@ def push_user_info_to_db(user_info):
             user_info.email,
             user_info.country,
             user_info.gender,
-            user_info.language,
+            language.convert_lang_to_code(user_info.language),
             user_info.city,
             user_info.websocket_id
         )
