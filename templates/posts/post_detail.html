@@ -144,12 +144,12 @@
             </div>
             
             <div class="btn-container">
-                {% if my_id != post.writer %}
+                {% if user.id != post.writer %}
                 <button class="message-btn" id="send_message">Message</button>
                 {% endif %}
                 <img src="../static/star.png" alt="Favorite" class="favorite-icon">
                 <img src="../static/globe.png" alt="Translate" id="openTranslationPopup" class="translate-icon">
-                {% if my_id == post.writer %}
+                {% if user.id == post.writer %}
                 <img src="../static/globe.png" alt="Delete" id="post-delete" class="delete-icon">
                 {% endif %}
             </div>
@@ -181,7 +181,7 @@
     </div>
 </body>
 
-{% if my_id == post.writer %}
+{% if user.id == post.writer %}
     <script>
         document.getElementById('post-delete').addEventListener('click', () => {
             const result = confirm("정말로 삭제하시겠습니까?");
@@ -193,7 +193,7 @@
 {% else %}
     <script>
         send_message.onclick = function() {
-            location.href = "messages/room/redirect?uid1={{my_id}}&uid2={{post.writer}}";
+            location.href = "messages/room/redirect?uid1={{user.id}}&uid2={{post.writer}}";
         }
     </script>
 {% endif %}

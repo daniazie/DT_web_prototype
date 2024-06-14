@@ -31,7 +31,7 @@ def randstrurl():
 def home():
     # Fetch all chat threads for the current user
     chat_rooms = messages_control.get_chat_room_list(current_user.id)
-    return render_template("message.html", chats=chat_rooms)
+    return render_template("message.html", chats=chat_rooms, user=current_user)
 
 @message_view.route("/messages/room/redirect")
 @login_required
@@ -57,7 +57,7 @@ def view_chat():
     chat_recipient_id, chat_recipient_name = messages_control.get_recipient_id_and_name(thread_id, current_user.id)
     return render_template("message/message_detail.html", messages=chat_messages,
                 chat_recipient_id=chat_recipient_id, chat_recipient_name=chat_recipient_name,
-            my_id=current_user.id, my_name=current_user.name, thread_id=thread_id)
+            user=current_user, thread_id=thread_id)
 
 @socketio.on("send_message")
 def send_message(data):
@@ -88,7 +88,8 @@ def send_message(data):
                     'timestamp' : timestamp.strftime('%m/%d %H:%M:%S')
                    })
     socketio.emit(f"shake_newmsg",
-                  {'recipient_id' : message.recipient_id,
+                  {'thread_id': data.get('thread_id'),
+                    'recipient_id' : message.recipient_id,
                     'sender_id' : message.sender_id
                    })
     return jsonify({"status": "Message sent", "thread_id": thread_id}), 200

@@ -13,7 +13,7 @@ def post_detail():
     post_content = post_control.pull_content_from_db(post_id)
 
     return render_template("/posts/post_detail.html",
-                           post=post_info,post_content=post_content,my_id=current_user.id)
+                           post=post_info,post_content=post_content,user=current_user)
 
 
 @post_detail_view.route("/post_detail/delete")

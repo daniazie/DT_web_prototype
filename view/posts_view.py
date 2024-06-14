@@ -1,5 +1,5 @@
 from flask import Flask, url_for, request, redirect, render_template, Blueprint
-from flask_login import login_required, login_manager
+from flask_login import login_required, current_user
 from control import post_control
 from models import post
 
@@ -26,5 +26,6 @@ def posts():
                            pagination_end=pagination_end,
                            page_max=page_max,
                            current_page=current_page,
-                           post_list=post_list
+                           post_list=post_list,
+                           user=current_user
                            )

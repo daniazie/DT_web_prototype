@@ -34,4 +34,4 @@ def edit():
 
         return redirect("/my_profile")
     else:
-        return render_template("/my-profile-edit.html")
+        return render_template("/my-profile-edit.html",user=current_user)

@@ -12,4 +12,4 @@ def home():
     lang = language.convert_code_to_lang(current_user.language,type="NA")
     country = current_user.country
     city = current_user.city
-    return render_template("my-profile.html", name=name, gender=gender, language=lang, country=country, city=city)
+    return render_template("my-profile.html", user=current_user, name=name, gender=gender, language=lang, country=country, city=city)

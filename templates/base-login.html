@@ -140,9 +140,12 @@
     <script>
         socket = io();
         socket.on('shake_newmsg', (newmsg) => {
-            console.log("")
-            const currentURL = window.location.pathname + window.location.search;
-            if (currentURL !== ('/messages/room?id='+newmsg.thread_id)) {
+            const url_path = window.location.pathname;
+            const url_full = url_path + window.location.search;
+            url_flag = url_path === "/messages";
+            url_flag = url_flag || (url_full === "/messages/room?id="+newmsg.thread_id);
+            if ('{{user.id}}' === (newmsg.recipient_id) && !url_flag) {
+
                 const li = document.getElementById('li-message');
                 li.classList.add('shake');
 
@@ -152,7 +155,5 @@
             }
         });
     </script>
-
 </body>
-
 </html>
