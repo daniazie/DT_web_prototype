@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, jsonify, render_template, Blueprint
 from flask_login import login_required, current_user
-from flask_socketio import SocketIO, emit, join_room, leave_room
+from flask_socketio import SocketIO, emit
 import models.user as user
 from models import messages
 import control.messages_control as messages_control
@@ -59,7 +59,7 @@ def view_chat():
                 chat_recipient_id=chat_recipient_id, chat_recipient_name=chat_recipient_name,
             my_id=current_user.id, my_name=current_user.name, thread_id=thread_id)
 
-@socketio.on("send_message", namespace="/messages/room")
+@socketio.on("send_message")
 def send_message(data):
     thread_id = data.get('thread_id')
 
@@ -86,8 +86,11 @@ def send_message(data):
                     'recipient_name' : data.get('chat_recipient_name'),
                     'sender_name' : current_user.name,
                     'timestamp' : timestamp.strftime('%m/%d %H:%M:%S')
-                   }, 
-                  namespace='/messages/room')
+                   })
+    socketio.emit(f"shake_newmsg",
+                  {'recipient_id' : message.recipient_id,
+                    'sender_id' : message.sender_id
+                   })
     return jsonify({"status": "Message sent", "thread_id": thread_id}), 200
 
 @message_view.route("/messages/fetch/<thread_id>")

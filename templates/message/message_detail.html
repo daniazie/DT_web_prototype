@@ -155,7 +155,7 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         });
 
-        socket = io("/messages/room");
+        socket = io();
  
         document.getElementById('send-message-form').addEventListener('submit', function(e) {
             e.preventDefault();

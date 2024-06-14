@@ -138,8 +138,9 @@
     <script src="../static/javascript/select_lang.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script>
-        socket = io("/messages/room");
-        socket.on('{{thread_id}}_newmsg', (newmsg) => {
+        socket = io();
+        socket.on('shake_newmsg', (newmsg) => {
+            console.log("")
             const currentURL = window.location.pathname + window.location.search;
             if (currentURL !== ('/messages/room?id='+newmsg.thread_id)) {
                 const li = document.getElementById('li-message');
