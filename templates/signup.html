@@ -5,42 +5,42 @@
 <body>
   <form class="signup-form" name="signup_form" method="post">
     <div class="signup-container">
-      <div id = "sign_up_logo" class="logo">Sign Up</div>
+      <div id="sign_up_logo" class="logo">{{ labels['Sign_Up'] }}</div>
       <div class="form-group">
-        <label id="id_label" for="id">ID</label>
-        <input type="text" id="id" name="id" placeholder="ID">
-        <small id="char_limit">6~16 characters</small>
+        <label id="id_label" for="id">{{ labels['ID'] }}</label>
+        <input type="text" id="id" name="id" placeholder="{{ labels['ID_Placeholder'] }}">
+        <small id="char_limit">{{ labels['Username_Hint'] }}</small>
       </div>
       <div class="form-group">
-        <label id="email_label" for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Email Address">
+        <label id="email_label" for="email">{{ labels['Email_Address'] }}</label>
+        <input type="email" id="email" name="email" placeholder="{{ labels['Email_Placeholder'] }}">
       </div>
       <div class="form-group">
-        <label id="password_label" for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Password">
-        <small id="password_length">must include one special characters and numbers (8-20 characters)</small>
+        <label id="password_label" for="password">{{ labels['Password'] }}</label>
+        <input type="password" id="password" name="password" placeholder="{{ labels['Password_Placeholder'] }}">
+        <small id="password_length">{{ labels['Password_Hint'] }}</small>
       </div>
       <div class="form-group">
-        <label id="confirm_pw_label" for="confirm-password">Confirm Password</label>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
+        <label id="confirm_pw_label" for="confirm-password">{{ labels['Confirm_Password'] }}</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="{{ labels['Confirm_Password_Placeholder'] }}">
       </div>
       <div class="form-group">
-        <label id="country_label" for="country">Country</label>
+        <label id="country_label" for="country">{{ labels['Country'] }}</label>
         <select id="country" name="country">
-          <option id= "south_korea" value="South Korea">South Korea</option>
-          <option id= "malaysia" value="Malaysia">Malaysia</option>
-          <option id= "myanmar" value="Myanmar">Myanmar</option>
-          <option id= "australia" value="Australia">Australia</option>
+          <option id="south_korea" value="South Korea">{{ labels['South_Korea'] }}</option>
+          <option id="malaysia" value="Malaysia">{{ labels['Malaysia'] }}</option>
+          <option id="myanmar" value="Myanmar">{{ labels['Myanmar'] }}</option>
+          <option id="australia" value="Australia">{{ labels['Australia'] }}</option>
           <!-- Add more options as needed -->
         </select>
       </div>
-      <button id="sign_up_btn" type="button" class="sign-up-btn" onclick="checkSignUp()">Sign Up</button>
+      <button id="sign_up_btn" type="button" class="sign-up-btn" onclick="checkSignUp()">{{ labels['Sign_Up_Button'] }}</button>
     </div>
   </form>
     
   <script>
     if ('{{idfailed}}')
-      alert("이미 사용 중인 아이디입니다");
+      alert("{{ labels['ID_Exists_Alert'] }}");
 
     function checkSignUp(){
       var id = document.querySelector('input[name="id"]').value;
@@ -51,35 +51,30 @@
       // Empty test
       var isEmpty = (id === '') || (email === '') || (password === '') || (password_c === '');
       if(isEmpty){
-        alert("입력하지 않은 란이 존재합니다");
+        alert("{{ labels['Empty_Field_Alert'] }}");
         return;
       }
       
       // ID test
       var usernameRegex = /^[a-zA-Z0-9_-]{6,16}$/;
       if (!usernameRegex.test(id)) {
-        alert("ID는 6 ~ 16자 사이로 입력해주세요");
+        alert("{{ labels['Invalid_ID_Alert'] }}");
         return;
       }
 
       // Password test
       var passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
       if (!passwordRegex.test(password)) {
-        alert("비밀번호는 8~20자이며, 1개 이상의 숫자와 1개 이상의 특수문자로 구성되어야 합니다");
+        alert("{{ labels['Invalid_Password_Alert'] }}");
         return;
       }
       if (!(password === password_c)) {
-        alert("비밀번호와 비밀번호 확인이 일치하지 않습니다");
+        alert("{{ labels['Password_Mismatch_Alert'] }}");
         return;
       }
 
       document.signup_form.submit();
     }    
   </script>
-  <script src="../static/js/script.js"></script>
-
-</body>
-
-{% endblock %}
-
-</html>
+  
+</body
