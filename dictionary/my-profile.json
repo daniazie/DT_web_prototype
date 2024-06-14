@@ -1,21 +1,20 @@
 {
-    "en": {
+  "en": {
       "My_Profile": "My Profile",
       "Profile_Photo": "Profile Photo",
-      "Name_label": "Name",
-      "Gender_label": "Gender",
-      "Language_label": "Language",
-      "City_label": "City",
-      "Edit_button": "Edit"
-    },
-    "ko": {
+      "Name": "Name",
+      "Gender": "Gender",
+      "Language": "Language",
+      "City": "City",
+      "Edit": "Edit"
+  },
+  "ko": {
       "My_Profile": "내 프로필",
       "Profile_Photo": "프로필 사진",
-      "Name_label": "이름",
-      "Gender_label": "성별",
-      "Language_label": "언어",
-      "City_label": "도시",
-      "Edit_button": "수정"
-    }
+      "Name": "이름",
+      "Gender": "성별",
+      "Language": "언어",
+      "City": "도시",
+      "Edit": "수정"
   }
-  
+}
