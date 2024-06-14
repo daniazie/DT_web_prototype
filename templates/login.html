@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
 
-
-
-
 {% block body %}
 
 <body>
     <div class="login-container">
-        <div class="logo">App Logo</div>
+        <div class="logo">{{ labels['App_Logo'] }}</div>
         <form class="login-form" method="post">
-            <input type="text" name="Username" placeholder="Username" required>
-            <input type="password" name="Password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <input type="text" name="Username" placeholder="{{ labels['ID'] }}" required>
+            <input type="password" name="Password" placeholder="{{ labels['Password'] }}" required>
+            <button type="submit">{{ labels['Login'] }}</button>
         </form>
         {% if message %}
             <div class='container'>
@@ -21,7 +18,7 @@
                 </div>
             </div>
         {% endif %}
-        <a href="signup" class="create-account-link">or create an account</a>
+        <a href="signup" class="create-account-link">{{ labels['Create_Account_Link'] }}</a>
     </div>
 
     <!---<script src="script.js"></script>-->

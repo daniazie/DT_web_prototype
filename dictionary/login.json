@@ -1,14 +1,16 @@
 {
-    "en" : {
-        "Log_In":"Log In",
-        "Sign_Up":"Sign Up",
-        "password" : "Password",
-        "ID" : "ID"
+    "en": {
+        "App_Logo": "App Logo",
+        "ID": "ID",
+        "Password": "Password",
+        "Login": "Log In",
+        "Create_Account_Link": "or create an account"
     },
-    "ko" : {
-        "Log_In":"로그인",
-        "Sign_Up":"가입하기",
-        "password" : "빌밀번호",
-        "ID" : "아이디"
-    }
+    "ko": {
+        "App_Logo": "앱 로고",
+        "ID": "아이디",
+        "Password": "비밀번호",
+        "Login": "로그인",
+        "Create_Account_Link": "가입하기"
+        }
 }
