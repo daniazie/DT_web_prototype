@@ -1,0 +1,40 @@
+{
+    "en" : {
+        "Sign_up": "Sign Up",
+        "ID" : "ID",
+        "ID_placeholder" : "ID",
+        "char_notes" : "6~16 characters without spaces.",
+        "Email_label" : "Email Address",
+        "Email_placeholder": "Email Address",
+        "Password" : "Password",
+        "Password_placeholder" : "Password",
+        "password_requirements" : "Must include one special characters and numbers (8-20 characters)",
+        "Confirm_Password" : "Confirm Password",
+        "confirm_pw_placeholder" : "Confirm your password",
+        "Country" : "Country",
+        "South_Korea" : "South Korea",
+        "Malaysia" : "Malaysia",
+        "Myanmar" : "Myanmar",
+        "Australia" : "Australia",
+        "Sign_Up_btn" : "Sign Up"
+    },
+    "ko" : {
+        "Sign_up": "가입하기",
+        "ID" : "아이디",
+        "ID_placeholder" : "아이디",
+        "char_notes" : "공백 없이 6~16 자",
+        "Email_label" : "이메일 주소",
+        "Email_placeholder": "이메일 주소",
+        "Password" : "비밀번호",
+        "Password_placeholder" : "빌밀번호",
+        "password_requirements" : "특수 문자와 숫자를 포함하여, 8~20 자",
+        "Confirm_Password" : "비밀번호 확인",
+        "confirm_pw_placeholder" : "비밀번호 확인",
+        "Country" : "국적",
+        "South_Korea" : "대한민국",
+        "Malaysia" : "말레이시야",
+        "Myanmar" : "미얀마",
+        "Australia" : "호주",
+        "Sign_Up_btn" : "가입하기"
+    }
+}

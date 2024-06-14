@@ -1,0 +1,14 @@
+{
+    "en" : {
+        "Log_In":"Log In",
+        "Sign_Up":"Sign Up",
+        "password" : "Password",
+        "ID" : "ID"
+    },
+    "ko" : {
+        "Log_In":"로그인",
+        "Sign_Up":"가입하기",
+        "password" : "빌밀번호",
+        "ID" : "아이디"
+    }
+}
