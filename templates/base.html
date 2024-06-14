@@ -9,9 +9,9 @@
     <style>
         body {
             background-color: #fefbea;
-        }
+        } 
     </style>
-</head>
+</head> 
 
 <body>
     <header>
@@ -20,20 +20,20 @@
         </div>
         <div class="right-container">
             <a href="/signup">
-                <button class="signup-btn">Sign Up</button>
+                <button class="signup-btn">{{ labels['signup_button'] }}</button>
             </a>
             <a href="/">
-                <button class="login-btn">Login</button>
+                <button class="login-btn">{{ labels['login_button'] }}</button>
             </a>
             <div class="dropdown">
                 <select>
-                    <option value="en">English</option>
-                    <option value="kr">한국어</option>
+                    <option value="en">{{ labels['en'] }}</option>
+                    <option value="kr">{{ labels['kr'] }}</option>
                     <!-- Add other language options here -->
                 </select>
             </div>
         </div>
-    </header>    
+    </header>
     
     {% block body %}{% endblock %}
 

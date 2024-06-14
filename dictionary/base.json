@@ -1,0 +1,24 @@
+{
+    "en": {
+        "signup_button": "Sign Up",
+        "login_button": "Login",
+        "en": "English",
+        "kr": "한국어",
+        "home": "Home",
+        "community": "Community",
+        "posts": "Posts",
+        "messages": "Message",
+        "my_profile": "My Profile"
+    },
+    "ko": {
+        "signup_button": "가입하기",
+        "login_button": "로그인",
+        "en": "영어",
+        "kr": "한국어",
+        "home": "홈",
+        "community": "커뮤니티",
+        "posts": "게시물",
+        "messages": "메시지",
+        "my_profile": "내 프로필"
+    }
+}
