@@ -4,8 +4,11 @@ from view import login_view, home_view, signup_view, create_profile_view
 from view import posts_view, community_view, message_view, my_profile_view, edit_profile_view
 from view import post_detail_view, add_post
 
+from flask_socketio import SocketIO, emit, join_room, leave_room
+
 app = Flask(__name__)
 app.secret_key = '1q2w3e4r!'
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 app.register_blueprint(login_view.login_view)
 app.register_blueprint(home_view.home_view)
@@ -25,7 +28,7 @@ def hello_world():
 
 @app.route("/index")
 def index():
-    return render_template('index.html')
+    return render_template('community/community_detail.html')
 
 @app.route("/logout")
 def logout():
