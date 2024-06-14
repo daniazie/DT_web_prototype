@@ -155,7 +155,8 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         });
 
-        const socket = io(document.location.href);
+        socket = io();
+ 
         document.getElementById('send-message-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const message = document.getElementById('message-input').value;
@@ -171,7 +172,7 @@
             document.getElementById('message-input').focus();
         });
 
-        socket.on('{{thread_id}}_newmsg', (newmsg) => {          
+        socket.on('{{thread_id}}_newmsg', (newmsg) => {
             const chatContainer = document.getElementById('chat-content');
             const chatElement = document.createElement('div');
             chatElement.classList.add("chat-box");

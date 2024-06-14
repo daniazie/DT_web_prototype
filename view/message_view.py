@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, jsonify, render_template, Blueprint
 from flask_login import login_required, current_user
-from flask_socketio import SocketIO, emit, join_room, leave_room
+from flask_socketio import SocketIO, emit
 import models.user as user
 from models import messages
 import control.messages_control as messages_control
@@ -31,7 +31,6 @@ def randstrurl():
 def home():
     # Fetch all chat threads for the current user
     chat_rooms = messages_control.get_chat_room_list(current_user.id)
-    print(chat_rooms)
     return render_template("message.html", chats=chat_rooms)
 
 @message_view.route("/messages/room/redirect")
@@ -43,7 +42,6 @@ def redirect_chat():
         return redirect("/messages")
 
     thread_id = messages_control.get_thread_id(user1_id,user2_id)
-    print("/messages/room?id={0}".format(thread_id))
     return redirect("/messages/room?id={0}".format(thread_id))
 
 @message_view.route("/messages/room")
@@ -61,7 +59,7 @@ def view_chat():
                 chat_recipient_id=chat_recipient_id, chat_recipient_name=chat_recipient_name,
             my_id=current_user.id, my_name=current_user.name, thread_id=thread_id)
 
-@socketio.on("send_message", namespace="/messages/room")
+@socketio.on("send_message")
 def send_message(data):
     thread_id = data.get('thread_id')
 
@@ -82,13 +80,17 @@ def send_message(data):
     #recipient_websocket_id = user_control.websocket_id_query(data.get('recipient_id'))
 
     socketio.emit(f"{thread_id}_newmsg",
-                  {'message': data.get('message'),
-                   'recipient_id' : message.recipient_id,
-                   'recipient_name' : data.get('chat_recipient_name'),
-                   'sender_name' : current_user.name,
-                   'timestamp' : timestamp.strftime('%m/%d %H:%M:%S')
-                   }, 
-                  namespace='/messages/room')
+                  {'thread_id': data.get('thread_id'),
+                    'message': data.get('message'),
+                    'recipient_id' : message.recipient_id,
+                    'recipient_name' : data.get('chat_recipient_name'),
+                    'sender_name' : current_user.name,
+                    'timestamp' : timestamp.strftime('%m/%d %H:%M:%S')
+                   })
+    socketio.emit(f"shake_newmsg",
+                  {'recipient_id' : message.recipient_id,
+                    'sender_id' : message.sender_id
+                   })
     return jsonify({"status": "Message sent", "thread_id": thread_id}), 200
 
 @message_view.route("/messages/fetch/<thread_id>")
