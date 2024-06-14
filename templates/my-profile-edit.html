@@ -104,46 +104,46 @@
 <body>
     <form class="edit-profile" method="post">
         <div class="profile-container">
-            <h1>My Profile</h1>
-            <img src="..\static\hehe.jpg" alt="Profile Photo">
-            <h2>{{name}}</h2>
-            <p>{{country}}</p>
+            <h1>{{ labels['My_Profile'] }}</h1>
+            <img src="..\static\hehe.jpg" alt="{{ labels['Profile_Photo'] }}">
+            <h2>{{ name }}</h2>
+            <p>{{ country }}</p>
             <div class="element">
-                <label for="name">Name</label><span class="colon">:</span><input type="text" id="name" name="name" value={{name}}>
+                <label for="name">{{ labels['Name'] }}</label><span class="colon">:</span><input type="text" id="name" name="name" value="{{ name }}">
             </div>
             <div class="element">
-                <label for="gender">Gender</label><span class="colon">:</span>
+                <label for="gender">{{ labels['Gender'] }}</label><span class="colon">:</span>
                 <select id="gender" name="gender">
-                    <option value="Male" selected>Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
+                    <option value="Male" selected>{{ labels['Male'] }}</option>
+                    <option value="Female">{{ labels['Female'] }}</option>
+                    <option value="Other">{{ labels['Other'] }}</option>
                 </select>
             </div>
             <div class="element">
-                <label for="language">Language</label><span class="colon">:</span>
+                <label for="language">{{ labels['Language'] }}</label><span class="colon">:</span>
                 <select id="language" name="language">
-                    <option value="English" selected>English</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="French">French</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="German">German</option>
+                    <option value="English" selected>{{ labels['English'] }}</option>
+                    <option value="Spanish">{{ labels['Spanish'] }}</option>
+                    <option value="French">{{ labels['French'] }}</option>
+                    <option value="Chinese">{{ labels['Chinese'] }}</option>
+                    <option value="German">{{ labels['German'] }}</option>
                     <!-- Add more options as needed -->
                 </select>
             </div>
             <div class="element">
-                <label for="city">City</label><span class="colon">:</span>
+                <label for="city">{{ labels['City'] }}</label><span class="colon">:</span>
                 <select id="city" name="city">
-                    <option value="Seoul">Seoul</option>
-                    <option value="Suwon">Suwon</option>
-                    <option value="Incheon">Incheon</option>
+                    <option value="Seoul">{{ labels['Seoul'] }}</option>
+                    <option value="Suwon">{{ labels['Suwon'] }}</option>
+                    <option value="Incheon">{{ labels['Incheon'] }}</option>
                     <!-- Add more options as needed -->
                 </select>
             </div>
             <a href="/my_profile">
-                <button>Save</button>
+                <button>{{ labels['Save'] }}</button>
             </a>
         </div>
-</form>
+    </form>
 </body>
 
 {% endblock %}
