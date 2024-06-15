@@ -187,7 +187,11 @@
                 <div class="message received">
                     <div class="bubble">${newmsg.message}</div>
                 </div>
-            `;}
+            `;
+            socket.emit('read_message', { 
+                thread_id: newmsg.thread_id,
+                recipient_id : newmsg.recipient_id
+            });}
             chatContainer.appendChild(chatElement);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         });

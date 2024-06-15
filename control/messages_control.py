@@ -35,6 +35,21 @@ def __make_new_thread(user1_id, user2_id):
 
     return thread_id
 
+def count_unread_messages(user_id,thread_id=None):
+    con = db.DataBase()
+    result = 0
+    if thread_id==None:
+        sql = "SELECT COUNT(*) FROM Messages WHERE recipient_id = '{0}' AND `read` = false"
+        result = con.execute_select_one(sql.format(user_id))
+    else:
+        sql = "SELECT COUNT(*) FROM Messages WHERE recipient_id = '{0}' AND thread_id = '{1}' AND `read` = false"
+        result = con.execute_select_one(sql.format(user_id,thread_id))
+    
+    if not result :
+        return 0
+    else:
+        return int(result['COUNT(*)'])
+
 def push_messages_to_db(data):
     con = db.DataBase()
     sql = "INSERT INTO Messages (sender_id, recipient_id, message, thread_id) VALUES ('%s', '%s', '%s', '%s')"
@@ -50,11 +65,6 @@ def pull_messages_from_db_by_thread(thread_id):
         return [__convert_dict_to_messages(row) for row in result]
     else:
         return None
-
-def mark_thread_as_read(thread_id, user_id):
-    con = db.DataBase()
-    sql = "UPDATE Messages SET read = TRUE WHERE thread_id = '%s' AND recipient_id = '%s'"
-    con.execute_with_commit(sql % (thread_id, user_id))
     
 def get_chat_room_list(user_id):
     con = db.DataBase()
@@ -64,6 +74,7 @@ def get_chat_room_list(user_id):
     chat_rooms = []
     for i in results:
         result = con.execute_select_one(query2 % i['thread_id'])
+        unread_messages = count_unread_messages(user_id,i['thread_id'])
         recipient_id = "Unknown"
         recipient_name = "Unknown"
 
@@ -82,7 +93,8 @@ def get_chat_room_list(user_id):
             'last_message' : result['message'],
             'timestamp' : result['timestamp'],
             'recipient_id' : recipient_id,
-            'recipient_name' : recipient_name
+            'recipient_name' : recipient_name,
+            'unread_messages' : unread_messages
          }
         chat_rooms.append(room)
 
@@ -130,3 +142,12 @@ def is_in_thread(thread_id,user_id):
         and (user1_id = '%s' or user2_id = '%s')" % (thread_id,user_id,user_id)
     result = con.execute_select_one(query)
     return result != None
+
+def mark_messages_as_read(user_id,thread_id):
+    con = db.DataBase()
+    sql = "UPDATE Messages SET `read` = true WHERE recipient_id = '{0}' AND thread_id = '{1}'"
+    result, e = con.execute_with_commit(sql.format(user_id,thread_id))
+
+    if not result : print(e)
+
+    return result

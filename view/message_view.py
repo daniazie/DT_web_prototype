@@ -21,7 +21,7 @@ def randstrurl():
     con = db.DataBase()
     letters = string.ascii_lowercase
     randstr = ''.join(random.choice(letters) for _ in range(8))
-    if not con.execute_select_one("SELECT * FROM messages WHERE thread_id = %s", (randstr,)):
+    if not con.execute_select_one("SELECT * FROM messages WHERE thread_id = %s" % randstr):
         return randstr
     else:
         return randstrurl()
@@ -54,6 +54,7 @@ def view_chat():
         return redirect("/messages")
     
     chat_messages = messages_control.pull_messages_from_db_by_thread(thread_id)
+    messages_control.mark_messages_as_read(current_user.id,thread_id)
     chat_recipient_id, chat_recipient_name = messages_control.get_recipient_id_and_name(thread_id, current_user.id)
     return render_template("message/message_detail.html", messages=chat_messages,
                 chat_recipient_id=chat_recipient_id, chat_recipient_name=chat_recipient_name,
@@ -77,8 +78,6 @@ def send_message(data):
     else:
         timestamp = messages_control.get_timestamp(thread_id, message.message)
 
-    #recipient_websocket_id = user_control.websocket_id_query(data.get('recipient_id'))
-
     socketio.emit(f"{thread_id}_newmsg",
                   {'thread_id': data.get('thread_id'),
                     'message': data.get('message'),
@@ -93,6 +92,27 @@ def send_message(data):
                     'sender_id' : message.sender_id
                    })
     return jsonify({"status": "Message sent", "thread_id": thread_id}), 200
+
+@socketio.on("read_message")
+def read_message(data):
+    thread_id = data.get('thread_id')
+    recipient_id = data.get('recipient_id')
+
+    if not messages_control.mark_messages_as_read(recipient_id,thread_id):
+        print("sql failed")
+        return jsonify({"error": "Failed to mark message as read"}), 500
+
+    return jsonify({"status": "Marked a message as read", 
+                    "thread_id": thread_id, 
+                    "recipient_id": recipient_id}), 200
+
+@socketio.on("check_unread_message")
+def read_message(data):
+    recipient_id = data.get('recipient_id')
+    socketio.emit(f"check_unread_message_response",
+                  {'message_to_read': current_user.message_to_read},to=request.sid)
+
+    return jsonify({"status": "Checked message unread", "recipient_id": recipient_id}), 200
 
 @message_view.route("/messages/fetch/<thread_id>")
 @login_required

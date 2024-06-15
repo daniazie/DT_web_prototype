@@ -16,8 +16,10 @@ def home():
     
     try:
         if current_user.id:
+            print(current_user.message_to_read)
             return render_template("home-user.html",post_list=posts,labels=labels,user=current_user)
-    except AttributeError:
+    except AttributeError as e:
+        print(e)
         return render_template("home-guest.html",post_list=posts,labels=labels)
     
 @home_view.route("/home", methods=['POST'])

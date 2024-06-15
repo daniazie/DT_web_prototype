@@ -62,6 +62,13 @@ class User(UserMixin):
         self.__city = city
         
     @property
+    def message_to_read(self):
+        return self.__message_to_read
+    @message_to_read.setter    
+    def message_to_read(self,message_to_read):
+        self.__message_to_read = message_to_read
+
+    @property
     def websocket_id(self):
         return self.__websocket_id
     @websocket_id.setter

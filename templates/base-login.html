@@ -103,6 +103,22 @@
             margin: 0px;
         }
 
+        .red-dot {
+            position: relative;
+            padding-right: 20px;
+        }
+        .red-dot::after {
+            content: '';
+            position: absolute;
+            right: 14px;
+            top: 55%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: red;
+            border: 2px solid white;
+        }
     </style>
 </head>
 
@@ -139,20 +155,33 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script>
         socket = io();
+        document.addEventListener("DOMContentLoaded", function() {
+            socket.emit('check_unread_message', { 
+                recipient_id : '{{ user.id }}'
+            });
+        });
+
         socket.on('shake_newmsg', (newmsg) => {
             const url_path = window.location.pathname;
             const url_full = url_path + window.location.search;
             url_flag = url_path === "/messages";
             url_flag = url_flag || (url_full === "/messages/room?id="+newmsg.thread_id);
             if ('{{user.id}}' === (newmsg.recipient_id) && !url_flag) {
-
                 const li = document.getElementById('li-message');
+                li.classList.add('red-dot');
                 li.classList.add('shake');
-
                 li.addEventListener('animationend', function() {
                     li.classList.remove('shake');
                 }, { once: true });
             }
+        });
+
+        socket.on('check_unread_message_response', (newmsg) => {
+            const li = document.getElementById('li-message');
+            if (newmsg.message_to_read > 0)
+                li.classList.add('red-dot');
+            else
+                li.classList.remove('red-dot');
         });
     </script>
 </body>
