@@ -6,8 +6,10 @@ def __convert_dict_to_post(dict):
     data.post_id = dict['post_id']
     data.date = dict['date']
     data.type = dict['type']
-    data.writer = dict['writer']
+    data.writer_id = dict['writer_id']
+    data.writer_name = dict['writer_name']
     data.preview = dict['preview']
+    print(data)
     return data
 
 def __convert_dict_to_job_info(dict):
@@ -53,7 +55,7 @@ def pull_post_from_db_by_postID(post_id):
 
 def pull_post_from_db_by_userID(user_id):
     con = db.DataBase()
-    result = con.execute_select_all("SELECT * FROM Posts_head WHERE writer='{0}'"
+    result = con.execute_select_all("SELECT * FROM Posts_head WHERE writer_id='{0}'"
                                     .format(user_id))
     if result: 
         post_lst = []
@@ -93,19 +95,20 @@ def pull_content_from_db(post_id):
 def push_post_to_db(_post: post.Post, post_content: post.Post_content):
     con = db.DataBase()
     
-    sql_post_head = "INSERT INTO Posts_head(type,writer,preview)\
-         VALUE({0},'{1}','{2}')".format(
+    sql_post_head = "INSERT INTO Posts_head(type,writer_id,preview,writer_name)\
+         VALUE({0},'{1}','{2}','{3}')".format(
             _post.type,
-            _post.writer,
-            _post.preview
+            _post.writer_id,
+            _post.preview,
+            _post.writer_name
         )
-    success, e = con.execute_with_commit(sql_post_head)
-    if not success:
+    result, e = con.execute_with_commit(sql_post_head)
+    if not result:
         print(e)
-        return success
+        return result
 
-    post_id = con.execute_select_one("SELECT post_id FROM Posts_head WHERE writer='{0}' and preview='{1}'"
-                                    .format(_post.writer,_post.preview))
+    post_id = con.execute_select_one("SELECT post_id FROM Posts_head WHERE writer_id='{0}' and preview='{1}'"
+                                    .format(_post.writer_id,_post.preview))
 
     if post_id != None:
         post_id = post_id['post_id']
@@ -121,10 +124,10 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
                 _post.job_info.working_days,
                 _post.job_info.workplace
              )
-        success, e = con.execute_with_commit(sql_post_job)
-        if not success:
+        result, e = con.execute_with_commit(sql_post_job)
+        if not result:
             print(e)
-            return success
+            return result
         
         sql_post_content = "INSERT INTO Posts_content(post_id,content,origin,language,contributer)\
              VALUE({0},'{1}',{2},'{3}','{4}')".format(
@@ -134,12 +137,12 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
                 post_content.language,
                 post_content.contributer
              )
-        success, e = con.execute_with_commit(sql_post_content)
-        if not success:
+        result, e = con.execute_with_commit(sql_post_content)
+        if not result:
             print(e)
-            return success
+            return result
         else :
-            return success
+            return result
         
 def count_post():
     con = db.DataBase()

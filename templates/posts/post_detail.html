@@ -140,16 +140,16 @@
         <div class="profile-section">
             <div class="profile-info" onclick="location.href='/user_profile'">
                 <img src="../static/profile.png" alt="Profile Picture">
-                <div class="id">{{post.writer}}</div>
+                <div class="id">{{post.writer_name}}</div>
             </div>
             
             <div class="btn-container">
-                {% if user.id != post.writer %}
+                {% if user.id != post.writer_id %}
                 <button class="message-btn" id="send_message">Message</button>
                 {% endif %}
                 <img src="../static/star.png" alt="Favorite" class="favorite-icon">
                 <img src="../static/globe.png" alt="Translate" id="openTranslationPopup" class="translate-icon">
-                {% if user.id == post.writer %}
+                {% if user.id == post.writer_id %}
                 <img src="../static/delete.png" alt="Delete" id="post-delete" class="delete-icon">
                 {% endif %}
             </div>
@@ -169,7 +169,7 @@
                     <span>{{post.job_info.working_days}} {{post.job_info.working_hours}}</span>
                 </div>
                 <div class="icon-row">
-                    <img src="../static/globe.png" alt="Language">
+                    <img src="../static/delete.png" alt="Language">
                     <span>{{post.job_info.lang_level}}</span>
                 </div>
             </div>

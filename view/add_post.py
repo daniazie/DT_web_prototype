@@ -45,7 +45,7 @@ def add_post():
         job_info.workplace = workplace
 
         _post = post.Post()
-        _post.writer = current_user.id
+        _post.writer_id = current_user.id
         _post.type = post.POST_TYPE_JOB
         _post.preview = content[0:max(98,len(content))]
         _post.job_info = job_info

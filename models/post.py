@@ -5,7 +5,7 @@ POST_TYPE_JOB = 1
 
 class Post:
     def __str__(self):
-        return "post_id : {0}, writer : {1}".format(self.post_id, self.writer)
+        return "post_id : {0}, writer : {1}/{2}".format(self.post_id, self.writer_id,self.writer_name)
 
     @property
     def post_id(self):
@@ -29,11 +29,18 @@ class Post:
         self.__type = type
 
     @property
-    def writer(self):
-        return self.__writer
-    @writer.setter
-    def writer(self,writer):
-        self.__writer = writer
+    def writer_id(self):
+        return self.__writer_id
+    @writer_id.setter
+    def writer_id(self,writer_id):
+        self.__writer_id = writer_id
+
+    @property
+    def writer_name(self):
+        return self.__writer_name
+    @writer_name.setter
+    def writer_name(self,writer_name):
+        self.__writer_name = writer_name
 
     @property
     def preview(self):
