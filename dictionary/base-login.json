@@ -1,0 +1,22 @@
+{
+    "en": {
+        "search": "Search",
+        "notification": "Notification",
+        "language": "Language",
+        "Home": "Home",
+        "Community": "Community",
+        "Posts": "Posts",
+        "Messages": "Message",
+        "Profile": "My Profile"
+    },
+    "kr": {
+        "search": "검색",
+        "notification": "알림",
+        "language": "언어",
+        "Home": "홈",
+        "Community": "커뮤니티",
+        "Posts": "게시물",
+        "Messages": "메시지",
+        "Profile": "내 프로필"
+    }
+}

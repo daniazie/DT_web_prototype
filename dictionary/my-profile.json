@@ -1,0 +1,20 @@
+{
+  "en": {
+      "My_Profile": "My Profile",
+      "Profile_Photo": "Profile Photo",
+      "Name": "Name",
+      "Gender": "Gender",
+      "Language": "Language",
+      "City": "City",
+      "Edit": "Edit"
+  },
+  "ko": {
+      "My_Profile": "내 프로필",
+      "Profile_Photo": "프로필 사진",
+      "Name": "이름",
+      "Gender": "성별",
+      "Language": "언어",
+      "City": "도시",
+      "Edit": "수정"
+  }
+}

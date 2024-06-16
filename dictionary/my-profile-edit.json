@@ -1,0 +1,42 @@
+{
+  "en": {
+      "My_Profile": "My Profile",
+      "Profile_Photo": "Profile Photo",
+      "Name": "Name",
+      "Gender": "Gender",
+      "Language": "Language",
+      "City": "City",
+      "Male": "Male",
+      "Female": "Female",
+      "Other": "Other",
+      "English": "English",
+      "Spanish": "Spanish",
+      "French": "French",
+      "Chinese": "Chinese",
+      "German": "German",
+      "Seoul": "Seoul",
+      "Suwon": "Suwon",
+      "Incheon": "Incheon",
+      "Save": "Save"
+  },
+  "ko": {
+      "My_Profile": "내 프로필",
+      "Profile_Photo": "프로필 사진",
+      "Name": "이름",
+      "Gender": "성별",
+      "Language": "언어",
+      "City": "도시",
+      "Male": "남성",
+      "Female": "여성",
+      "Other": "기타",
+      "English": "영어",
+      "Spanish": "스페인어",
+      "French": "프랑스어",
+      "Chinese": "중국어",
+      "German": "독일어",
+      "Seoul": "서울",
+      "Suwon": "수원",
+      "Incheon": "인천",
+      "Save": "저장"
+  }
+}
