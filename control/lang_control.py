@@ -4,16 +4,15 @@ from models.socketio import socketio
 selected_lang = "en"
 
 def load_lang_dict(page_name,lang):
-    path = "dictionary/{0}.json".format(page_name)
-    data = []
+    path = "dictionary/{0}.json"
+    data = {}
     try:
         with open(path.format("base"), 'r', encoding='UTF8') as file:
-            data = json.load(file)
-        with open(path.format("base-login"), 'r', encoding='UTF8') as file:
-            data = json.load(file)
+            data.update(json.load(file)[lang])
         with open(path.format(page_name), 'r', encoding='UTF8') as file:
-            data = json.load(file)
-        return data[lang]
+            data.update(json.load(file)[lang])
+        print(data)
+        return data
     except Exception as e :
         print(e)
         return None
