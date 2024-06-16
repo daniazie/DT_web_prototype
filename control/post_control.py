@@ -9,7 +9,6 @@ def __convert_dict_to_post(dict):
     data.writer_id = dict['writer_id']
     data.writer_name = dict['writer_name']
     data.preview = dict['preview']
-    print(data)
     return data
 
 def __convert_dict_to_job_info(dict):

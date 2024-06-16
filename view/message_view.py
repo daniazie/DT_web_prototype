@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from flask_socketio import SocketIO, emit
 import models.user as user
 from models import messages
+from models.socketio import socketio
 import control.messages_control as messages_control
 import control.user_control as user_control
 import models.database as db
@@ -10,8 +11,8 @@ import random, string
 from datetime import datetime
 from uuid import uuid4
 
+
 message_view = Blueprint("message_view", __name__)
-socketio = SocketIO(logger=True, engineio_logger=True)
 
 @message_view.record_once
 def on_load(state):
