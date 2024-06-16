@@ -17,7 +17,8 @@
       "Seoul": "Seoul",
       "Suwon": "Suwon",
       "Incheon": "Incheon",
-      "Save": "Save"
+      "Save": "Save",
+      "Alert_Failed_to_Change":"An unexpected error occurred during profile change.\nPlease try again."
   },
   "ko": {
       "My_Profile": "내 프로필",
@@ -37,6 +38,7 @@
       "Seoul": "서울",
       "Suwon": "수원",
       "Incheon": "인천",
-      "Save": "저장"
+      "Save": "저장",
+      "Alert_Failed_to_Change":"프로필 변경 중 예기치 않은 오류가 발생했습니다.\n다시 시도해주세요."
   }
 }

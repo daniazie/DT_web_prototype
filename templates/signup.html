@@ -5,36 +5,36 @@
 <body>
   <form class="signup-form" name="signup_form" method="post">
     <div class="signup-container">
-      <div class="logo">Sign Up</div>
+      <div class="logo">{{ labels['Sign_Up'] }}</div>
       <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" id="id" name="id" placeholder="ID">
-        <small>6~16 characters without spaces.</small>
+        <label for="id">{{ labels['ID'] }}</label>
+        <input type="text" id="id" name="id" placeholder="{{ labels['ID_Placeholder'] }}">
+        <small>{{ labels['ID_Hint'] }}</small>
       </div>
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Email Address">
+        <label for="email">{{ labels['Email_Address'] }}</label>
+        <input type="email" id="email" name="email" placeholder="{{ labels['Email_Placeholder'] }}">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Password">
-        <small>must include one special characters and numbers (8-20 characters)</small>
+        <label for="password">{{ labels['Password'] }}</label>
+        <input type="password" id="password" name="password" placeholder="{{ labels['Password_Placeholder'] }}">
+        <small>{{ labels['Password_Hint'] }}</small>
       </div>
       <div class="form-group">
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
+        <label for="confirm-password">{{ labels['Confirm_Password'] }}</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="{{ labels['Confirm_Password_Placeholder'] }}">
       </div>
       <div class="form-group">
-        <label for="country">Country</label>
+        <label for="country">{{ labels['Country'] }}</label>
         <select id="country" name="country">
-          <option value="South Korea">South Korea</option>
-          <option value="Malaysia">Malaysia</option>
-          <option value="Myanmar">Myanmar</option>
-          <option value="Australia">Australia</option>
+          <option value="South Korea">{{ labels['South_Korea'] }}</option>
+          <option value="Malaysia">{{ labels['Malaysia'] }}</option>
+          <option value="Myanmar">{{ labels['Myanmar'] }}</option>
+          <option value="Australia">{{ labels['Australia'] }}</option>
           <!-- Add more options as needed -->
         </select>
       </div>
-      <button type="button" class="sign-up-btn" onclick="checkSignUp()">Sign Up</button>
+      <button type="button" class="sign-up-btn" onclick="checkSignUp()">{{ labels['Sign_Up_Button'] }}</button>
     </div>
   </form>
   {% with messages = get_flashed_messages(with_categories=true) %}
@@ -45,16 +45,16 @@
           {
             switch ('{{message}}') {
               case "ERR_CODE:EXIST_ID":
-                alert("이미 사용중인 아이디입니다.")
+                alert("{{ labels['ID_Exists_Alert'] }}")
                 break;
 
               // create profile에서 발생한 메세지
               case "ERR_CODE:USER_INFO_LOST":
-                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                alert("{{ labels['Alert_Error'] }}")
                 break;
 
               case "ERR_CODE:FAILED_TO_PUSH_DB":
-                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                alert("{{ labels['Alert_Error'] }}")
                 break;
 
               default:
@@ -91,25 +91,25 @@
       // Empty test
       var isEmpty = (id === '') || (email === '') || (password === '') || (password_c === '');
       if(isEmpty){
-        alert("입력하지 않은 란이 존재합니다");
+        alert("{{ labels['Empty_Field_Alert'] }}");
         return;
       }
       
       // ID test
       var usernameRegex = /^[a-zA-Z0-9_-]{6,16}$/;
       if (!usernameRegex.test(id)) {
-        alert("ID는 6 ~ 16자 사이로 입력해주세요");
+        alert("{{ labels['Invalid_ID_Alert'] }}");
         return;
       }
 
       // Password test
       var passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
       if (!passwordRegex.test(password)) {
-        alert("비밀번호는 8~20자이며, 1개 이상의 숫자와 1개 이상의 특수문자로 구성되어야 합니다");
+        alert("{{ labels['Invalid_Password_Alert'] }}");
         return;
       }
       if (!(password === password_c)) {
-        alert("비밀번호와 비밀번호 확인이 일치하지 않습니다");
+        alert("{{ labels['Password_Mismatch_Alert'] }}");
         return;
       }
 

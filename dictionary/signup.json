@@ -11,7 +11,7 @@
         "Myanmar": "Myanmar",
         "Australia": "Australia",
         "Sign_Up_Button": "Sign Up",
-        "Username_Hint": "6~16 characters",
+        "ID_Hint": "6~16 characters without spaces.",
         "Password_Hint": "must include one special character and numbers (8-20 characters)",
         "ID_Placeholder": "ID",
         "Email_Placeholder": "Email Address",
@@ -21,7 +21,8 @@
         "Empty_Field_Alert": "There are fields that have not been filled out",
         "Invalid_ID_Alert": "ID must be between 6 and 16 characters",
         "Invalid_Password_Alert": "Password must be 8-20 characters long and include at least one special character and one number",
-        "Password_Mismatch_Alert": "Password and confirmation password do not match"
+        "Password_Mismatch_Alert": "Password and confirmation password do not match",
+        "Alert_Error":"An unexpected error occurred during registration.\nReturns to the previous page."
     },
     "ko": {
         "Sign_Up": "가입하기",
@@ -35,7 +36,7 @@
         "Myanmar": "미얀마",
         "Australia": "호주",
         "Sign_Up_Button": "가입하기",
-        "Username_Hint": "6~16자",
+        "ID_Hint": "공백 없이 6~16자",
         "Password_Hint": "특수 문자와 숫자를 포함해야 합니다 (8-20자)",
         "ID_Placeholder": "아이디",
         "Email_Placeholder": "이메일 주소",
@@ -45,6 +46,7 @@
         "Empty_Field_Alert": "입력하지 않은 란이 존재합니다",
         "Invalid_ID_Alert": "ID는 6 ~ 16자 사이로 입력해주세요",
         "Invalid_Password_Alert": "비밀번호는 8~20자이며, 1개 이상의 숫자와 1개 이상의 특수문자로 구성되어야 합니다",
-        "Password_Mismatch_Alert": "비밀번호와 비밀번호 확인이 일치하지 않습니다"
+        "Password_Mismatch_Alert": "비밀번호와 비밀번호 확인이 일치하지 않습니다",
+        "Alert_Error":"회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다."
     }
 }

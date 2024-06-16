@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template, Blueprint, flash
 from flask_login import login_required, current_user
-from control import post_control
+from control import post_control, lang_control
 from models import post
 
 add_post_view = Blueprint("add_post_view", __name__)
@@ -8,6 +8,7 @@ add_post_view = Blueprint("add_post_view", __name__)
 @add_post_view.route("/posts/add_post", methods = ['GET', 'POST'])
 @login_required
 def add_post():
+    labels = lang_control.load_lang_dict("add-post",lang_control.selected_lang)
     if request.method == "POST":
         workplace = request.form.get('shop-name')
         location = request.form.get('location')
@@ -65,4 +66,4 @@ def add_post():
             flash("ERR_CODE:FAILED_TO_PUSH_DB",category="error")
             return redirect("/posts/add_post")
     else:
-        return render_template("add-post.html",user=current_user)
+        return render_template("add-post.html",user=current_user,labels=labels)

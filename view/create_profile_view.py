@@ -1,11 +1,12 @@
 from flask import Flask, flash, redirect, request, render_template, Blueprint, session
-from control import user_control
+from control import lang_control, user_control
 from models import user
 
 create_profile_view = Blueprint("create_profile_view", __name__)
 
 @create_profile_view.route("/create-profile", methods = ['GET', 'POST'])
 def singup():
+    labels = lang_control.load_lang_dict("create-profile",lang_control.selected_lang)
     try:
         sessionFlag = 'user_id_temp' in session and \
         'user_email_temp'in session and \
@@ -30,7 +31,7 @@ def singup():
                                            input_language, input_city)
         
         if flag_empty:
-            return render_template("/create-profile.html")
+            return render_template("/create-profile.html",labels=labels)
         
         user_info = user.User()
         user_info.id = session['user_id_temp']
@@ -59,4 +60,4 @@ def singup():
 
         return redirect("/login")
     else:
-        return render_template("/create-profile.html")
+        return render_template("/create-profile.html",labels=labels)

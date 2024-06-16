@@ -1,22 +1,13 @@
 from flask import Flask, request, redirect, jsonify, render_template, Blueprint
 from flask_login import login_required, current_user
-from flask_socketio import SocketIO, emit
-import models.user as user
 from models import messages
 from models.socketio import socketio
-import control.messages_control as messages_control
-import control.user_control as user_control
+from control import lang_control, messages_control, user_control
 import models.database as db
 import random, string
 from datetime import datetime
-from uuid import uuid4
-
 
 message_view = Blueprint("message_view", __name__)
-
-@message_view.record_once
-def on_load(state):
-    socketio.init_app(state.app, cors_allowed_origins="*")
 
 def randstrurl():
     con = db.DataBase()
@@ -30,24 +21,26 @@ def randstrurl():
 @message_view.route("/messages")
 @login_required
 def home():
-    # Fetch all chat threads for the current user
+    labels = lang_control.load_lang_dict("messages",lang_control.selected_lang)
     chat_rooms = messages_control.get_chat_room_list(current_user.id)
-    return render_template("message.html", chats=chat_rooms, user=current_user)
+    return render_template("message.html", chats=chat_rooms, user=current_user,labels=labels)
 
 @message_view.route("/messages/room/redirect")
 @login_required
 def redirect_chat():
+    labels = lang_control.load_lang_dict("messages",lang_control.selected_lang)
     user1_id = request.args.get("uid1")
     user2_id = request.args.get("uid2")
     if user1_id == user2_id:
         return redirect("/messages")
 
     thread_id = messages_control.get_thread_id(user1_id,user2_id)
-    return redirect("/messages/room?id={0}".format(thread_id))
+    return redirect("/messages/room?id={0}".format(thread_id),labels=labels)
 
 @message_view.route("/messages/room")
 @login_required
 def view_chat():
+    labels = lang_control.load_lang_dict("messages",lang_control.selected_lang)
     # Fetch messages for the specific chat thread
     thread_id = request.args.get("id")
     if not messages_control.is_in_thread(thread_id,current_user.id):
@@ -59,7 +52,7 @@ def view_chat():
     chat_recipient_id, chat_recipient_name = messages_control.get_recipient_id_and_name(thread_id, current_user.id)
     return render_template("message/message_detail.html", messages=chat_messages,
                 chat_recipient_id=chat_recipient_id, chat_recipient_name=chat_recipient_name,
-            user=current_user, thread_id=thread_id)
+            user=current_user, thread_id=thread_id,labels=labels)
 
 @socketio.on("send_message")
 def send_message(data):
@@ -115,17 +108,3 @@ def read_message(data):
 
     return jsonify({"status": "Checked message unread", "recipient_id": recipient_id}), 200
 
-@message_view.route("/messages/fetch/<thread_id>")
-@login_required
-def fetch_messages(thread_id):
-    messages = messages_control.pull_messages_from_db_by_thread(thread_id)
-    if messages:
-        return jsonify([message.__dict__ for message in messages]), 200
-    else:
-        return jsonify({"error": "Failed to fetch messages"}), 500
-
-@message_view.route("/messages/read/<thread_id>", methods=["POST"])
-@login_required
-def mark_messages_as_read(thread_id):
-    messages_control.mark_thread_as_read(thread_id, current_user.id)
-    return jsonify({"status": "Messages marked as read"}), 200

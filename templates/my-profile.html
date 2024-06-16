@@ -104,22 +104,22 @@
         <div class="profile-container">
             <h1>My Profile</h1>
             <img src="..\static\blank.png" alt="Profile Photo">
-            <h2>{{name}}</h2>
-            <p>{{country}}</p>
+            <h2>{{user.name}}</h2>
+            <p>{{user.country}}</p>
             <div class="element">
-                <label for="name">Name</label><span class="colon">:</span><span class="t1">{{name}}</span>
+                <label for="name">{{ labels['Name'] }}</label><span class="colon">:</span><span class="t1">{{user.name}}</span>
             </div>
             <div class="element">
-                <label for="gender">Gender</label><span class="colon">:</span><span class="t1">{{gender}}</span>
+                <label for="gender">{{ labels['Gender'] }}</label><span class="colon">:</span><span class="t1">{{user.gender}}</span>
             </div>
             <div class="element">
-                <label for="language">Language</label><span class="colon">:</span><span class="t1">{{language}}</span>
+                <label for="language">{{ labels['Language'] }}</label><span class="colon">:</span><span class="t1">{{lang}}</span>
             </div>
             <div class="element">
-                <label for="city">City</label><span class="colon">:</span><span class="t1">{{city}}</span>
+                <label for="city">{{ labels['City'] }}</label><span class="colon">:</span><span class="t1">{{user.city}}</span>
             </div>
             <a href="/edit-profile">
-                <button>Edit</button>
+                <button>{{ labels['Edit'] }}</button>
             </a>
         </div>
     </div>

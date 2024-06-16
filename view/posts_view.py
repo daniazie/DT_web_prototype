@@ -1,6 +1,6 @@
 from flask import Flask, url_for, request, redirect, render_template, Blueprint
 from flask_login import login_required, current_user
-from control import post_control
+from control import lang_control, post_control
 from models import post
 
 posts_view = Blueprint("posts_view", __name__)
@@ -9,6 +9,7 @@ _MAX_POST_IN_SINGLE_PAGE = 6
 @posts_view.route("/posts")
 @login_required
 def posts():
+    labels = lang_control.load_lang_dict("posts",lang_control.selected_lang)
     page_max = post_control.count_post() // _MAX_POST_IN_SINGLE_PAGE + 1
     current_page = int(request.args.get('pages',1))
     post_list = post_control.pull_post_from_db_rows(
@@ -27,5 +28,6 @@ def posts():
                            page_max=page_max,
                            current_page=current_page,
                            post_list=post_list,
-                           user=current_user
+                           user=current_user,
+                           labels=labels
                            )

@@ -10,7 +10,7 @@
       "Male": "Male",
       "Female": "Female",
       "Language": "Language",
-      "Choose_Language": "Choose your first language",
+      "Choose_Language": "Choose your preferred language",
       "Korean": "한국어",
       "English": "English",
       "City": "City",
@@ -18,7 +18,9 @@
       "Seoul": "Seoul",
       "Suwon": "Suwon",
       "Incheon": "Incheon",
-      "Create": "Create"
+      "Create": "Create",
+      "Alert_Error":"An unexpected error occurred during registration.\nReturns to the previous page.",
+      "Alert_Success":"You have successfully registered.\n Redirecting to the login page."
   },
   "ko": {
       "Create_Profile": "프로필 만들기",
@@ -31,7 +33,7 @@
       "Male": "남성",
       "Female": "여성",
       "Language": "언어",
-      "Choose_Language": "모국어를 선택하세요",
+      "Choose_Language": "선호하는 언어를 선택하세요",
       "Korean": "한국어",
       "English": "영어",
       "City": "도시",
@@ -39,6 +41,8 @@
       "Seoul": "서울",
       "Suwon": "수원",
       "Incheon": "인천",
-      "Create": "만들기"
+      "Create": "만들기",
+      "Alert_Error":"회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.",
+      "Alert_Success":"회원가입을 완료했습니다.\n 로그인 페이지로 이동합니다."
   }
 }

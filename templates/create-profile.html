@@ -100,42 +100,42 @@
         <div class="profile-container">
             <h1>Create your profile</h1>
             <img src="..\static\blank.png" alt="Profile Photo">
-            <p>Profile Photo</p>
+            <p>{{ labels['Create_Profile'] }}</p>
             
             <div class="element">
-                <label for="name">Name</label>
+                <label for="name">{{ labels['Name'] }}</label>
                 <input type="text" id="name" name="name">
             </div>
             
             <div class="element">
-                <label for="gender">Gender</label>
+                <label for="gender">{{ labels['Gender'] }}</label>
                 <select id="gender" name="gender">
-                    <option value="" disabled selected>Choose your gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <option value="" disabled selected>{{ labels['Choose_Gender'] }}</option>
+                    <option value="Male">{{ labels['Male'] }}</option>
+                    <option value="Female">{{ labels['Female'] }}</option>
                 </select>
             </div>
             
             <div class="element">
-                <label for="language">Language</label>
+                <label for="language">{{ labels['Language'] }}</label>
                 <select id="language" name="language">
-                    <option value="" disabled selected>Choose your preferred language</option>
-                    <option value="한국어">한국어</option>
-                    <option value="English">English</option>
+                    <option value="" disabled selected>{{ labels['Choose_Language'] }}</option>
+                    <option value="한국어">{{ labels['Korean'] }}</option>
+                    <option value="English">{{ labels['English'] }}</option>
                 </select>
             </div>
             
             <div class="element">
-                <label for="city">City</label>
+                <label for="city">{{ labels['City'] }}</label>
                 <select id="city" name="city">
-                    <option value="" disabled selected>Choose your location</option>
-                    <option value="Seoul">Seoul</option>
-                    <option value="Suwon">Suwon</option>
-                    <option value="Incheon">Incheon</option>
+                    <option value="" disabled selected>{{ labels['Choose_City'] }}</option>
+                    <option value="Seoul">{{ labels['Seoul'] }}</option>
+                    <option value="Suwon">{{ labels['Suwon'] }}</option>
+                    <option value="Incheon">{{ labels['Incheon'] }}</option>
                 </select>
             </div>
             
-            <button type="submit">Create</button>
+            <button type="submit">{{ labels['Create'] }}</button>
         </div>
     </form>
     </div>
@@ -147,11 +147,11 @@
           {
             switch ('{{message}}') {
               case "ERR_CODE:USER_INFO_LOST":
-                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                alert("{{ labels['Alert_Error'] }}")
                 break;
 
               case "ERR_CODE:FAILED_TO_PUSH_DB":
-                alert("회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.")
+                alert("{{ labels['Alert_Error'] }}")
                 break;
 
               default:
@@ -162,7 +162,7 @@
           {
             switch ('{{message}}') {
               case "SUC_CODE:SIGNUP_SUCCEEDS":
-                alert("회원가입에 성공했습니다.\n 로그인 페이지로 이동합니다.")
+                alert("{{ labels['Alert_Success'] }}")
                 break;
               
               default:

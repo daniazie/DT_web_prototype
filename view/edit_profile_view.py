@@ -1,12 +1,13 @@
 from flask import Flask, flash, redirect, request, render_template, Blueprint, session
 from flask_login import current_user
-from control import user_control
+from control import lang_control, user_control
 from models import user
 
 edit_profile_view = Blueprint("edit_profile_view", __name__)
 
 @edit_profile_view.route("/edit-profile", methods = ['GET', 'POST'])
 def edit():
+    labels = lang_control.load_lang_dict("my-profile-edit",lang_control.selected_lang)
     if request.method == "POST":
         input_name = request.form.get('name')
         input_gender = request.form.get('gender')
@@ -17,7 +18,7 @@ def edit():
                                            input_language, input_city)
         
         if flag_empty:
-            return render_template("/my-profile-edit.html")
+            return render_template("/my-profile-edit.html",user=current_user,labels=labels)
         
         user_info = user.User()
         user_info.id = current_user.id
@@ -34,4 +35,4 @@ def edit():
 
         return redirect("/my_profile")
     else:
-        return render_template("/my-profile-edit.html",user=current_user)
+        return render_template("/my-profile-edit.html",user=current_user,labels=labels)
