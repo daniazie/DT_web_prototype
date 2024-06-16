@@ -1,20 +1,22 @@
 {
     "en": {
-        "signup_button": "Sign Up",
-        "login_button": "Login",
-        "home": "Home",
-        "community": "Community",
-        "posts": "Posts",
-        "messages": "Message",
-        "my_profile": "My Profile"
+        "Signup_button": "Sign Up",
+        "Login_button": "Login",
+        "Logout_button" : "Logout",
+        "Home": "Home",
+        "Community": "Community",
+        "Posts": "Posts",
+        "Message": "Message",
+        "My_profile": "My Profile"
     },
     "ko": {
-        "signup_button": "가입하기",
-        "login_button": "로그인",
-        "home": "홈",
-        "community": "커뮤니티",
-        "posts": "게시물",
-        "messages": "메시지",
-        "my_profile": "내 프로필"
+        "Signup_button": "가입하기",
+        "Login_button": "로그인",
+        "Logout_button" : "로그아웃",
+        "Home": "홈",
+        "Community": "커뮤니티",
+        "Posts": "게시물",
+        "Message": "메시지",
+        "My_profile": "내 프로필"
     }
 }
