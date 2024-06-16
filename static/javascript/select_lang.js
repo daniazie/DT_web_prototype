@@ -14,13 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+socket_lang = io();
+
 function sendButtonIdToServer(buttonId) {
-    const url = window.location.href
-    const xhr = new XMLHttpRequest();
-
-    xhr.open("POST", url);
-    xhr.setRequestHeader("content-type", "application/json");
-
-    xhr.send(JSON.stringify({ 'lang': buttonId }));
-    sleep(800).then(() => location.reload());
+    socket_lang.emit('lang_selected', { 
+        lang: buttonId
+    });
+    //sleep(800).then(() => location.reload());
 }
+
+socket_lang.on('lang_selected_response', (newmsg) => {
+    location.reload()
+});
