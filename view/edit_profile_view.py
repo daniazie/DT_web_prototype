@@ -18,7 +18,7 @@ def edit():
                                            input_language, input_city)
         
         if flag_empty:
-            return render_template("/my-profile-edit.html",user=current_user,labels=labels)
+            return render_template("/my_profile/my-profile-edit.html",user=current_user,labels=labels)
         
         user_info = user.User()
         user_info.id = current_user.id
@@ -35,4 +35,4 @@ def edit():
 
         return redirect("/my_profile")
     else:
-        return render_template("/my-profile-edit.html",user=current_user,labels=labels)
+        return render_template("/my_profile/my-profile-edit.html",user=current_user,labels=labels)

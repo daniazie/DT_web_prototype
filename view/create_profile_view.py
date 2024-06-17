@@ -31,7 +31,7 @@ def singup():
                                            input_language, input_city)
         
         if flag_empty:
-            return render_template("/create-profile.html",labels=labels)
+            return render_template("/signup/create-profile.html",labels=labels)
         
         user_info = user.User()
         user_info.id = session['user_id_temp']
@@ -60,4 +60,4 @@ def singup():
 
         return redirect("/login")
     else:
-        return render_template("/create-profile.html",labels=labels)
+        return render_template("/signup/create-profile.html",labels=labels)

@@ -10,4 +10,4 @@ my_profile_view = Blueprint("my_profile_view", __name__)
 def home():
     labels = lang_control.load_lang_dict("my-profile",lang_control.selected_lang)
     lang = language.convert_code_to_lang(current_user.language,type="NA")
-    return render_template("my-profile.html", user=current_user, lang=lang, labels=labels)
+    return render_template("my_profile/my-profile.html", user=current_user, lang=lang, labels=labels)

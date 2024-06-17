@@ -22,7 +22,7 @@ def posts():
     pagination_start = max(1,current_page-3)
     pagination_end = min(pagination_start+6,page_max)
 
-    return render_template("posts.html",
+    return render_template("posts/posts.html",
                            pagination_start=pagination_start,
                            pagination_end=pagination_end,
                            page_max=page_max,

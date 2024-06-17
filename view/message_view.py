@@ -23,7 +23,7 @@ def randstrurl():
 def home():
     labels = lang_control.load_lang_dict("messages",lang_control.selected_lang)
     chat_rooms = messages_control.get_chat_room_list(current_user.id)
-    return render_template("message.html", chats=chat_rooms, user=current_user,labels=labels)
+    return render_template("message/message.html", chats=chat_rooms, user=current_user,labels=labels)
 
 @message_view.route("/messages/room/redirect")
 @login_required

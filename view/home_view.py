@@ -12,7 +12,7 @@ def home():
     
     try:
         if current_user.id:
-            return render_template("home-user.html",post_list=posts,labels=labels,user=current_user)
+            return render_template("home/home-user.html",post_list=posts,labels=labels,user=current_user)
     except AttributeError as e:
-        return render_template("home-guest.html",post_list=posts,labels=labels)
+        return render_template("home/home-guest.html",post_list=posts,labels=labels)
     

@@ -28,11 +28,11 @@ def singup():
         print(flag_empty)
 
         if flag_empty:
-            return render_template("signup.html", labels=labels)
+            return render_template("signup/signup.html", labels=labels)
         
         if user_control.is_exist_id(input_id):
             flash("ERR_CODE:EXIST_ID", category="error")
-            return render_template("signup.html", labels=labels) 
+            return render_template("signup/signup.html", labels=labels) 
                   
         
         session['user_id_temp'] =  input_id
@@ -43,4 +43,4 @@ def singup():
         
         return redirect("/create-profile")
     else:
-        return render_template("signup.html", labels=labels)
+        return render_template("signup/signup.html", labels=labels)

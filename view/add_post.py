@@ -66,4 +66,4 @@ def add_post():
             flash("ERR_CODE:FAILED_TO_PUSH_DB",category="error")
             return redirect("/posts/add_post")
     else:
-        return render_template("add-post.html",user=current_user,labels=labels)
+        return render_template("posts/add-post.html",user=current_user,labels=labels)

@@ -37,7 +37,7 @@ def on_load(state):
 @message_view.route("/messages")
 @login_required
 def home():
-    return render_template("message.html")
+    return render_template("message/message.html")
 
 @message_view.route("/messages/<recipient_id>", methods=["POST"])
 @login_required

@@ -8,4 +8,4 @@ community_view = Blueprint("community_view", __name__)
 @login_required
 def home():
     labels = lang_control.load_lang_dict("community",lang_control.selected_lang)
-    return render_template("community.html",user=current_user,labels=labels)
+    return render_template("community/community.html",user=current_user,labels=labels)
