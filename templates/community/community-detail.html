@@ -164,21 +164,21 @@
             <div class="post-footer">
                 <div class="footer-item like-btn" id="likeBtn">
                     <img src="..\static\like.png" alt="Like Icon">
-                    <span>Like {{comm_post.number_like}}</span>
+                    <span>{{ labels['Like'] }} {{comm_post.number_like}}</span>
                 </div>
                 <div class="footer-item comments-btn">
                     <img src="..\static\comment.png" alt="Comments Icon">
-                    <span>Comments {{comm_post.number_comments}}</span>
+                    <span>{{ labels['Comments'] }} {{comm_post.number_comments}}</span>
                 </div>
                 {% if comm_post.writer_id != user.id %}
                 <div class="footer-item reply-btn" id="Message-btn">
                     <img src="..\static\reply.png" alt="Reply Icon" href="messages/room/redirect?uid1={{user.id}}&uid2={{comm_post.writer_id}}">
-                    <span>Message</span>
+                    <span>{{ labels['Message'] }}</span>
                 </div>
                 {% endif%}
             </div>
             <div class="reply-section">
-                <input type="text" class="reply-input" placeholder="Write a comment..." id="comment_input">
+                <input type="text" class="reply-input" placeholder="{{ labels['Comment_placeholder'] }}" id="comment_input">
             </div>
             <div class="comments-section" id="comments_section">
                 {% if comm_comment[0] %}
@@ -194,7 +194,7 @@
                     </div>
                     {% endfor %}
                 {% else %}
-                <div class="no-post">아직 작성된 댓글이 없습니다.</div>
+                <div class="no-post">{{ labels['No_Comment'] }}</div>
                 {% endif %}
             </div>
         </div>

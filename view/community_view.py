@@ -59,7 +59,7 @@ def comm_detail():
 @community_view.route("/community/add-post", methods = ['GET', 'POST'])
 @login_required
 def comm_post():
-    labels = lang_control.load_lang_dict("add-post",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("community",lang_control.selected_lang)
 
     community_id = request.args.get('id')
     if not community_id:

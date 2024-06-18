@@ -1,9 +1,37 @@
 {
     "en":{
-
+        "My_Community":"My Community",
+        "Members":"Members",
+        "Suggested":"Suggested",
+        "Join":"Join",
+        "Alert_Error":"An unexpected error occurred while participating in the community.",
+        "Alert_Success":"You have joined community.",
+        "Leave_Community":"Leave Community",
+        "No_Post":"There's nothing written in the community yet!",
+        "Like":"Like",
+        "Comments":"Comments",
+        "Message":"Message",
+        "Comment_placeholder":"Write a comment...",
+        "No_Comment":"No comments have been written yet.",
+        "Add_Post_desc":"Write a Post",
+        "Submit":"Submit"
     },
     "ko":{
-        
+        "My_Community":"가입한 커뮤니티",
+        "Members":"멤버 수",
+        "Suggested":"커뮤니티 추천",
+        "Join":"참가",
+        "Alert_Error":"커뮤니티 참가 중 예기치 않은 오류가 발생하였습니다.",
+        "Alert_Success":"커뮤니티에 참가하였습니다.",
+        "Leave_Community":"커뮤니티 떠나기",
+        "No_Post":"아직 커뮤니티에 작성된 글이 없어요!",
+        "Like":"좋아요",
+        "Comments":"댓글",
+        "Message":"메세지 보내기",
+        "Comment_placeholder":"댓글을 작성해주세요",
+        "No_Comment":"아직 작성된 댓글이 없습니다.",
+        "Add_Post_desc":"글 작성하기",
+        "Submit":"글쓰기"
     }
 
 }

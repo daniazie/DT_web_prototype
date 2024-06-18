@@ -148,23 +148,23 @@
     <main>
         <div class="row-container">
             <section class="joined-communities">
-                <h2>My Community</h2>
+                <h2>{{ labels['My_Community'] }}</h2>
                 {% for i in my_comm_list%}
                 <div class="community" onclick="window.location.href='/community/comm?id={{i.community_id}}'">
                     <h3 class="community-name">{{i.community_name}}</h3>
-                    <span class="members-count"><strong>Members : </strong>{{i.number_members}}</span>
+                    <span class="members-count"><strong>{{ labels['Members'] }} : </strong>{{i.number_members}}</span>
                     <p>{{i.community_desc}}</p>
                 </div>
                 {% endfor %}
             </section>
             <section class="suggested-communities">
-                <h2>Suggested</h2>
+                <h2>{{ labels['Suggested'] }}</h2>
                 {% for i in sug_comm_list%}
                 <div class="community">
                     <h3 class="community-name">{{i.community_name}}</h3>
                     <p>{{i.community_desc}}</p>
-                    <span class="members-count"><strong>Members : </strong>{{i.number_members}}</span>
-                    <button class="join-btn" onclick="window.location.href='/community/join?id={{i.community_id}}'">Join</button>
+                    <span class="members-count"><strong>{{ labels['Members'] }} : </strong>{{i.number_members}}</span>
+                    <button class="join-btn" onclick="window.location.href='/community/join?id={{i.community_id}}'">{{ labels['Join'] }}</button>
                 </div>
                 {% endfor %}
                 </div>

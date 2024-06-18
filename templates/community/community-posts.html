@@ -169,7 +169,7 @@
 <body>
     <div class="h1">
         <h2>{{comm.community_name}}</h2>
-        <button class="leave-btn">Leave Community</button>
+        <button class="leave-btn">{{ labels['Leave_Community'] }}</button>
     </div>
     <div class="container">
         <div class="btn-container">
@@ -197,7 +197,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <div class="no-post">아직 커뮤니티에 작성된 글이 없어요!</div>
+            <div class="no-post">{{ labels['No_Post'] }}</div>
         {% endif %}
         </div>
         <div class="pagination">
