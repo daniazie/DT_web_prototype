@@ -11,7 +11,6 @@ def load_lang_dict(page_name,lang):
             data.update(json.load(file)[lang])
         with open(path.format(page_name), 'r', encoding='UTF8') as file:
             data.update(json.load(file)[lang])
-        print(data)
         return data
     except Exception as e :
         print(e)
