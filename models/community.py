@@ -38,11 +38,26 @@ class Community_post:
         self.__c_post_id = c_post_id
 
     @property
-    def writer(self):
-        return self.__writer
-    @writer.setter
-    def writer(self,writer):
-        self.__writer = writer
+    def community_id(self):
+        return self.__community_id
+    @community_id.setter
+    def community_id(self,community_id):
+        self.__community_id = community_id
+
+
+    @property
+    def writer_id(self):
+        return self.__writer_id
+    @writer_id.setter
+    def writer_id(self,writer_id):
+        self.__writer_id = writer_id
+
+    @property
+    def writer_name(self):
+        return self.__writer_name
+    @writer_name.setter
+    def writer_name(self,writer_name):
+        self.__writer_name = writer_name
 
     @property
     def date(self):
@@ -52,6 +67,13 @@ class Community_post:
         self.__date = date
 
     @property
+    def content(self):
+        return self.__content
+    @content.setter
+    def content(self,content):
+        self.__content = content
+
+    @property
     def number_like(self):
         return self.__number_like
     @number_like.setter
@@ -59,21 +81,35 @@ class Community_post:
         self.__number_like = number_like
 
     @property
-    def content(self):
-        return self.__content
-    @content.setter
-    def content(self,content):
-        self.__content = content
+    def number_comments(self):
+        return self.__number_comments
+    @number_comments.setter
+    def number_comments(self,number_comments):
+        self.__number_comments = number_comments
 
 #=========================================================
 
 class Community_post_comment:
     @property
-    def writer(self):
-        return self.__writer
-    @writer.setter
-    def writer(self,writer):
-        self.__writer = writer
+    def c_post_id(self):
+        return self.__c_post_id
+    @c_post_id.setter
+    def c_post_id(self,c_post_id):
+        self.__c_post_id = c_post_id
+
+    @property
+    def writer_id(self):
+        return self.__writer_id
+    @writer_id.setter
+    def writer_id(self,writer_id):
+        self.__writer_id = writer_id
+
+    @property
+    def writer_name(self):
+        return self.__writer_name
+    @writer_name.setter
+    def writer_name(self,writer_name):
+        self.__writer_name = writer_name
 
     @property
     def date(self):
@@ -88,3 +124,4 @@ class Community_post_comment:
     @comment.setter
     def comment(self,comment):
         self.__comment = comment
+

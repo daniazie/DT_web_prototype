@@ -193,7 +193,7 @@
 {% else %}
     <script>
         send_message.onclick = function() {
-            location.href = "messages/room/redirect?uid1={{user.id}}&uid2={{post.writer}}";
+            location.href = "messages/room/redirect?uid1={{user.id}}&uid2={{post.writer_id}}";
         }
     </script>
 {% endif %}

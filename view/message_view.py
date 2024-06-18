@@ -28,14 +28,13 @@ def home():
 @message_view.route("/messages/room/redirect")
 @login_required
 def redirect_chat():
-    labels = lang_control.load_lang_dict("messages",lang_control.selected_lang)
     user1_id = request.args.get("uid1")
     user2_id = request.args.get("uid2")
     if user1_id == user2_id:
         return redirect("/messages")
 
     thread_id = messages_control.get_thread_id(user1_id,user2_id)
-    return redirect("/messages/room?id={0}".format(thread_id),labels=labels)
+    return redirect("/messages/room?id={0}".format(thread_id))
 
 @message_view.route("/messages/room")
 @login_required

@@ -1,0 +1,281 @@
+{% extends 'base/base-login.html' %}
+
+{% block head %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #fefbea;
+    }
+
+    .h1 {
+        background-color: #deddc6;
+        width: 150px;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .h2 {
+        margin: 0;
+        color: rgb(0, 0, 0);
+        font-size: 2rem;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 10px 20px 20px;
+        padding: 20px;
+        width: 35vw;
+        min-width: 400px;
+    }
+
+    .post {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .profile-picture {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .post-id {
+        font-weight: bold;
+    }
+
+    .post-body {
+        margin-bottom: 10px;
+        margin-right: 35px;
+    }
+
+    .post-footer {
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        gap: 10px;
+    }
+
+    .footer-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: #deddc6;
+        border-radius: 5px;
+        flex: 1;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .footer-item img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .comments-section, .reply-section {
+        display: none;
+        background-color: #f9f9f9;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .comment {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    .reply-input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .comment-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .comment-body {
+        margin-bottom: 10px;
+        margin-right: 35px;
+    }
+
+    .comment-id {
+        font-weight: bold;
+    }
+
+    .no-post{
+        font-size: medium;
+        font-weight: 400;
+        text-align: center;
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <div class="h1">
+        <h2>{{comm.community_name}}</h2>
+    </div>
+    <div class="container">
+        <div class="post">
+            <div class="post-header">
+                <img src="..\static\profile.png" alt="Profile Picture" class="profile-picture">
+                <span class="post-id">{{comm_post.writer_name}}</span>
+            </div>
+            <div class="post-body">
+                {{comm_post.content}}
+            </div>
+            <div class="post-footer">
+                <div class="footer-item like-btn" id="likeBtn">
+                    <img src="..\static\like.png" alt="Like Icon">
+                    <span>Like {{comm_post.number_like}}</span>
+                </div>
+                <div class="footer-item comments-btn">
+                    <img src="..\static\comment.png" alt="Comments Icon">
+                    <span>Comments {{comm_post.number_comments}}</span>
+                </div>
+                {% if comm_post.writer_id != user.id %}
+                <div class="footer-item reply-btn" id="Message-btn">
+                    <img src="..\static\reply.png" alt="Reply Icon" href="messages/room/redirect?uid1={{user.id}}&uid2={{comm_post.writer_id}}">
+                    <span>Message</span>
+                </div>
+                {% endif%}
+            </div>
+            <div class="reply-section">
+                <input type="text" class="reply-input" placeholder="Write a comment..." id="comment_input">
+            </div>
+            <div class="comments-section" id="comments_section">
+                {% if comm_comment[0] %}
+                    {% for i in comm_comment %}
+                    <div class="comment">
+                        <div class="comment-header">
+                            <img src="..\static\profile.png" alt="Profile Picture" class="profile-picture">
+                            <span class="comment-id">{{i.writer_name}}</span>
+                        </div>
+                        <div class="comment-body">
+                            {{i.comment}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="no-post">아직 작성된 댓글이 없습니다.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+{% if comm_post.writer != user.id %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const messageBtn = document.getElementById('Message-btn');
+        messageBtn.addEventListener('click', () => {
+            location.href = "/messages/room/redirect?uid1={{user.id}}&uid2={{comm_post.writer_id}}";
+        });
+    });
+</script>
+{% endif %}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+    socket_comm = io();
+    document.addEventListener('DOMContentLoaded', () => {
+        const commentsBtns = document.querySelectorAll('.comments-btn');
+        const like_Btn = document.getElementById("likeBtn");
+
+        commentsBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                const replySection = document.querySelectorAll('.reply-section')[index];
+                const commentsSection = document.querySelectorAll('.comments-section')[index];
+                replySection.style.display = replySection.style.display === 'block' ? 'none' : 'block';
+                commentsSection.style.display = commentsSection.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        like_Btn.addEventListener('click', () => {
+            socket_comm.emit('c_post_like', { 
+                c_post_id : '{{ comm_post.c_post_id }}',
+                writer_id : '{{ user.id }}'
+            });
+        });
+
+        document.querySelectorAll('.reply-input').forEach((input, index) => {
+            input.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    if (input.value !== ""){
+                        socket_comm.emit('c_post_comment', { 
+                            c_post_id : '{{ comm_post.c_post_id }}',
+                            comment : input.value,
+                            writer_id : '{{ user.id }}',
+                            writer_name : '{{ user.name }}'
+                        });
+                        input.value = "";
+                    }
+                }
+            });
+        });
+    });
+
+    socket_comm.on('c_post_comment_response', (newmsg) => {
+        const commentSection = document.getElementById('comments_section');
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+        commentElement.innerHTML = `
+                <div class="comment-header">
+                    <img src="..\\static\\profile.png" alt="Profile Picture" class="profile-picture">
+                        <span class="comment-id">${newmsg.writer_name}</span>
+                        </div>
+                    <div class="comment-body">
+                            ${newmsg.comment}
+                        </div>
+            `;
+
+        const firstChild = commentSection.firstChild;
+        commentSection.insertBefore(commentElement, firstChild);
+    });
+
+    socket_comm.on('c_post_like_response', (newmsg) => {
+        console.log("asdfasdf")
+        location.reload();
+    });
+</script>
+
+{% endblock %}
+
+</html>
