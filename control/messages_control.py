@@ -126,15 +126,15 @@ def get_timestamp(thread_id, message):
 
 def get_thread_id(user1_id, user2_id):
     con = db.DataBase()
-    query = "SELECT * FROM Message_thread WHERE user1_id = '%s'" % (user1_id)
-    result = con.execute_select_all(query)
+    query = "SELECT * FROM Message_thread WHERE (user1_id = '{0}' AND user2_id = '{1}')\
+    OR (user1_id = '{1}' AND user2_id = '{0}')".format(user1_id, user2_id)
+    result = con.execute_select_one(query)
+    print(result)
     
-    for i in result:
-        if i['user2_id'] == user2_id:
-            return i['thread_id']
-        
-    thread_id = __make_new_thread(user1_id, user2_id)
-    return thread_id
+    if result:
+        return result['thread_id']
+    else:
+        return __make_new_thread(user1_id, user2_id)
 
 def is_in_thread(thread_id,user_id):
     con = db.DataBase()
