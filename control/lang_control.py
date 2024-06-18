@@ -1,5 +1,6 @@
 import json
 from models.socketio import socketio
+from flask import request
 
 selected_lang = "en"
 
@@ -20,4 +21,4 @@ def load_lang_dict(page_name,lang):
 def lang_selected(data):
     global selected_lang
     selected_lang = data.get("lang")
-    socketio.emit("lang_selected_response","")
+    socketio.emit("lang_selected_response","",to=request.sid)
