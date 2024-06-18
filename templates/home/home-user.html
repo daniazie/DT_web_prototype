@@ -153,6 +153,12 @@
         background-color: #45a049;
     }
 
+    h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        color: #4CAF50;
+    }
+
     @media (max-width: 768px) {
         .content {
             flex-direction: column;
@@ -215,46 +221,32 @@
             </section>
             <section class="my-community">
                 <h2>{{ labels['My_Community'] }}</h2>
-                <div class="community">
+                {% for i in my_comm_list %}
+                <div class="community" onclick="window.location.href='/community/comm?id={{i.community_id}}'">
                     <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community1</strong></p>
+                        <h3>{{ i.community_name }}</h3>
                     </div>
-                    <p>body text</p>
+                    <p>{{ i.community_desc[:50] }}</p>
                 </div>
-                <div class="community">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community2</strong></p>
-                    </div>
-                    <p>body text</p>
-                </div>
+                {% endfor %}
                 <a href="/community">
-                    <button>See More</button>
+                    <button>{{ labels['See_More'] }}</button>
                 </a>
+
                 <h2>{{labels['Suggested_Community']}}</h2>
-                <div class="community">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community3</strong></p>
+                {% for i in sug_comm_list %}
+                    <div class="community">
+                        <div class="post-header">
+                            <h3>{{ i.community_name }}</h3>
+                        </div>
+                        <p>{{ i.community_desc[:50] }}</p>
+                        <a href="/community/join?id={{i.community_id}}">
+                            <button>{{ labels['Join'] }}</button>
+                        </a>
                     </div>
-                    <p>body text</p>
-                    <a href="/community">
-                        <button>Join</button>
-                    </a>
-                </div>
-                <div class="community">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community4</strong></p>
-                    </div>
-                    <p>body text</p>
-                    <a href="/community">
-                        <button>Join</button>
-                    </a>
-                </div>
+                {% endfor %}
                 <a href="/community">
-                    <button>See More</button>
+                    <button>{{ labels['See_More'] }}</button>
                 </a>
             </section>
         </div>

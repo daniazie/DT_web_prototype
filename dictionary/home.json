@@ -2,11 +2,15 @@
     "en" : {
         "Recent_Posts":"Recent Posts",
         "My_Community":"My Communities",
-        "Suggested_Community":"Suggested Communities"
+        "Suggested_Community":"Suggested Communities",
+        "Join":"Join",
+        "See_More":"See More"
     },
     "ko" : {
         "Recent_Posts":"최근 올라온 글",
         "My_Community":"가입한 커뮤니티",
-        "Suggested_Community":"커뮤니티 추천"
+        "Suggested_Community":"커뮤니티 추천",
+        "Join":"참가",
+        "See_More":"더보기"
     }
 }
