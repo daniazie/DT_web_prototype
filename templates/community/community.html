@@ -181,7 +181,7 @@
         {
             switch ('{{message}}') {
             case "ERR_CODE:FAILED_TO_JOIN_COMM":
-                alert("커뮤니티 참가 중 예기치 않은 오류가 발생하였습니다.")
+                alert("{{ labels['Alert_Error'] }}")
                 break;
             
             default:
@@ -191,8 +191,12 @@
         else if ('{{category}}' === "success")
         {
             switch ('{{message}}') {
-            case "SUC_CODE:POST_UPLOADED":
-                alert("커뮤니티에 참가하였습니다.")
+            case "SUC_CODE:JOINED_COMM":
+                alert("{{ labels['Alert_Success_Join'] }}")
+                break;
+
+                case "SUC_CODE:LEAVED_COMM":
+                alert("{{ labels['Alert_Success_Leave'] }}")
                 break;
             
             default:
@@ -204,11 +208,7 @@
     {% endif %}
     {% endwith %}
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
 <script>
-
-    socket = io();
-
 </script>
 
 {% endblock %}

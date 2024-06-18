@@ -88,12 +88,20 @@ def comm_post():
 def comm_join():
     community_id = request.args.get('id')
     if community_control.join_community(community_id,current_user.id):
-        flash("SUC_CODE:POST_UPLOADED", category='success')
+        flash("SUC_CODE:JOINED_COMM", category='success')
     else:
         flash("ERR_CODE:FAILED_TO_JOIN_COMM", category='error')
 
     return redirect("/community")
 
+@community_view.route("/community/leave")
+@login_required
+def comm_leave():
+    community_id = request.args.get('id')
+    if community_control.leave_community(community_id,current_user.id):
+        flash("SUC_CODE:LEAVED_COMM", category='success')
+
+    return redirect("/community")
 
 @socketio.on("c_post_like")
 def post_like(data):

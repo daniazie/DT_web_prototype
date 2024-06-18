@@ -169,7 +169,7 @@
 <body>
     <div class="h1">
         <h2>{{comm.community_name}}</h2>
-        <button class="leave-btn">{{ labels['Leave_Community'] }}</button>
+        <button class="leave-btn" onclick=leave_comm()>{{ labels['Leave_Community'] }}</button>
     </div>
     <div class="container">
         <div class="btn-container">
@@ -213,6 +213,14 @@
         </div>
     </div>
 </body>
+
+<script>
+    function leave_comm(){
+        if (confirm('{{ labels["Leave_Community_confirm"] }}')) {
+            window.location.href='/community/leave?id={{comm.community_id}}'
+        }
+    }
+</script>
 
 {% endblock %}
 
