@@ -17,7 +17,7 @@
     .main-content {
         display: flex;
         flex-direction: column;
-        width: calc(100% - 150px);
+        width: calc(65% - 150px);
         padding: 5px;
     }
 
@@ -32,6 +32,7 @@
         padding: 10px;
         margin: 10px;
         box-sizing: border-box;
+        width: 10vw;
         min-width: 300px;
     }
 
@@ -212,32 +213,6 @@
                         </div>
                     </article>
                 {% endfor %}
-            </section>
-            <section class="my-community">
-                <h2>{{ labels['My_Community'] }}</h2>
-                <div class="community">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community1</strong></p>
-                    </div>
-                    <p>body text</p>
-                    <a href="/community">
-                        <button>Join</button>
-                    </a>
-                </div>
-                <div class="community">
-                    <div class="post-header">
-                        <img src="..\static\profile.png" alt="Profile Picture" class="profile-pic">
-                        <p><strong>community2</strong></p>
-                    </div>
-                    <p>body text</p>
-                    <a href="/community">
-                        <button>Join</button>
-                    </a>
-                </div>
-                <a href="/community">
-                    <button>See More</button>
-                </a>
             </section>
         </div>
     </div>

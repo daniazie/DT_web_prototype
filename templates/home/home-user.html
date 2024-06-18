@@ -220,19 +220,20 @@
                 {% endfor %}
             </section>
             <section class="my-community">
-                <h2>{{ labels['My_Community'] }}</h2>
-                {% for i in my_comm_list %}
-                <div class="community" onclick="window.location.href='/community/comm?id={{i.community_id}}'">
-                    <div class="post-header">
-                        <h3>{{ i.community_name }}</h3>
+                {% if my_comm_list[0] %}
+                    <h2>{{ labels['My_Community'] }}</h2>
+                    {% for i in my_comm_list %}
+                    <div class="community" onclick="window.location.href='/community/comm?id={{i.community_id}}'">
+                        <div class="post-header">
+                            <h3>{{ i.community_name }}</h3>
+                        </div>
+                        <p>{{ i.community_desc[:50] }}</p>
                     </div>
-                    <p>{{ i.community_desc[:50] }}</p>
-                </div>
-                {% endfor %}
-                <a href="/community">
-                    <button>{{ labels['See_More'] }}</button>
-                </a>
-
+                    {% endfor %}
+                    <a href="/community">
+                        <button>{{ labels['See_More'] }}</button>
+                    </a>
+                {% endif %}
                 <h2>{{labels['Suggested_Community']}}</h2>
                 {% for i in sug_comm_list %}
                     <div class="community">
