@@ -334,7 +334,7 @@
     <div class="recent-posts">
         <h1>{{ labels['Recent_Posts'] }}</h1>
         <img src="../static/add.png" alt="Add Post Icon" class="add-post-icon" id="addPostBtn">
-        <img src="../static/filter.png" alt="Filter Icon" class="filter-icon" id="filterBtn">
+        <!--<img src="../static/filter.png" alt="Filter Icon" class="filter-icon" id="filterBtn">-->
         <div class="posts-container">
             <!-- Example post -->
             {% for post in post_list %}
@@ -342,7 +342,7 @@
                 <div class="post-header">
                     <img src="../static/profile.png" alt="Profile Picture" class="profile-pic">
                     <p><strong>{{post.writer_name}}</strong></p>
-                    <img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">
+                    <!--<img src="../static/star.png" alt="Favorite Icon" class="favorite-icon">-->
                 </div>
                 <div class="post-body1">
                     <div class="post-content">
@@ -363,7 +363,7 @@
                             <p>{{post.job_info.lang_level}}</p>
                         </div>
                     </div>
-                    <img src="../static/blank.png" alt="Medium Picture" class="medium-pic">
+                    <!--<img src="../static/blank.png" alt="Medium Picture" class="medium-pic">-->
                 </div>
             </article>
             {% endfor %}

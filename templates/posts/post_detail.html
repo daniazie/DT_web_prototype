@@ -147,8 +147,8 @@
                 {% if user.id != post.writer_id %}
                 <button class="message-btn" id="send_message">Message</button>
                 {% endif %}
-                <img src="../static/star.png" alt="Favorite" class="favorite-icon">
-                <img src="../static/globe.png" alt="Translate" id="openTranslationPopup" class="translate-icon">
+                <!--<img src="../static/star.png" alt="Favorite" class="favorite-icon">
+                <img src="../static/globe.png" alt="Translate" id="openTranslationPopup" class="translate-icon">-->
                 {% if user.id == post.writer_id %}
                 <img src="../static/delete.png" alt="Delete" id="post-delete" class="delete-icon">
                 {% endif %}
@@ -173,7 +173,7 @@
                     <span>{{post.job_info.lang_level}}</span>
                 </div>
             </div>
-            <img src="../static/blank.png" alt="Image" class="pict-attached">
+            <!--<img src="../static/blank.png" alt="Image" class="pict-attached">-->
         </div>  
         <div class="body-text">
             <p>{{post_content.content}}</p>
