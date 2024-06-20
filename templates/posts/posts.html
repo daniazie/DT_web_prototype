@@ -356,7 +356,7 @@
                         </div>
                         <div class="icon-text">
                             <img src="../static/dollar.png" alt="Icon" class="small-icon">
-                            <p>{{post.job_info.pay_formatted}}원 / {{post.job_info.time_unit}}</p>
+                            <p>{{post.job_info.pay_formatted}} {{ labels['Won'] }} / {{post.job_info.time_unit}}</p>
                         </div>
                         <div class="icon-text">
                             <img src="../static/globe.png" alt="Icon" class="small-icon">
@@ -462,7 +462,7 @@
             switch ('{{message}}') {
             // post deatil에서 발생한 메세지
             case "ERR_CODE:FAILED_TO_DELETE_POST":
-                alert("글 삭제 중 예기치 않은 오류가 발생하여 삭제하지 못 하였습니다.")
+                alert("{{ labels['Error_Delete_Post']}}")
                 break;
             
             default:
@@ -474,11 +474,11 @@
             switch ('{{message}}') {
             // post add에서 발생한 메세지
             case "SUC_CODE:POST_UPLOADED":
-                alert("글이 정상적으로 업로드되었습니다.")
+                alert("{{ labels['Success_Post_Uploaded']}}")
                 break;
             // post deatil에서 발생한 메세지
             case "SUC_CODE:POST_DELETED":
-                alert("글이 정상적으로 삭제되었습니다.")
+                alert("{{ labels['Success_Post_Deleted']}}")
                 break;
             
             default:

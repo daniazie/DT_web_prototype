@@ -184,7 +184,7 @@
 {% if user.id == post.writer_id %}
     <script>
         document.getElementById('post-delete').addEventListener('click', () => {
-            const result = confirm("정말로 삭제하시겠습니까?");
+            const result = confirm("{{ labels['Confirm_Delete'] }}");
             if (result) {
                 location.href = "post_detail/delete?post_id={{post.post_id}}";
             }

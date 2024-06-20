@@ -26,6 +26,7 @@
         "Others": "Others",
         "From": "From",
         "To": "To",
+        "Won":"Won",
         "Place": "Place:",
         "Language": "Language:",
         "English": "English",
@@ -34,7 +35,8 @@
         "Apply_Filter": "Apply",
         "Error_Delete_Post": "An unexpected error occurred while deleting the post.",
         "Success_Post_Uploaded": "The post has been uploaded successfully.",
-        "Success_Post_Deleted": "The post has been deleted successfully."
+        "Success_Post_Deleted": "The post has been deleted successfully.",
+        "Confirm_Delete" : "Are you sure you want to delete?"
     },
     "ko": {
         "Recent_Posts": "최근 올라온 글",
@@ -63,6 +65,7 @@
         "Others": "기타",
         "From": "부터",
         "To": "까지",
+        "Won":"원",
         "Place": "장소:",
         "Language": "언어:",
         "English": "영어",
@@ -71,6 +74,7 @@
         "Apply_Filter": "적용",
         "Error_Delete_Post": "글 삭제 중 예기치 않은 오류가 발생하여 삭제하지 못 하였습니다.",
         "Success_Post_Uploaded": "글이 정상적으로 업로드되었습니다.",
-        "Success_Post_Deleted": "글이 정상적으로 삭제되었습니다."
+        "Success_Post_Deleted": "글이 정상적으로 삭제되었습니다.",
+        "Confirm_Delete" : "정말로 삭제하시겠습니까?"
     }
 }

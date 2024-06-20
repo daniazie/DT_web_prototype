@@ -102,7 +102,7 @@
 <body>
     <div class="profile">
         <div class="profile-container">
-            <h1>My Profile</h1>
+            <h1>{{ labels['My_Profile'] }}</h1>
             <img src="..\static\blank.png" alt="Profile Photo">
             <h2>{{user.name}}</h2>
             <p>{{user.country}}</p>
@@ -113,7 +113,7 @@
                 <label for="gender">{{ labels['Gender'] }}</label><span class="colon">:</span><span class="t1">{{user.gender}}</span>
             </div>
             <div class="element">
-                <label for="language">{{ labels['Language'] }}</label><span class="colon">:</span><span class="t1">{{lang}}</span>
+                <label for="language">{{ labels['Language'] }}</label><span class="colon">:</span><span class="t1">{{user.language}}</span>
             </div>
             <div class="element">
                 <label for="city">{{ labels['City'] }}</label><span class="colon">:</span><span class="t1">{{user.city}}</span>
