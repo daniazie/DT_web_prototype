@@ -19,8 +19,8 @@
       "Suwon": "Suwon",
       "Incheon": "Incheon",
       "Create": "Create",
-      "Alert_Error":"An unexpected error occurred during registration.\nReturns to the previous page.",
-      "Alert_Success":"You have successfully registered.\n Redirecting to the login page."
+      "Alert_Error":"An unexpected error occurred during registration. Returns to the previous page.",
+      "Alert_Success":"You have successfully registered. Redirecting to the login page."
   },
   "ko": {
       "Create_Profile": "프로필 만들기",
@@ -42,7 +42,7 @@
       "Suwon": "수원",
       "Incheon": "인천",
       "Create": "만들기",
-      "Alert_Error":"회원가입 진행 중 예기치 않은 오류가 발생했습니다.\n이전 페이지로 돌아갑니다.",
-      "Alert_Success":"회원가입을 완료했습니다.\n 로그인 페이지로 이동합니다."
+      "Alert_Error":"회원가입 진행 중 예기치 않은 오류가 발생했습니다. 이전 페이지로 돌아갑니다.",
+      "Alert_Success":"회원가입을 완료했습니다. 로그인 페이지로 이동합니다."
   }
 }
