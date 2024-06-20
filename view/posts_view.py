@@ -10,7 +10,7 @@ _MAX_POST_IN_SINGLE_PAGE = 6
 @login_required
 def posts():
     labels = lang_control.load_lang_dict("posts")
-    page_max = post_control.count_post() // _MAX_POST_IN_SINGLE_PAGE + 1
+    page_max = (post_control.count_post()-2) // _MAX_POST_IN_SINGLE_PAGE + 1
     current_page = int(request.args.get('pages',1))
     post_list = post_control.pull_post_from_db_rows(
         _MAX_POST_IN_SINGLE_PAGE, 

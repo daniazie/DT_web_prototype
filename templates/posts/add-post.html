@@ -282,14 +282,14 @@
             // is Number test
             var numberPattern = /^\d+$/;
             if (!numberPattern.test(payrate)){
-                alert("labels['Alerts_Invalid_Payrate']");
+                alert("{{labels['Alerts_Invalid_Payrate']}}");
                 return;
             }
 
             // is right time pattern
             var timeFormat = /^([01]\d|2[0-3]):([0-5]\d)$/;
             if (!timeFormat.test(work_start) || !timeFormat.test(work_end)){
-                alert("labels['Alerts_Invalid_Time_Format']");
+                alert("{{labels['Alerts_Invalid_Time_Format']}}");
                 return;
             }
             input_form.submit();
