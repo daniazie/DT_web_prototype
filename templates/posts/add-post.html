@@ -149,10 +149,12 @@
             <h1>{{ labels['Create_Post'] }}</h1>
         </div>
         <form name="input_form" method="POST">
+            <!--
             <div class="form-group">
                 <label for="picture">{{ labels['Picture'] }}</label>
                 <input type="file" id="picture" name="picture">
             </div>
+            -->
             <div class="form-group">
                 <label for="shop-name">{{ labels['Name_of_Shop'] }}</label>
                 <input type="text" id="shop-name" name="shop-name">
@@ -218,7 +220,7 @@
           {
             switch ('{{message}}') {
               case "ERR_CODE:FAILED_TO_PUSH_DB":
-                alert("{{labels['Alerts_Invalid_Payrate']}}")
+                alert("{{labels['Alerts_Failed_to_Upload']}}")
                 break;
 
               default:
