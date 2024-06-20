@@ -55,3 +55,7 @@ class DataBase:
         except Exception as e:
             print(e)
             return False, e
+
+def add_escape(st):
+    temp = st.replace("'","\\'")
+    return temp.replace('"','\\"')

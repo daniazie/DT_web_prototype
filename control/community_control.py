@@ -143,7 +143,8 @@ def push_community_post(data):
     sql = "INSERT INTO Community_post(community_id, writer_id, writer_name, content)\
         VALUE ({0},'{1}','{2}','{3}')"
     result, e = con.execute_with_commit(sql.format(data.community_id, data.writer_id,
-                                                   data.writer_name, data.content))
+                                                   db.add_escape(data.writer_name),
+                                                   db.add_escape(data.content)))
     print(e)
 
     return result
@@ -185,5 +186,6 @@ def push_community_post_comment(data):
     sql = "INSERT INTO Community_post_comment(c_post_id, writer_id, writer_name, comment)\
         VALUE ({0},'{1}','{2}','{3}')"
     result, e = con.execute_with_commit(sql.format(data.c_post_id, data.writer_id,
-                                                   data.writer_name, data.comment))
+                                                   db.add_escape(data.writer_name),
+                                                   db.add_escape(data.comment)))
     return result

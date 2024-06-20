@@ -98,8 +98,8 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
          VALUE({0},'{1}','{2}','{3}')".format(
             _post.type,
             _post.writer_id,
-            _post.preview,
-            _post.writer_name
+            db.add_escape(_post.preview),
+            db.add_escape(_post.writer_name)
         )
     result, e = con.execute_with_commit(sql_post_head)
     if not result:
@@ -107,7 +107,7 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
         return result
 
     post_id = con.execute_select_one("SELECT post_id FROM Posts_head WHERE writer_id='{0}' and preview='{1}'"
-                                    .format(_post.writer_id,_post.preview))
+                                    .format(_post.writer_id,db.add_escape(_post.preview)))
 
     if post_id != None:
         post_id = post_id['post_id']
@@ -115,14 +115,15 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
             working_hours,lang_level,working_days,workplace)\
              VALUE({0},'{1}',{2},'{3}','{4}','{5}','{6}','{7}')".format(
                 post_id,
-                _post.job_info.location,
+                db.add_escape(_post.job_info.location),
                 _post.job_info.pay,
                 _post.job_info.time_unit,
                 _post.job_info.working_hours,
                 _post.job_info.lang_level,
                 _post.job_info.working_days,
-                _post.job_info.workplace
+                db.add_escape(_post.job_info.workplace)
              )
+        print()
         result, e = con.execute_with_commit(sql_post_job)
         if not result:
             print(e)
@@ -131,7 +132,7 @@ def push_post_to_db(_post: post.Post, post_content: post.Post_content):
         sql_post_content = "INSERT INTO Posts_content(post_id,content,origin,language,contributer)\
              VALUE({0},'{1}',{2},'{3}','{4}')".format(
                 post_id,
-                post_content.content,
+                db.add_escape(post_content.content),
                 post_content.origin,
                 post_content.language,
                 post_content.contributer

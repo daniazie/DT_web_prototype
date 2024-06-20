@@ -60,9 +60,9 @@ def push_user_info_to_db(user_info):
                     websocket_id='{8}'
                  WHERE id='{0}'""".format(
             user_info.id,
-            user_info.password,
-            user_info.name,
-            user_info.email,
+            db.add_escape(user_info.password),
+            db.add_escape(user_info.name),
+            db.add_escape(user_info.email),
             user_info.country,
             user_info.gender,
             language.convert_lang_to_code(user_info.language),
@@ -73,9 +73,9 @@ def push_user_info_to_db(user_info):
         sql = "INSERT INTO dt.User (id, password, name, email, country, gender, language, city, websocket_id) \
         VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}', '{8}')".format(
             user_info.id,
-            user_info.password,
-            user_info.name,
-            user_info.email,
+            db.add_escape(user_info.password),
+            db.add_escape(user_info.name),
+            db.add_escape(user_info.email),
             user_info.country,
             user_info.gender,
             language.convert_lang_to_code(user_info.language),

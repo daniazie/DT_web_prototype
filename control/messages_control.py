@@ -53,7 +53,7 @@ def count_unread_messages(user_id,thread_id=None):
 def push_messages_to_db(data):
     con = db.DataBase()
     sql = "INSERT INTO Messages (sender_id, recipient_id, message, thread_id) VALUES ('%s', '%s', '%s', '%s')"
-    values = (data.sender_id, data.recipient_id, data.message, data.thread_id)
+    values = (data.sender_id, data.recipient_id, db.add_escape(data.message), data.thread_id)
     result, _ = con.execute_with_commit(sql % values)
     return result
 
