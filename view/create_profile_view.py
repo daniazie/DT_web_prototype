@@ -21,7 +21,6 @@ def singup():
         flash("ERR_CODE:USER_INFO_LOST",category="error")
         return redirect("/signup")
 
-
     if request.method == "POST":
         input_name = request.form.get('name')
         input_gender = request.form.get('gender')
@@ -44,9 +43,7 @@ def singup():
         user_info.city = input_city
         user_info.websocket_id = session['user_websocket_id_temp']
         
-        flag = False
-        if flag :
-        #if not user_control.push_user_info_to_db(user_info) :
+        if not user_control.push_user_info_to_db(user_info) :
             flash("ERR_CODE:FAILED_TO_PUSH_DB",category="error")
             print("messaged")
         else:
