@@ -58,7 +58,7 @@
     }
 
     .container main {
-        margin-top: 20px;
+        margin-top: 5px;
     }
 
     .chat {
@@ -68,18 +68,19 @@
         border-bottom: 1px solid #333;
     }
 
+    .chat:hover {
+        cursor: pointer;
+        background-color: #d0cbb1;
+    }
+
     .chat .profile-pic {
         font-size: 36px;
         margin-right: 10px;
     }
 
-    .chat .chat-info {
-        flex: 1;
-    }
-
     .chat .name-time {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         margin-bottom: 5px;
     }
 
@@ -98,6 +99,43 @@
         font-size: 14px;
     }
 
+    .profile-picture {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+    }
+
+    .chat-element{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px 20px;
+    }
+
+    .chat-content{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-height: 22px;
+    }
+
+    .new-message {
+        background-color: rgb(232, 21, 21);
+        font-weight: 500;
+        border-radius: 15px;
+        border: 2px solid white;
+        margin-right: 5px;
+        padding: 2px 10px;
+        color: white;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
 </style>
 
 {% endblock %}
@@ -113,31 +151,44 @@
                 <div class="icon">🔔</div>
             </div>
         </header>
+        <!--
         <nav>
             <button class="active">All</button>
             <button>Sent</button>
             <button>Unread</button>
             <button>Archived</button>
         </nav>
+        -->
         <main>
             <!-- This part should be dynamically generated in the future -->
             {% for chat in chats %}
-            <div class="chat">
-                <a href="messages/room?id={{chat['thread_id']}}">
-                    <div class="profile-pic">👤</div>
+            <div class="chat" thread-id="{{chat['thread_id']}}" onclick="moveToRoom(this)">
+                <div class="chat-element">
+                    <img src="..\\static\\profile.png" alt="Profile Picture" class="profile-picture">
                     <div class="chat-info">
                         <div class="name-time">
                             <span class="name">{{ chat['recipient_name'] }}</span>
                             <span class="time">{{ chat['timestamp'] }}</span>
                         </div>
+                        <div class="chat-content">
+                        {% if chat['unread_messages'] > 0 %}
+                        <div class="new-message">{{ chat['unread_messages'] }}</div>
+                        {% endif %}
                         <p>{{ chat['last_message'] }}</p>
+                        </div>
                     </div>
-                </a>
+                </div>
             </div>
             {% endfor %}
         </main>
     </div>
 </body>
+
+<script>
+    function moveToRoom(element) {
+        window.location.href = "messages/room?id="+element.getAttribute('thread-id');
+    }
+    </script>
 
 {% endblock %}
 
