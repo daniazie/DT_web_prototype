@@ -8,7 +8,7 @@ post_detail_view = Blueprint("post_detail_view", __name__)
 @post_detail_view.route("/post_detail")
 @login_required
 def post_detail():
-    labels = lang_control.load_lang_dict("posts",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("posts")
     post_id = int(request.args.get('post_id',0))
     post_info = post_control.pull_post_from_db_by_postID(post_id)
     post_content = post_control.pull_content_from_db(post_id)

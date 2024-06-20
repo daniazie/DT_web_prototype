@@ -8,6 +8,6 @@ my_profile_view = Blueprint("my_profile_view", __name__)
 @my_profile_view.route("/my_profile", methods=['GET'])
 @login_required
 def home():
-    labels = lang_control.load_lang_dict("my-profile",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("my-profile")
     lang = language.convert_code_to_lang(current_user.language,type="NA")
     return render_template("my_profile/my-profile.html", user=current_user, lang=lang, labels=labels)

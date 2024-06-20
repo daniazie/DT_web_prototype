@@ -10,7 +10,7 @@ _MAX_POST_IN_SINGLE_PAGE = 6
 @community_view.route("/community")
 @login_required
 def home():
-    labels = lang_control.load_lang_dict("community",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("community")
     my_comm_list = community_control.pull_community_list_from_db(current_user.id)
     sug_comm_list = community_control.get_suggested_community_list(current_user.id,3)
 
@@ -21,7 +21,7 @@ def home():
 @login_required
 def comm():
     community_id = request.args.get('id')
-    labels = lang_control.load_lang_dict("community",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("community")
     page_max = community_control.count_post(community_id) // _MAX_POST_IN_SINGLE_PAGE + 1
     current_page = int(request.args.get('pages',1))
 
@@ -43,7 +43,7 @@ def comm():
 @community_view.route("/community/post")
 @login_required
 def comm_detail():
-    labels = lang_control.load_lang_dict("community",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("community")
 
     community_id = request.args.get('cid')
     c_post_id = request.args.get('pid')
@@ -59,7 +59,7 @@ def comm_detail():
 @community_view.route("/community/add-post", methods = ['GET', 'POST'])
 @login_required
 def comm_post():
-    labels = lang_control.load_lang_dict("community",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("community")
 
     community_id = request.args.get('id')
     if not community_id:

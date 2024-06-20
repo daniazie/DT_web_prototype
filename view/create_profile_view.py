@@ -6,7 +6,7 @@ create_profile_view = Blueprint("create_profile_view", __name__)
 
 @create_profile_view.route("/create-profile", methods = ['GET', 'POST'])
 def singup():
-    labels = lang_control.load_lang_dict("create-profile",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("create-profile")
     try:
         sessionFlag = 'user_id_temp' in session and \
         'user_email_temp'in session and \

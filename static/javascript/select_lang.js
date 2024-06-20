@@ -9,20 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     buttons.forEach(function(button) {
         button.addEventListener('click', function() {
             var buttonId = button.id.slice(-2);
-            sendButtonIdToServer(buttonId);
+            //sendButtonIdToServer(buttonId);
+            var date = new Date();
+            date.setTime(date.getTime() + (60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+            document.cookie = "selected_lang=" + buttonId + expires + "; path=/";
+            location.reload();
         });
     });
-});
-
-socket_lang = io();
-
-function sendButtonIdToServer(buttonId) {
-    socket_lang.emit('lang_selected', { 
-        lang: buttonId
-    });
-    //sleep(800).then(() => location.reload());
-}
-
-socket_lang.on('lang_selected_response', (newmsg) => {
-    location.reload()
 });

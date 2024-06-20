@@ -14,7 +14,7 @@ def on_load(state):
 
 @login_view.route("/login", methods = ['GET', 'POST'])
 def login():
-    labels = lang_control.load_lang_dict("login",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("login")
     logout_user()
     if request.method == "POST":
         user_id = request.form.get('Username')

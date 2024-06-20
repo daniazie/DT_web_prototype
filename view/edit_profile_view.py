@@ -7,7 +7,7 @@ edit_profile_view = Blueprint("edit_profile_view", __name__)
 
 @edit_profile_view.route("/edit-profile", methods = ['GET', 'POST'])
 def edit():
-    labels = lang_control.load_lang_dict("my-profile-edit",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("my-profile-edit")
     if request.method == "POST":
         input_name = request.form.get('name')
         input_gender = request.form.get('gender')

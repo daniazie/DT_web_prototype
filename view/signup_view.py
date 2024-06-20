@@ -7,7 +7,7 @@ signup_view = Blueprint("signup_view", __name__)
 
 @signup_view.route("/signup", methods = ['GET', 'POST'])
 def singup():
-    labels = lang_control.load_lang_dict("signup",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("signup")
     if request.method == "POST":
         input_id = request.form.get('id')
         input_email = request.form.get('email')

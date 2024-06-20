@@ -2,12 +2,13 @@ from flask import Flask, request, session, render_template, Blueprint
 from flask_login import  current_user
 from control import lang_control, post_control, community_control
 from models import post
+from models.socketio import socketio
 
 home_view = Blueprint("home_view", __name__)
 
 @home_view.route("/home")
 def home():
-    labels = lang_control.load_lang_dict("home",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("home")
     posts = post_control.pull_post_from_db_rows(3)
     
     try:

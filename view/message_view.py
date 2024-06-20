@@ -21,7 +21,7 @@ def randstrurl():
 @message_view.route("/messages")
 @login_required
 def home():
-    labels = lang_control.load_lang_dict("messages",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("messages")
     chat_rooms = messages_control.get_chat_room_list(current_user.id)
     return render_template("message/message.html", chats=chat_rooms, user=current_user,labels=labels)
 
@@ -39,7 +39,7 @@ def redirect_chat():
 @message_view.route("/messages/room")
 @login_required
 def view_chat():
-    labels = lang_control.load_lang_dict("messages",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("messages")
     # Fetch messages for the specific chat thread
     thread_id = request.args.get("id")
     if not messages_control.is_in_thread(thread_id,current_user.id):

@@ -8,7 +8,7 @@ add_post_view = Blueprint("add_post_view", __name__)
 @add_post_view.route("/posts/add_post", methods = ['GET', 'POST'])
 @login_required
 def add_post():
-    labels = lang_control.load_lang_dict("add-post",lang_control.selected_lang)
+    labels = lang_control.load_lang_dict("add-post")
     if request.method == "POST":
         workplace = request.form.get('shop-name')
         location = request.form.get('location')
