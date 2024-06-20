@@ -1,9 +1,9 @@
 {
     "en":{
-
+        "No_Message":"There are no past messages."
     },
     "ko":{
-        
+        "No_Message":"과거에 나눈 메세지가 없습니다."
     }
 
 }
