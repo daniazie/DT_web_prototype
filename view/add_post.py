@@ -47,6 +47,7 @@ def add_post():
 
         _post = post.Post()
         _post.writer_id = current_user.id
+        _post.writer_name = current_user.name
         _post.type = post.POST_TYPE_JOB
         _post.preview = content[0:max(98,len(content))]
         _post.job_info = job_info
