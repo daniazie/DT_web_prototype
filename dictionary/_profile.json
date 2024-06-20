@@ -1,0 +1,37 @@
+{
+    "en": {
+        "Male": "Male",
+        "Female": "Female",
+        "Other": "Other",
+        "English": "English",
+        "Spanish": "Spanish",
+        "French": "French",
+        "Chinese": "Chinese",
+        "German": "German",
+        "Seoul": "Seoul",
+        "Suwon": "Suwon",
+        "Incheon": "Incheon",
+        "South Korea": "South Korea",
+        "Malaysia": "Malaysia",
+        "Myanmar": "Myanmar",
+        "Australia": "Australia"
+    },
+    "ko": {
+        "Male": "남성",
+        "Female": "여성",
+        "Other": "기타",
+        "English": "영어",
+        "Spanish": "스페인어",
+        "French": "프랑스어",
+        "Chinese": "중국어",
+        "German": "독일어",
+        "Seoul": "서울",
+        "Suwon": "수원",
+        "Incheon": "인천",
+        "South Korea": "대한민국",
+        "Malaysia": "말레이시아",
+        "Myanmar": "미얀마",
+        "Australia": "호주"
+    }
+  }
+  

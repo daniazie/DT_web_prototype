@@ -1,0 +1,40 @@
+{
+    "en": {
+        "Sat": "Sat",
+        "Mon": "Mon",
+        "Tue": "Tue",
+        "Wed": "Wed",
+        "Thu" : "Thu",
+        "Fri": "Fri",
+        "Sun" : "Sun",
+        "Everyday" : "Everyday",
+        "Weekdays" : "Weekdays",
+        "Weekends" : "Weekends",
+        "Hour" : "Hour",
+        "English": "English",
+        "Spanish": "Spanish",
+        "French": "French",
+        "Beginner": "Beginner",
+        "Intermediate": "Intermediate",
+        "Advanced": "Advanced"
+    },
+    "ko": {
+        "Sat": "일",
+        "Mon": "월",
+        "Tue": "화",
+        "Wed": "수",
+        "Thu" : "목",
+        "Fri": "금",
+        "Sun" : "토",
+        "Everyday" : "매일",
+        "Weekdays" : "평일",
+        "Weekends" : "주말",
+        "Hour" : "시급",
+        "English": "영어",
+        "Spanish": "스페인어",
+        "French": "프랑스어",
+        "Beginner": "초급",
+        "Intermediate": "중급",
+        "Advanced": "고급"
+    }
+}

@@ -11,6 +11,7 @@ def post_detail():
     labels = lang_control.load_lang_dict("posts")
     post_id = int(request.args.get('post_id',0))
     post_info = post_control.pull_post_from_db_by_postID(post_id)
+    post_info.job_info = lang_control.translate_post(post_info.job_info)
     post_content = post_control.pull_content_from_db(post_id)
 
     return render_template("/posts/post_detail.html",

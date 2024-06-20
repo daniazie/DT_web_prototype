@@ -187,17 +187,17 @@
             <div class="form-group">
                 <label for="language-preferred">{{ labels['Language_Preferred'] }}</label>
                 <select id="language-preferred" name="language-preferred">
-                    <option value="english">{{ labels['English'] }}</option>
-                    <option value="spanish">{{ labels['Spanish'] }}</option>
-                    <option value="french">{{ labels['French'] }}</option>
+                    <option value="English">{{ labels['English'] }}</option>
+                    <option value="Spanish">{{ labels['Spanish'] }}</option>
+                    <option value="French">{{ labels['French'] }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="level-language">{{ labels['Level_of_Language'] }}</label>
                 <select id="level-language" name="level-language">
-                    <option value="beginner">{{ labels['Beginner'] }}</option>
-                    <option value="intermediate">{{ labels['Intermediate'] }}</option>
-                    <option value="advanced">{{ labels['Advanced'] }}</option>
+                    <option value="Beginner">{{ labels['Beginner'] }}</option>
+                    <option value="Intermediate">{{ labels['Intermediate'] }}</option>
+                    <option value="Advanced">{{ labels['Advanced'] }}</option>
                 </select>
             </div>
             <button class="btn-add-language" type="button" onclick="addLanguage()">{{ labels['Add_another_language'] }}</button>
@@ -236,14 +236,14 @@
             container.classList.add('form-group', 'languages');
             container.innerHTML = `
                 <select name="language-preferred">
-                    <option value="english">${labels['English']}</option>
-                    <option value="spanish">${labels['Spanish']}</option>
-                    <option value="french">${labels['French']}</option>
+                    <option value="English">${labels['English']}</option>
+                    <option value="Spanish">${labels['Spanish']}</option>
+                    <option value="French">${labels['French']}</option>
                 </select>
                 <select name="level-language">
-                    <option value="beginner">${labels['Beginner']}</option>
-                    <option value="intermediate">${labels['Intermediate']}</option>
-                    <option value="advanced">${labels['Advanced']}</option>
+                    <option value="Beginner">${labels['Beginner']}</option>
+                    <option value="Intermediate">${labels['Intermediate']}</option>
+                    <option value="Advanced">${labels['Advanced']}</option>
                 </select>
                 <button type="button" class="btn-delete-language" onclick="deleteLanguage(this)">{{ labels['Delete_Language'] }}</button>
             `;

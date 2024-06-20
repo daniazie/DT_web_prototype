@@ -18,6 +18,9 @@ def posts():
         )
     if post_list[-1].post_id == 0:
         post_list.pop()
+    
+    for post in post_list:
+        post.job_info = lang_control.translate_post(post.job_info)
 
     pagination_start = max(1,current_page-3)
     pagination_end = min(pagination_start+6,page_max)

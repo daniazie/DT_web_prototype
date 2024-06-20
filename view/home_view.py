@@ -10,7 +10,8 @@ home_view = Blueprint("home_view", __name__)
 def home():
     labels = lang_control.load_lang_dict("home")
     posts = post_control.pull_post_from_db_rows(3)
-    
+    for post in posts:
+        post.job_info = lang_control.translate_post(post.job_info)
     try:
         if current_user.id:
             my_comm_list = community_control.pull_community_list_from_db(current_user.id)
